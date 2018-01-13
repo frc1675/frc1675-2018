@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1675.robot.commands.ExampleCommand;
-import org.usfirst.frc.team1675.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team1675.robot.subsystems.DriveBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,8 +23,8 @@ import org.usfirst.frc.team1675.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final ExampleSubsystem kExampleSubsystem
-			= new ExampleSubsystem();
+	public static final DriveBase kExampleSubsystem
+			= new DriveBase();
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -110,6 +110,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		
+
 	}
 
 	/**
