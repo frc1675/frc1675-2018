@@ -36,7 +36,7 @@ public class OI {
 
 	}
 
-	public double getDriveRightXAxis() {
+	public double getDriverRightXAxis() {
 		return 0;
 
 	}
