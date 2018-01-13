@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1675.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,6 +19,7 @@ public class ExampleSubsystem extends Subsystem {
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
+		//test
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
