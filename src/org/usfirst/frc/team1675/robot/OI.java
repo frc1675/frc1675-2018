@@ -7,11 +7,64 @@
 
 package org.usfirst.frc.team1675.robot;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 public class OI {
+
+	Joystick driverController = new Joystick(XBoxControllerMap.DRIVER_CONTROLLER_PORT);
+	Joystick operatorController = new Joystick(XBoxControllerMap.OPERATOR_CONTROLLER_PORT);
+
+	JoystickButton driverButtonA = new JoystickButton(driverController, XBoxControllerMap.A_BUTTON);
+	JoystickButton driverButtonB = new JoystickButton(driverController, XBoxControllerMap.B_BUTTON);
+	JoystickButton driverButtonX = new JoystickButton(driverController, XBoxControllerMap.X_BUTTON);
+	JoystickButton driverButtonY = new JoystickButton(driverController, XBoxControllerMap.Y_BUTTON);
+
+	JoystickButton operatorButtonA = new JoystickButton(operatorController, XBoxControllerMap.A_BUTTON);
+	JoystickButton operatorButtonB = new JoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
+	JoystickButton operatorButtonX = new JoystickButton(operatorController,  XBoxControllerMap.X_BUTTON);
+	JoystickButton operatorButtonY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
+
+	public double getDriverLeftXAxis() {
+
+		return 0;
+	}
+
+	public double getDriverLeftYAxis() {
+		return 0;
+
+	}
+
+	public double getDriveRightXAxis() {
+		return 0;
+
+	}
+
+	public double getDriverRightYAxis() {
+		return 0;
+
+	}
+
+	public double getOperatorLeftXAxis() {
+		return 0;
+
+	}
+
+	public double getOperatoriLeftYAxis() {
+		return 0;
+
+	}
+
+	public double getOperatorRightXAxis() {
+		return 0;
+
+	}
+
+	public double getOperatorRightYAxis() {
+		return 0;
+
+	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
