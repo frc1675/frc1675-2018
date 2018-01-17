@@ -72,6 +72,22 @@ public class OI {
 		rightYAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
 		return -rightYAxis;
 	}
+	private double correctForDeadzone(double value) {
+		double correctedValue = 0;
+		if(Math.abs(value) < 0.1675) {
+			correctedValue = 0;
+		}
+		else {
+			if( value > 0) {
+				correctedValue = (1/(1-0.1675)) * (value-1) + 1;
+			}
+			if(value < 0){
+				correctedValue = (1/(1+0.1675)) * (value +1) -1;
+			}
+		}
+		return value;
+	}
+	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
