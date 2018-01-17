@@ -8,7 +8,6 @@
 package org.usfirst.frc.team1675.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
@@ -27,43 +26,51 @@ public class OI {
 	JoystickButton operatorButtonY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
 
 	public double getDriverLeftXAxis() {
-
-		return 0;
+		double leftXAxis;
+		leftXAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
+		return leftXAxis;
 	}
 
 	public double getDriverLeftYAxis() {
-		return 0;
-
+		double leftYAxis;
+		leftYAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
+		return -leftYAxis;
 	}
 
-	public double getDriveRightXAxis() {
-		return 0;
-
+	public double getDriverRightXAxis() {
+		double rightXAxis;
+		rightXAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
+		return rightXAxis;
 	}
 
 	public double getDriverRightYAxis() {
-		return 0;
-
+		double rightYAxis;
+		rightYAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
+		return -rightYAxis;
 	}
 
 	public double getOperatorLeftXAxis() {
-		return 0;
-
+		double leftXAxis;
+		leftXAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
+		return leftXAxis;
 	}
 
 	public double getOperatoriLeftYAxis() {
-		return 0;
-
+		double leftYAxis;
+		leftYAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
+		return -leftYAxis;
 	}
 
 	public double getOperatorRightXAxis() {
-		return 0;
-
+		double rightXAxis;
+		rightXAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
+		return rightXAxis;
 	}
 
 	public double getOperatorRightYAxis() {
-		return 0;
-
+		double rightYAxis;
+		rightYAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
+		return -rightYAxis;
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
