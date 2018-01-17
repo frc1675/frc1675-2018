@@ -23,10 +23,11 @@ public class RobotMap {
 	}
 	
 	public static class SolenoidChannels {
-		
+		public static final int SHIFT_HIGH = 4;
+		public static final int SHIFT_LOW = 3;
 	}
 	public static class DriveBaseConstants {
-		
+		public static final double SHIFT_TIME = .25;
 	}
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
