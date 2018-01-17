@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1675.robot.subsystems;
 
 import org.usfirst.frc.team1675.robot.RobotMap;
+import org.usfirst.frc.team1675.robot.commands.CheeseyDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -20,15 +21,12 @@ public class DriveBase extends Subsystem {
 	private TalonSRX rightFront;
 	private TalonSRX rightBack;
 	private DoubleSolenoid shifter;
-	AHRS ahrs;
 	
 	public DriveBase() {
 		leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
 		leftBack = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_BACK);
 		rightFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_FRONT);
 		rightBack = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
-		
-		ahrs = new AHRS(SerialPort.Port.kMXP);
 		
 		leftFront.setInverted(true);
 		leftBack.setInverted(true);
@@ -50,6 +48,12 @@ public class DriveBase extends Subsystem {
     	rightFront.set(ControlMode.PercentOutput,power);
     	rightBack.set(ControlMode.PercentOutput,power);
     }
+//    public double deadZone(double value) {
+//    	if(Math.abs(value) < 0.1675) {
+//    		value = 0;	
+//    	}
+//    	return value;
+//    }
     public void shiftHigh() {
     	
     }
@@ -59,15 +63,12 @@ public class DriveBase extends Subsystem {
     public void stopShifter() {
     	
     }
-    public double getAngle() {
-    	return ahrs.getAngle();
-    }
     public void resetGyro() {
 	
 	}
    
     public void initDefaultCommand() {
-       // setDefaultCommand(new CheeseyDrive());
+        setDefaultCommand(new CheeseyDrive());
     }
 }
 
