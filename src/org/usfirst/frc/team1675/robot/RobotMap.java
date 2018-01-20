@@ -29,6 +29,8 @@ public class RobotMap {
 	public static class DriveBaseConstants {
 		public static final double SHIFT_TIME = .25;
 	}
+	
+	public static final double CONTROLLER_DEADZONE = 0.1675;
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
