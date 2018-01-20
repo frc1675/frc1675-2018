@@ -1,13 +1,14 @@
 package org.usfirst.frc.team1675.robot.subsystems;
 
 import org.usfirst.frc.team1675.robot.RobotMap;
-import org.usfirst.frc.team1675.robot.commands.CheeseyDrive;
+import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -32,7 +33,9 @@ public class DriveBase extends Subsystem {
 		leftBack.setInverted(true);
 		rightFront.setInverted(false);
 		rightBack.setInverted(false);
-
+		
+		shifter = new DoubleSolenoid(RobotMap.SolenoidChannels.SHIFT_HIGH, RobotMap.SolenoidChannels.SHIFT_LOW);
+	
 	}
     public void setLeftMotors(double power) {
     	leftFront.set(ControlMode.PercentOutput,power);
@@ -55,20 +58,20 @@ public class DriveBase extends Subsystem {
 //    	return value;
 //    }
     public void shiftHigh() {
-    	
+    	shifter.set(DoubleSolenoid.Value.kForward);
     }
     public void shiftLow() {
-    	
+    	shifter.set(DoubleSolenoid.Value.kReverse);
     }
     public void stopShifter() {
-    	
+    	shifter.set(DoubleSolenoid.Value.kOff);
     }
     public void resetGyro() {
 	
 	}
    
     public void initDefaultCommand() {
-        setDefaultCommand(new CheeseyDrive());
+        setDefaultCommand(new CheesyDrive());
     }
 }
 

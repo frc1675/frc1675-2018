@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1675.robot;
 
+import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
+import org.usfirst.frc.team1675.robot.commands.ShiftLow;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -19,12 +22,19 @@ public class OI {
 	JoystickButton driverButtonB = new JoystickButton(driverController, XBoxControllerMap.B_BUTTON);
 	JoystickButton driverButtonX = new JoystickButton(driverController, XBoxControllerMap.X_BUTTON);
 	JoystickButton driverButtonY = new JoystickButton(driverController, XBoxControllerMap.Y_BUTTON);
+	
+	JoystickButton driverRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
 
 	JoystickButton operatorButtonA = new JoystickButton(operatorController, XBoxControllerMap.A_BUTTON);
 	JoystickButton operatorButtonB = new JoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
 	JoystickButton operatorButtonX = new JoystickButton(operatorController,  XBoxControllerMap.X_BUTTON);
 	JoystickButton operatorButtonY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
 
+	public OI() {
+		driverRightBumper.whenPressed(new ShiftHigh());
+		driverRightBumper.whenReleased(new ShiftLow());
+	}
+	
 	public double getDriverLeftXAxis() {
 		double leftXAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
 		double correctedleftXAxis = correctForDeadzone (leftXAxis);
