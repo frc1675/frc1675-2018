@@ -20,6 +20,9 @@ public class RobotMap {
 		public static final int DRIVE_LEFT_BACK = 2;
 		public static final int DRIVE_RIGHT_FRONT = 3;
 		public static final int DRIVE_RIGHT_BACK = 4;
+		public static final int ARM = 5;
+		public static final int INTAKE_LEFT = 6;
+		public static final int INTAKE_RIGHT = 7;
 	}
 	
 	public static class SolenoidChannels {
@@ -28,6 +31,15 @@ public class RobotMap {
 	}
 	public static class DriveBaseConstants {
 		public static final double SHIFT_TIME = .25;
+	}
+	
+	public static class ClawConstants{
+		public static final int DIRECTION_INPUT = 1;
+		public static final int DIRECTION_OUTPUT = 2;
+		public static final int LEFT_OUTPUT_POWER = 1;//Power values not tested
+		public static final int RIGHT_OUTPUT_POWER = 1;
+		public static final int LEFT_INPUT_POWER = -1;
+		public static final int RIGHT_INPUT_POWER = -1;
 	}
 	
 	public static final double CONTROLLER_DEADZONE = 0.1675;

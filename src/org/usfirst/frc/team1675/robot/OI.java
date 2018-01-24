@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1675.robot;
 
+import org.usfirst.frc.team1675.robot.commands.ActivateClaw;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
 
@@ -33,6 +34,8 @@ public class OI {
 	public OI() {
 		driverRightBumper.whenPressed(new ShiftHigh());
 		driverRightBumper.whenReleased(new ShiftLow());
+		operatorButtonX.whileHeld(new ActivateClaw(RobotMap.ClawConstants.DIRECTION_INPUT));
+		operatorButtonY.whileHeld(new ActivateClaw(RobotMap.ClawConstants.DIRECTION_OUTPUT));
 	}
 	
 	public double getDriverLeftXAxis() {

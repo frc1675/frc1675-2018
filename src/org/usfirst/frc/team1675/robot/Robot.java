@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
+import org.usfirst.frc.team1675.robot.subsystems.Arm;
+import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.DriveBase;
 
 /**
@@ -25,6 +27,8 @@ import org.usfirst.frc.team1675.robot.subsystems.DriveBase;
  */
 public class Robot extends TimedRobot {
 	public static final DriveBase driveBase = new DriveBase();
+	public static final Arm arm = new Arm();
+	public static final Claw claw = new Claw();
 	public static OI oi;
 
 	Command m_autonomousCommand;
