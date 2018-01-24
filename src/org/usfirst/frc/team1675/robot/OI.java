@@ -10,6 +10,7 @@ package org.usfirst.frc.team1675.robot;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -95,6 +96,19 @@ public class OI {
 		}
 		return correctedValue;
 	}
+	
+	public void setDriverRumble(double driverRumblePower) {
+		driverController.setRumble(RumbleType.kLeftRumble, driverRumblePower);
+		driverController.setRumble(RumbleType.kRightRumble, driverRumblePower);
+
+	}
+	
+	public void setOperatorRumble(double operatorRumblePower) { 
+		operatorController.setRumble(RumbleType.kLeftRumble, operatorRumblePower);
+		operatorController.setRumble(RumbleType.kRightRumble, operatorRumblePower);
+
+	}
+
 
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
