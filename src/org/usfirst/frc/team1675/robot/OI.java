@@ -12,6 +12,7 @@ import org.usfirst.frc.team1675.robot.commands.DeployRamp;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -41,53 +42,79 @@ public class OI {
 	}
 	
 	public double getDriverLeftXAxis() {
-		double leftXAxis;
-		leftXAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
-		return leftXAxis;
+		double leftXAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
+		double correctedleftXAxis = correctForDeadzone (leftXAxis);
+		return correctedleftXAxis;
 	}
 
 	public double getDriverLeftYAxis() {
-		double leftYAxis;
-		leftYAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
-		return -leftYAxis;
+		double leftYAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
+		double correctedleftYAxis = correctForDeadzone (leftYAxis);
+		return -correctedleftYAxis;
 	}
 
 	public double getDriverRightXAxis() {
-		double rightXAxis;
-		rightXAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
-		return rightXAxis;
+		double rightXAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
+		double correctedrightXAxis = correctForDeadzone (rightXAxis);
+		return correctedrightXAxis;
 	}
 
 	public double getDriverRightYAxis() {
-		double rightYAxis;
-		rightYAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
-		return -rightYAxis;
+		double rightYAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
+		double correctedRightYAxis = correctForDeadzone (rightYAxis);
+		return -correctedRightYAxis;
 	}
 
 	public double getOperatorLeftXAxis() {
-		double leftXAxis;
-		leftXAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
-		return leftXAxis;
+		double leftXAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
+		double correctedleftXAxis = correctForDeadzone (leftXAxis);
+		return correctedleftXAxis;
 	}
 
 	public double getOperatoriLeftYAxis() {
-		double leftYAxis;
-		leftYAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
-		return -leftYAxis;
+		double leftYAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
+		double correctedleftYAxis = correctForDeadzone (leftYAxis);
+		return -correctedleftYAxis;
 	}
 
 	public double getOperatorRightXAxis() {
-		double rightXAxis;
-		rightXAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
-		return rightXAxis;
+		double rightXAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
+		double correctedrightXAxis = correctForDeadzone(rightXAxis);
+		return correctedrightXAxis;
 	}
 
 	public double getOperatorRightYAxis() {
-		double rightYAxis;
-		rightYAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
-		return -rightYAxis;
+		double rightYAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
+		double correctedRightYAxis = correctForDeadzone(rightYAxis);
+		return -correctedRightYAxis;
 	}
 	
+	private double correctForDeadzone(double value) {
+		double correctedValue = 0;
+		if(Math.abs(value)> RobotMap.CONTROLLER_DEADZONE) {
+			if( value > 0) {
+				correctedValue = (value - RobotMap.CONTROLLER_DEADZONE) / (1 - RobotMap.CONTROLLER_DEADZONE);
+			}
+			if(value < 0){
+				correctedValue = (value + RobotMap.CONTROLLER_DEADZONE) / (1 - RobotMap.CONTROLLER_DEADZONE);
+			}
+		}
+		return correctedValue;
+	}
+	
+	public void setDriverRumble(double driverRumblePower) {
+		driverController.setRumble(RumbleType.kLeftRumble, driverRumblePower);
+		driverController.setRumble(RumbleType.kRightRumble, driverRumblePower);
+
+	}
+	
+	public void setOperatorRumble(double operatorRumblePower) { 
+		operatorController.setRumble(RumbleType.kLeftRumble, operatorRumblePower);
+		operatorController.setRumble(RumbleType.kRightRumble, operatorRumblePower);
+
+	}
+
+
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
