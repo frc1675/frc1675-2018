@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1675.robot;
 
+import org.usfirst.frc.team1675.Util.DoubleButton;
+import org.usfirst.frc.team1675.robot.commands.DeployRamp;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
 
@@ -29,10 +31,13 @@ public class OI {
 	JoystickButton operatorButtonB = new JoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
 	JoystickButton operatorButtonX = new JoystickButton(operatorController,  XBoxControllerMap.X_BUTTON);
 	JoystickButton operatorButtonY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
+	
+//	DoubleButton operatorDoubleButtonAB = new DoubleButton(operatorController, XBoxControllerMap.A_BUTTON, XBoxControllerMap.B_BUTTON);
 
 	public OI() {
 		driverRightBumper.whenPressed(new ShiftHigh());
 		driverRightBumper.whenReleased(new ShiftLow());
+//		operatorDoubleButtonAB.whenPressed(new ShiftHigh());
 	}
 	
 	public double getDriverLeftXAxis() {
