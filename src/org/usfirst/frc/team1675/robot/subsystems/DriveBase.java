@@ -46,7 +46,7 @@ public class DriveBase extends Subsystem {
 //		rightMid.follow(rightFront);
 //		rightBack.follow(rightFront);
 
-		// ahrs = new AHRS(SerialPort.Port.kMXP);
+// ahrs = new AHRS(SerialPort.Port.kMXP);
 
 //		shifter = new DoubleSolenoid(RobotMap.SolenoidChannels.SHIFT_HIGH, RobotMap.SolenoidChannels.SHIFT_LOW);
 
@@ -72,13 +72,6 @@ public class DriveBase extends Subsystem {
 		rightMid.set(ControlMode.PercentOutput, power);
 		rightBack.set(ControlMode.PercentOutput, power);
 	}
-
-	// public double deadZone(double value) {
-	// if(Math.abs(value) < 0.1675) {
-	// value = 0;
-	// }
-	// return value;
-	// }
 	public void shiftHigh() {
 //		shifter.set(DoubleSolenoid.Value.kForward);
 	}
