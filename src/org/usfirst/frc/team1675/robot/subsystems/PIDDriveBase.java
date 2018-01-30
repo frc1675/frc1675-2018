@@ -38,6 +38,7 @@ public class PIDDriveBase extends PIDSubsystem {
 			rightBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
 			leftFront.setInverted(true);
 			leftBack.setInverted(true);
+			leftMid.setInverted(true);
 			rightFront.setInverted(false);
 			rightBack.setInverted(false);
 			

@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CheesyDrive extends Command {
+public class DeployRamp extends Command {
 
-    public CheesyDrive() {
-    requires(Robot.driveBase);
+    public DeployRamp() {
+//        requires(Robot.ramp);
     }
 
     // Called just before this Command runs the first time
@@ -19,16 +19,7 @@ public class CheesyDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double drive = Robot.oi.getDriverLeftYAxis();
-    	double turn = Robot.oi.getDriverRightXAxis();
-    	Robot.driveBase.setLeftMotors(drive+turn);
-    	Robot.driveBase.setRightMotors(drive-turn);
-    	while(turn == 0) {
-    		Robot.driveBase.activatePIDMode();
-    	}
-    	while(turn != 0) {
-    		Robot.driveBase.disablePIDMode();
-    	}
+//    	Robot.ramp.Deploy();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -38,12 +29,10 @@ public class CheesyDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveBase.setAllMotors(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

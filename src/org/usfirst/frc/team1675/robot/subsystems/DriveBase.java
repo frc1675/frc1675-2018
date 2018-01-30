@@ -25,7 +25,7 @@ public class DriveBase extends Subsystem {
 	private VictorSPX rightBack;
 	private DoubleSolenoid shifter;
 	AHRS ahrs;
-	
+
 	public DriveBase() {
 		leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
 		leftMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
@@ -33,9 +33,10 @@ public class DriveBase extends Subsystem {
 		rightFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_FRONT);
 		rightMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
 		rightBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
-		
+
 		leftFront.setInverted(true);
 		leftBack.setInverted(true);
+		leftMid.setInverted(true);
 		rightFront.setInverted(false);
 		rightBack.setInverted(false);
 		
@@ -95,6 +96,5 @@ public class DriveBase extends Subsystem {
     }
     public void initDefaultCommand() {
         setDefaultCommand(new CheesyDrive());
-    }
+	}
 }
-

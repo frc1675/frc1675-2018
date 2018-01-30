@@ -7,9 +7,12 @@
 
 package org.usfirst.frc.team1675.robot;
 
+import org.usfirst.frc.team1675.Util.DoubleButton;
+import org.usfirst.frc.team1675.robot.commands.DeployRamp;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -29,10 +32,13 @@ public class OI {
 	JoystickButton operatorButtonB = new JoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
 	JoystickButton operatorButtonX = new JoystickButton(operatorController,  XBoxControllerMap.X_BUTTON);
 	JoystickButton operatorButtonY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
+	
+//	DoubleButton operatorDoubleButtonAB = new DoubleButton(operatorController, XBoxControllerMap.A_BUTTON, XBoxControllerMap.B_BUTTON);
 
 	public OI() {
 		driverRightBumper.whenPressed(new ShiftHigh());
 		driverRightBumper.whenReleased(new ShiftLow());
+//		operatorDoubleButtonAB.whenPressed(new ShiftHigh());
 	}
 	
 	public double getDriverLeftXAxis() {
@@ -95,6 +101,19 @@ public class OI {
 		}
 		return correctedValue;
 	}
+	
+	public void setDriverRumble(double driverRumblePower) {
+		driverController.setRumble(RumbleType.kLeftRumble, driverRumblePower);
+		driverController.setRumble(RumbleType.kRightRumble, driverRumblePower);
+
+	}
+	
+	public void setOperatorRumble(double operatorRumblePower) { 
+		operatorController.setRumble(RumbleType.kLeftRumble, operatorRumblePower);
+		operatorController.setRumble(RumbleType.kRightRumble, operatorRumblePower);
+
+	}
+
 
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

@@ -16,6 +16,7 @@ package org.usfirst.frc.team1675.robot;
 public class RobotMap {
 	
 	public static class CANDeviceIDs {
+
 		public static final int DRIVE_LEFT_FRONT = 1;	
 		public static final int DRIVE_RIGHT_FRONT = 3;
 		public static final int DRIVE_LEFT_MID = 25;
@@ -25,11 +26,20 @@ public class RobotMap {
 	}
 	public static class PWMChannels{
 		
+		public static final int DRIVE_LEFT_FRONT = 1;
+		public static final int DRIVE_LEFT_MID = 2;
+		public static final int DRIVE_LEFT_BACK = 3;
+		public static final int DRIVE_RIGHT_FRONT = 4;
+		public static final int DRIVE_RIGHT_MID = 5;
+		public static final int DRIVE_RIGHT_BACK = 6;
+
 	}
-	
 	public static class SolenoidChannels {
 		public static final int SHIFT_HIGH = 4;
 		public static final int SHIFT_LOW = 3;
+		public static final int RAMP_RETRACT = 2;
+		public static final int RAMP_DEPLOY = 1;
+		public static final int RAMP_ENGAGE = 5;
 	}
 	public static class DriveBaseConstants {
 		public static final double SHIFT_TIME = .25;
