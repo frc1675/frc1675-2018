@@ -7,14 +7,15 @@
 
 package org.usfirst.frc.team1675.robot;
 
+import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
+import org.usfirst.frc.team1675.robot.subsystems.DriveBase;
+import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
-import org.usfirst.frc.team1675.robot.subsystems.DriveBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,7 +25,7 @@ import org.usfirst.frc.team1675.robot.subsystems.DriveBase;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final DriveBase driveBase = new DriveBase();
+	public static final PIDDriveBase driveBase = new PIDDriveBase();
 	public static OI oi;
 
 	Command m_autonomousCommand;
