@@ -72,7 +72,7 @@ public class DriveForDistance extends PIDCommand {
     protected boolean isFinished() {
     	if(averageOnTarget() || this.isTimedOut()) {
     		return true;
-    	}
+        }
     	else return false;
     }
 
