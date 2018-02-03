@@ -11,28 +11,32 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class RampSub extends Subsystem {
-	
-	public Solenoid rampLifter;
-	public DoubleSolenoid rampDeploy;
-	
-	public RampSub() {
-		rampLifter = new Solenoid(RobotMap.SolenoidChannels.RAMP_ENGAGE);
-		rampDeploy = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_DEPLOY, RobotMap.SolenoidChannels.RAMP_RETRACT);
-	}
-	public void rampLift() {
-		rampLifter.set(false);
-	} 
-	public void rampReset() {
-		rampLifter.set(true);
-	}
-	public void Deploy() {
-		rampDeploy.set(DoubleSolenoid.Value.kForward);
-	}
-	public void Retract() {
-		rampDeploy.set(DoubleSolenoid.Value.kReverse);
-	}
+
+    public Solenoid rampLifter;
+    public DoubleSolenoid rampDeploy;
+
+    public RampSub() {
+        rampLifter = new Solenoid(RobotMap.SolenoidChannels.RAMP_ENGAGE);
+        rampDeploy = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_DEPLOY, RobotMap.SolenoidChannels.RAMP_RETRACT);
+    }
+
+    public void rampLift() {
+        rampLifter.set(false);
+    }
+
+    public void rampReset() {
+        rampLifter.set(true);
+    }
+
+    public void Deploy() {
+        rampDeploy.set(DoubleSolenoid.Value.kForward);
+    }
+
+    public void Retract() {
+        rampDeploy.set(DoubleSolenoid.Value.kReverse);
+    }
+
     public void initDefaultCommand() {
-         setDefaultCommand(new CheesyDrive());
+        setDefaultCommand(new CheesyDrive());
     }
 }
-
