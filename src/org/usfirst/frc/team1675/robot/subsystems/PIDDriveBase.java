@@ -24,7 +24,7 @@ public class PIDDriveBase extends PIDSubsystem {
 		private TalonSRX rightBack;
 		//private VictorSPX rightMid;
 		//private VictorSPX rightBack;
-		static final double P = .0275;
+		static final double P = .03;
 	    static final double I = .0;
 	    static final double D = .03;
 		private double correction;
@@ -64,24 +64,26 @@ public class PIDDriveBase extends PIDSubsystem {
 	    	rightFront.set(ControlMode.PercentOutput,corrValue);
 	    //	rightMid.set(ControlMode.PercentOutput,power);
 	    	rightBack.set(ControlMode.PercentOutput,corrValue);
-		    SmartDashboard.putNumber("angle", this.getAngle());
+		 //   SmartDashboard.putNumber("angle", this.getAngle());
 
 	    }	
 	    public void setAllMotors(double power) {
-	    	double corrValue = (power+correction);
-	    	leftFront.set(ControlMode.PercentOutput,-corrValue);
-	    //	leftMid.set(ControlMode.PercentOutput,-corrValue);
-	    	leftBack.set(ControlMode.PercentOutput,-corrValue);
-	    	rightFront.set(ControlMode.PercentOutput,corrValue);
-	    //	rightMid.set(ControlMode.PercentOutput,corrValue);
-	    	rightBack.set(ControlMode.PercentOutput,corrValue);
+	    	if(Math.abs(power)+Math.abs(correction) >1) {
+	    		if(power > 0) {
+	    		power = power - correction;
+	    		}else {	    	
+	    			power = power + correction;
+	    		}
+	    	}
+	    	double leftpower = (power+correction);
+	    	double rightpower = (power-correction);
+	    	leftFront.set(ControlMode.PercentOutput,leftpower);
+	    //	leftMid.set(ControlMode.PercentOutput,leftpower);
+	    	leftBack.set(ControlMode.PercentOutput,leftpower);
+	    	rightFront.set(ControlMode.PercentOutput,rightpower);
+	    //	rightMid.set(ControlMode.PercentOutput,leftpower);
+	    	rightBack.set(ControlMode.PercentOutput,rightpower);
 	    }
-//	    public double deadZone(double value) {
-//	    	if(Math.abs(value) < 0.1675) {
-//	    		value = 0;	
-//	    	}
-//	    	return value;
-//	    }
 	    public void shiftHigh() {
 	    	shifter.set(DoubleSolenoid.Value.kForward);
 	    }
@@ -112,7 +114,7 @@ public class PIDDriveBase extends PIDSubsystem {
 	    	this.getPIDController().reset();
 	    	this.setSetpoint(this.getAngle());
 	    	this.getPIDController().setOutputRange(-1,1);
-	    	this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.TOLERANCE);
+	    	this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.TOLERANCE);	
 	    	this.getPIDController().enable();
 	    	}
 	    }
@@ -121,16 +123,17 @@ public class PIDDriveBase extends PIDSubsystem {
 	    }
 	 
 	    protected double returnPIDInput() {
-	    SmartDashboard.putNumber("pid in", this.getAngle());
+	//    SmartDashboard.putNumber("pid in", this.getAngle());
         return this.getAngle();
 	    }
 
 	    protected void usePIDOutput(double output) {
-        // Use output to drive your system, like a motor
-	    	SmartDashboard.putNumber("pid out",output);
+//	    	SmartDashboard.putNumber("pid out",output);
+//	    	SmartDashboard.putNumber("Setpoint", this.getPIDController().getSetpoint());
 	    	correction=output;
 	    }
 	    public void initDefaultCommand() {
 	        setDefaultCommand(new CheesyDrive());
 	    }
 }
+

@@ -90,17 +90,16 @@ public class DriveAuto extends PIDCommand {
 
 	@Override
 	protected double returnPIDInput() {
-		SmartDashboard.putNumber("pid in", ldf.pidGet());
+//		SmartDashboard.putNumber("pid in", ldf.pidGet());
 		return (ldf.pidGet());
 		
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		SmartDashboard.putNumber("pid out", output);
-		SmartDashboard.putNumber("setpoint", this.getPIDController().getSetpoint());
-		SmartDashboard.putNumber("error", this.getPIDController().getError());
-		Robot.driveBase.setLeftMotors(output);
-		Robot.driveBase.setRightMotors(output);
+//		SmartDashboard.putNumber("pid out", output);
+//		SmartDashboard.putNumber("setpoint", this.getPIDController().getSetpoint());
+//		SmartDashboard.putNumber("error", this.getPIDController().getError());
+		Robot.driveBase.setAllMotors(output);
 	}
 }
