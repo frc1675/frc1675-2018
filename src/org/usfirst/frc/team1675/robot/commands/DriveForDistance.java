@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DriveAuto extends PIDCommand {
+public class DriveForDistance extends PIDCommand {
 	PIDSource pst = new PIDSource() {
 		PIDSourceType pidType;
 		public void setPIDSourceType(PIDSourceType pidSource) {
@@ -36,7 +36,7 @@ public class DriveAuto extends PIDCommand {
 	double timeout;
 	LinearDigitalFilter ldf = LinearDigitalFilter.movingAverage(pst, 10); ;
 
-    public DriveAuto(double setpoint,double timeout) {
+    public DriveForDistance(double setpoint,double timeout) {
     	super(RobotMap.DriveBaseConstants.P, RobotMap.DriveBaseConstants.I, RobotMap.DriveBaseConstants.D);
 		requires(Robot.driveBase);
 		this.setpoint = setpoint * RobotMap.DriveBaseConstants.TICKS_PER_INCH;

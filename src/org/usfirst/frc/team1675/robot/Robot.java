@@ -8,9 +8,9 @@
 package org.usfirst.frc.team1675.robot;
 
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
-import org.usfirst.frc.team1675.robot.commands.DriveAuto;
+import org.usfirst.frc.team1675.robot.commands.DriveForDistance;
 import org.usfirst.frc.team1675.robot.commands.TurnWithGyro;
-import org.usfirst.frc.team1675.robot.subsystems.DriveBase;
+
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
-import org.usfirst.frc.team1675.robot.subsystems.DriveBase;
+
 import org.usfirst.frc.team1675.robot.subsystems.RampSub;
 
 
@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = new DriveAuto(240,10);
+		m_autonomousCommand = new DriveForDistance(240,10);
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
