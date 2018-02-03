@@ -16,13 +16,17 @@ package org.usfirst.frc.team1675.robot;
 public class RobotMap {
 	
 	public static class CANDeviceIDs {
-
-		public static final int DRIVE_LEFT_FRONT = 1;	
-		public static final int DRIVE_RIGHT_FRONT = 3;
-		public static final int DRIVE_LEFT_MID = 25;
+		public static final int DRIVE_LEFT_FRONT = 1;
 		public static final int DRIVE_LEFT_BACK = 2;
+		public static final int DRIVE_RIGHT_FRONT = 3;
 		public static final int DRIVE_RIGHT_BACK = 4;
-		public static final int DRIVE_RIGHT_MID = 25;
+
+		//public static final int DRIVE_LEFT_FRONT = 1;	
+		//public static final int DRIVE_RIGHT_FRONT = 3;
+		//public static final int DRIVE_LEFT_MID = 25;
+		//public static final int DRIVE_LEFT_BACK = 2;
+		//public static final int DRIVE_RIGHT_BACK = 4;
+		//public static final int DRIVE_RIGHT_MID = 25;
 	}
 	public static class PWMChannels{
 		
@@ -43,10 +47,11 @@ public class RobotMap {
 	}
 	public static class DriveBaseConstants {
 		public static final double SHIFT_TIME = .25;
-		public static final double P = 0; //unknown
-		public static final double I = 0; //unknown
-		public static final double D = 0; //unknown
+		public static final double P = .0003;
+		public static final double I = 0.0;
+		public static final double D = 0.0003; //all placeholders
 		public static final double TOLERANCE = 69; //placeholder
+		public static final double TICKS_PER_INCH = 410.86; //placeholder
 	}
 	
 	

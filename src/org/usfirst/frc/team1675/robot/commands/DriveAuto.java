@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.filters.LinearDigitalFilter;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -35,10 +36,10 @@ public class DriveAuto extends PIDCommand {
 	double timeout;
 	LinearDigitalFilter ldf = LinearDigitalFilter.movingAverage(pst, 10); ;
 
-    public DriveAuto() {
+    public DriveAuto(double setpoint,double timeout) {
     	super(RobotMap.DriveBaseConstants.P, RobotMap.DriveBaseConstants.I, RobotMap.DriveBaseConstants.D);
 		requires(Robot.driveBase);
-		this.setpoint = setpoint ;// know we'll need this * RobotMap.DriveBaseConstants.TICKS_PER_INCH;
+		this.setpoint = setpoint * RobotMap.DriveBaseConstants.TICKS_PER_INCH;
 		this.timeout = timeout;
     }
 
@@ -89,11 +90,17 @@ public class DriveAuto extends PIDCommand {
 
 	@Override
 	protected double returnPIDInput() {
+		SmartDashboard.putNumber("pid in", ldf.pidGet());
 		return (ldf.pidGet());
+		
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		Robot.driveBase.setAllMotors(output);
+		SmartDashboard.putNumber("pid out", output);
+		SmartDashboard.putNumber("setpoint", this.getPIDController().getSetpoint());
+		SmartDashboard.putNumber("error", this.getPIDController().getError());
+		Robot.driveBase.setLeftMotors(output);
+		Robot.driveBase.setRightMotors(output);
 	}
 }

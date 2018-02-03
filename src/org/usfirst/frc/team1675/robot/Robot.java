@@ -8,6 +8,8 @@
 package org.usfirst.frc.team1675.robot;
 
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
+import org.usfirst.frc.team1675.robot.commands.DriveAuto;
+import org.usfirst.frc.team1675.robot.commands.TurnWithGyro;
 import org.usfirst.frc.team1675.robot.subsystems.DriveBase;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 
@@ -79,7 +81,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		m_autonomousCommand = new DriveAuto(240,10);
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

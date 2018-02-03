@@ -18,27 +18,34 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveBase extends Subsystem {
 
 	private TalonSRX leftFront;
-	private VictorSPX leftMid;
-	private VictorSPX leftBack;
+	private TalonSRX leftBack;
+	//private VictorSPX leftMid;
+	//private VictorSPX leftBack;
 	private TalonSRX rightFront;
-	private VictorSPX rightMid;
-	private VictorSPX rightBack;
+	private TalonSRX rightBack;
+	//private VictorSPX rightMid;
+	//private VictorSPX rightBack;
 	private DoubleSolenoid shifter;
 	AHRS ahrs;
 
 	public DriveBase() {
 		leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
-		leftMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
-		leftBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_BACK);
+		leftBack = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_BACK);
+		//leftMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
+		//leftBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_BACK);
 		rightFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_FRONT);
-		rightMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
-		rightBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
+		rightBack = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
+		//rightMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
+		//rightBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
 
 		leftFront.setInverted(true);
 		leftBack.setInverted(true);
-		leftMid.setInverted(true);
+		//leftMid.setInverted(true);
 		rightFront.setInverted(false);
 		rightBack.setInverted(false);
+		
+		rightFront.setSensorPhase(true);
+		leftFront.setSensorPhase(true);
 		
 		ahrs = new AHRS(SerialPort.Port.kMXP);
 		
@@ -47,20 +54,20 @@ public class DriveBase extends Subsystem {
 	}
     public void setLeftMotors(double power) {
     	leftFront.set(ControlMode.PercentOutput,power);
-    	leftMid.set(ControlMode.PercentOutput,power);
+    	//leftMid.set(ControlMode.PercentOutput,power);
     	leftBack.set(ControlMode.PercentOutput,power);
     }
     public void setRightMotors(double power) {
     	rightFront.set(ControlMode.PercentOutput,power);
-    	rightMid.set(ControlMode.PercentOutput,power);
+    	//rightMid.set(ControlMode.PercentOutput,power);
     	rightBack.set(ControlMode.PercentOutput,power);
     }	
     public void setAllMotors(double power) {
     	leftFront.set(ControlMode.PercentOutput,power);
-    	leftMid.set(ControlMode.PercentOutput,power);
+    	//leftMid.set(ControlMode.PercentOutput,power);
     	leftBack.set(ControlMode.PercentOutput,power);
     	rightFront.set(ControlMode.PercentOutput,power);
-    	rightMid.set(ControlMode.PercentOutput,power);
+    	//rightMid.set(ControlMode.PercentOutput,power);
     	rightBack.set(ControlMode.PercentOutput,power);
     }
 //    public double deadZone(double value) {

@@ -10,13 +10,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class TurnWithGyro extends PIDCommand {
+public class TurnWithGyro extends PIDCommand {	
+	static final double P = .03;
+    static final double I = .0;
+    static final double D = .03;
+    static final double TOLERANCE = 0.5;
 	double setpoint;
 	double timeout;
 	double initialDegrees;
 
     public TurnWithGyro(double setpoint,double timeout) {
-    	super(RobotMap.DriveBaseConstants.P,RobotMap.DriveBaseConstants.I,RobotMap.DriveBaseConstants.D);
+    	super(P,I,D);
         requires(Robot.driveBase);
         this.setpoint = setpoint;
         this.timeout = timeout;
@@ -26,10 +30,11 @@ public class TurnWithGyro extends PIDCommand {
     protected void initialize() {
     	this.getPIDController().reset();
     	this.getPIDController().setOutputRange(-1.0, 1.0);
-    	this.getPIDController().setSetpoint(initialDegrees+setpoint);
-    	this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.TOLERANCE);
-    	this.setTimeout(timeout);
     	initialDegrees = Robot.driveBase.getAngle();
+    	this.getPIDController().setSetpoint(initialDegrees+setpoint);
+    	this.getPIDController().setAbsoluteTolerance(TOLERANCE);
+    	this.setTimeout(timeout);
+    	
     	this.getPIDController().enable();
     }
 
@@ -64,7 +69,7 @@ public class TurnWithGyro extends PIDCommand {
 	@Override
 	protected void usePIDOutput(double output) {
 		SmartDashboard.putNumber("GyroPIDAngle", Robot.driveBase.getAngle());
-		Robot.driveBase.setRightMotors(output);
+		Robot.driveBase.setRightMotors(-output);
 		Robot.driveBase.setLeftMotors(output);
 	}
 }

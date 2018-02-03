@@ -11,19 +11,22 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
 public class PIDDriveBase extends PIDSubsystem {
 		private TalonSRX leftFront;
-		private VictorSPX leftMid;
-		private VictorSPX leftBack;
+		private TalonSRX leftBack;
+		//private VictorSPX leftMid;
+		//private VictorSPX leftBack;
 		private TalonSRX rightFront;
-		private VictorSPX rightMid;
-		private VictorSPX rightBack;
-		static final double P= 69;
-		static final double I= 69;
-		static final double D= 69;
+		private TalonSRX rightBack;
+		//private VictorSPX rightMid;
+		//private VictorSPX rightBack;
+		static final double P = .0275;
+	    static final double I = .0;
+	    static final double D = .03;
 		private double correction;
 		private DoubleSolenoid shifter;
 		AHRS ahrs;
@@ -31,16 +34,19 @@ public class PIDDriveBase extends PIDSubsystem {
 		public PIDDriveBase() {
 			super(P,I,D);
 			leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
-			leftMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
-			leftBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_BACK);
+			//leftMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
+			leftBack = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_BACK);
 			rightFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_FRONT);
-			rightMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
-			rightBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
+			//rightMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
+			rightBack = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
 			leftFront.setInverted(true);
 			leftBack.setInverted(true);
-			leftMid.setInverted(true);
+			//leftMid.setInverted(true);
 			rightFront.setInverted(false);
 			rightBack.setInverted(false);
+			
+			rightFront.setSensorPhase(true);
+			leftFront.setSensorPhase(true);
 			
 			ahrs = new AHRS(SerialPort.Port.kMXP);
 			
@@ -48,22 +54,26 @@ public class PIDDriveBase extends PIDSubsystem {
 		
 		}
 	    public void setLeftMotors(double power) {
-	    	leftFront.set(ControlMode.PercentOutput,power);
-	    	leftMid.set(ControlMode.PercentOutput,power);
-	    	leftBack.set(ControlMode.PercentOutput,power);
+	    	double corrValue = (power+correction);
+	    	leftFront.set(ControlMode.PercentOutput,corrValue);
+	    //	leftMid.set(ControlMode.PercentOutput,power);
+	    	leftBack.set(ControlMode.PercentOutput,corrValue);
 	    }
 	    public void setRightMotors(double power) {
-	    	rightFront.set(ControlMode.PercentOutput,power);
-	    	rightMid.set(ControlMode.PercentOutput,power);
-	    	rightBack.set(ControlMode.PercentOutput,power);
+	    	double corrValue = (power-correction);
+	    	rightFront.set(ControlMode.PercentOutput,corrValue);
+	    //	rightMid.set(ControlMode.PercentOutput,power);
+	    	rightBack.set(ControlMode.PercentOutput,corrValue);
+		    SmartDashboard.putNumber("angle", this.getAngle());
+
 	    }	
 	    public void setAllMotors(double power) {
-	    	double corrValue = power/(power+correction);
+	    	double corrValue = (power+correction);
 	    	leftFront.set(ControlMode.PercentOutput,-corrValue);
-	    	leftMid.set(ControlMode.PercentOutput,-corrValue);
+	    //	leftMid.set(ControlMode.PercentOutput,-corrValue);
 	    	leftBack.set(ControlMode.PercentOutput,-corrValue);
 	    	rightFront.set(ControlMode.PercentOutput,corrValue);
-	    	rightMid.set(ControlMode.PercentOutput,corrValue);
+	    //	rightMid.set(ControlMode.PercentOutput,corrValue);
 	    	rightBack.set(ControlMode.PercentOutput,corrValue);
 	    }
 //	    public double deadZone(double value) {
@@ -98,21 +108,26 @@ public class PIDDriveBase extends PIDSubsystem {
 	    	return rightFront.getSelectedSensorPosition(0);
 	    }
 	    public void activatePIDMode() {
-	    	this.getPIDController().enable();
+	    	if(!this.getPIDController().isEnabled()) {
+	    	this.getPIDController().reset();
 	    	this.setSetpoint(this.getAngle());
 	    	this.getPIDController().setOutputRange(-1,1);
 	    	this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.TOLERANCE);
+	    	this.getPIDController().enable();
+	    	}
 	    }
 	    public void disablePIDMode() {
 	    	this.getPIDController().disable();
 	    }
 	 
 	    protected double returnPIDInput() {
+	    SmartDashboard.putNumber("pid in", this.getAngle());
         return this.getAngle();
 	    }
 
 	    protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
+	    	SmartDashboard.putNumber("pid out",output);
 	    	correction=output;
 	    }
 	    public void initDefaultCommand() {

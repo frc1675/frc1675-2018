@@ -3,14 +3,16 @@ package org.usfirst.frc.team1675.robot.commands;
 import org.usfirst.frc.team1675.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class CheesyDrive extends Command {
-
+	boolean isPIDEnabled;
     public CheesyDrive() {
     requires(Robot.driveBase);
+   
     }
 
     // Called just before this Command runs the first time
@@ -20,15 +22,20 @@ public class CheesyDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double drive = Robot.oi.getDriverLeftYAxis();
-    	double turn = Robot.oi.getDriverRightXAxis();
-    	Robot.driveBase.setLeftMotors(drive+turn);
-    	Robot.driveBase.setRightMotors(drive-turn);
-    	while(turn == 0) {
+    	double turn = Robot.oi.getDriverRightXAxis();	
+    	if(turn == 0 && drive != 0) {
+    		isPIDEnabled = true;
     		Robot.driveBase.activatePIDMode();
-    	}
-    	while(turn != 0) {
+    	}else{
+    		isPIDEnabled = false;
     		Robot.driveBase.disablePIDMode();
     	}
+    	SmartDashboard.putBoolean("IsPIDEnabled", isPIDEnabled);
+    	SmartDashboard.putNumber("Left enc", Robot.driveBase.getLeftEncoderValue());
+    	SmartDashboard.putNumber("Right enc", Robot.driveBase.getRightEncoderValue());
+    	Robot.driveBase.setLeftMotors(drive+turn);
+    	Robot.driveBase.setRightMotors(drive-turn);
+    
     }
 
     // Make this return true when this Command no longer needs to run execute()
