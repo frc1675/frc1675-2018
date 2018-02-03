@@ -17,26 +17,13 @@ public class RobotMap {
 	
 	public static class CANDeviceIDs {
 		public static final int DRIVE_LEFT_FRONT = 1;
-		public static final int DRIVE_LEFT_BACK = 2;
-		public static final int DRIVE_RIGHT_FRONT = 3;
-		public static final int DRIVE_RIGHT_BACK = 4;
-
-		//public static final int DRIVE_LEFT_FRONT = 1;	
-		//public static final int DRIVE_RIGHT_FRONT = 3;
-		//public static final int DRIVE_LEFT_MID = 25;
-		//public static final int DRIVE_LEFT_BACK = 2;
-		//public static final int DRIVE_RIGHT_BACK = 4;
-		//public static final int DRIVE_RIGHT_MID = 25;
-	}
-	public static class PWMChannels{
-		
-		public static final int DRIVE_LEFT_FRONT = 1;
 		public static final int DRIVE_LEFT_MID = 2;
 		public static final int DRIVE_LEFT_BACK = 3;
 		public static final int DRIVE_RIGHT_FRONT = 4;
 		public static final int DRIVE_RIGHT_MID = 5;
 		public static final int DRIVE_RIGHT_BACK = 6;
-
+	}
+	public static class PWMChannels{
 	}
 	public static class SolenoidChannels {
 		public static final int SHIFT_HIGH = 4;
