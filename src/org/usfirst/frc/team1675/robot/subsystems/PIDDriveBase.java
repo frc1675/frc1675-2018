@@ -24,7 +24,7 @@ public class PIDDriveBase extends PIDSubsystem {
 		private TalonSRX rightBack;
 		//private VictorSPX rightMid;
 		//private VictorSPX rightBack;
-		static final double P = .03;
+		static final double P = .07;
 	    static final double I = .0;
 	    static final double D = .03;
 		private double correction;
