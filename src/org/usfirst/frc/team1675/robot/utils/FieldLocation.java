@@ -1,8 +1,6 @@
 package org.usfirst.frc.team1675.robot.utils;
 
 public enum FieldLocation {
-    SCALE_LEFT,
-    SCALE_RIGHT,
     SWITCH_LEFT,
     SWITCH_RIGHT,
     START_LEFT,
