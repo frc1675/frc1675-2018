@@ -3,7 +3,7 @@ package org.usfirst.frc.team1675.robot.subsystems;
 import org.usfirst.frc.team1675.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Claw extends Subsystem {
 
-	private TalonSRX intakeLeft;
-	private TalonSRX intakeRight;
+	private VictorSPX intakeLeft;
+	private VictorSPX intakeRight;
 	
 	public Claw(){
-		intakeLeft = new TalonSRX(RobotMap.CANDeviceIDs.INTAKE_LEFT);
-		intakeRight = new TalonSRX(RobotMap.CANDeviceIDs.INTAKE_RIGHT);
+		intakeLeft = new VictorSPX(RobotMap.CANDeviceIDs.INTAKE_LEFT);
+		intakeRight = new VictorSPX(RobotMap.CANDeviceIDs.INTAKE_RIGHT);
 	}
 	
 	public void setLeftIntakePower(double power) {
