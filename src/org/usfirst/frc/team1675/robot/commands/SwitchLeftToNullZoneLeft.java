@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class SwitchRightToNullZoneRight extends CommandGroup {
+public class SwitchLeftToNullZoneLeft extends CommandGroup {
 
     double timeout;
     double setpoint;
@@ -22,7 +22,7 @@ public class SwitchRightToNullZoneRight extends CommandGroup {
     private static final double SEGMENT_2 = 0;
     private static final double SEGMENT_2_TIMEOUT = 0;
     
-    public SwitchRightToNullZoneRight() {
+    public SwitchLeftToNullZoneLeft() {
         addSequential(new TurnWithGyro(TURN_1_ANGLE, TURN_1_TIMEOUT));
         addSequential(new DriveForDistance(SEGMENT_1, SEGMENT_1_TIMEOUT));
         addSequential(new TurnWithGyro(TURN_2_ANGLE, TURN_2_TIMEOUT));
