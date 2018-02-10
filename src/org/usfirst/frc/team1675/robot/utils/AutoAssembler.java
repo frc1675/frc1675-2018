@@ -3,6 +3,7 @@ package org.usfirst.frc.team1675.robot.utils;
 import org.usfirst.frc.team1675.robot.commands.Go;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoAssembler {
 
@@ -30,20 +31,27 @@ public class AutoAssembler {
         CommandGroup auto = new CommandGroup();
         FieldLocation currentLocation = startLocation;
         boolean hasBox = true;
+        int commandCount = 0;
 
         switch (scoreDirective) {
         case SCORE:
             switch (switchAssignment) {
             case RIGHT:
-                auto.addSequential(new Go(startLocation, FieldLocation.SWITCH_RIGHT));
+                auto.addSequential(new Go(currentLocation, FieldLocation.SWITCH_RIGHT));
+                commandCount++;
+                SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.SWITCH_RIGHT);
                 currentLocation = FieldLocation.SWITCH_RIGHT;
                 break;
             case LEFT:
                 auto.addSequential(new Go(startLocation, FieldLocation.SWITCH_LEFT));
+                commandCount++;
+                SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.SWITCH_LEFT);
                 currentLocation = FieldLocation.SWITCH_LEFT;
                 break;
             }
             // TODO: Add score command
+            commandCount++;
+            SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", "Score");
             hasBox = false;
         case SKIP:
             break;
@@ -57,14 +65,22 @@ public class AutoAssembler {
                     case EXCHANGE:
                     case SWITCH_LEFT:
                         auto.addSequential(new Go(currentLocation, FieldLocation.CUBE_PYRAMID_LEFT));
+                        commandCount++;
+                        SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.CUBE_PYRAMID_LEFT);
                         currentLocation = FieldLocation.CUBE_PYRAMID_LEFT;
                         // TODO: auto.addSequential(new PICK UP THE DANG CUBE);
+                        commandCount++;
+                        SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", "Pick up Cube");
                         hasBox = true;
                         break;
                     case SWITCH_RIGHT:
                         auto.addSequential(new Go(currentLocation, FieldLocation.CUBE_PYRAMID_RIGHT));
+                        commandCount++;
+                        SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.CUBE_PYRAMID_RIGHT);
                         currentLocation = FieldLocation.CUBE_PYRAMID_RIGHT;
                         // TODO: auto.addSequential(new PICK UP THE DANG CUBE);
+                        commandCount++;
+                        SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", "Pick up Cube");
                         hasBox = true;
                         break;
                     default:
@@ -74,17 +90,25 @@ public class AutoAssembler {
                     }
                 }
                 auto.addSequential(new Go(currentLocation, FieldLocation.EXCHANGE));
+                commandCount++;
+                SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.EXCHANGE);
                 // TODO: place the dang box
+                commandCount++;
+                SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", "Place Cube");
                 hasBox = false;
                 break;
             case NULL_ZONE:
                 switch (scaleAssignment) {
                 case LEFT:
                     auto.addSequential(new Go(currentLocation, FieldLocation.NULL_ZONE_LEFT));
+                    commandCount++;
+                    SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.NULL_ZONE_LEFT);
                     currentLocation = FieldLocation.NULL_ZONE_LEFT;
                     break;
                 case RIGHT:
                     auto.addSequential(new Go(currentLocation, FieldLocation.NULL_ZONE_RIGHT));
+                    commandCount++;
+                    SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.NULL_ZONE_RIGHT);
                     currentLocation = FieldLocation.NULL_ZONE_RIGHT;
                     break;
                 }
@@ -95,14 +119,22 @@ public class AutoAssembler {
                     case EXCHANGE:
                     case SWITCH_LEFT:
                         auto.addSequential(new Go(currentLocation, FieldLocation.CUBE_PYRAMID_LEFT));
+                        commandCount++;
+                        SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.CUBE_PYRAMID_LEFT);
                         currentLocation = FieldLocation.CUBE_PYRAMID_LEFT;
                         // TODO: pick up the box
+                        commandCount++;
+                        SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", "Pick up Cube");
                         hasBox = true;
                         break;
                     case SWITCH_RIGHT:
                         auto.addSequential(new Go(currentLocation, FieldLocation.CUBE_PYRAMID_RIGHT));
+                        commandCount++;
+                        SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.CUBE_PYRAMID_RIGHT);
                         currentLocation = FieldLocation.CUBE_PYRAMID_RIGHT;
                         // TODO: pick up the box
+                        commandCount++;
+                        SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", "Pick up Cube");
                         hasBox = true;
                         break;
                     default:
@@ -114,28 +146,40 @@ public class AutoAssembler {
                 switch (switchAssignment) {
                 case LEFT:
                     auto.addSequential(new Go(currentLocation, FieldLocation.SWITCH_LEFT));
+                    commandCount++;
+                    SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.SWITCH_LEFT);
                     currentLocation = FieldLocation.SWITCH_LEFT;
                     break;
                 case RIGHT:
                     auto.addSequential(new Go(currentLocation, FieldLocation.SWITCH_RIGHT));
+                    commandCount++;
+                    SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.SWITCH_RIGHT);
                     currentLocation = FieldLocation.SWITCH_RIGHT;
                     break;
                 }
                 // TODO: score
+                commandCount++;
+                SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", "Score");
                 hasBox = false;
                 break;
             case CROSS_LINE:
                 switch (currentLocation) {
                 case EXCHANGE:
                     auto.addSequential(new Go(currentLocation, FieldLocation.CUBE_PYRAMID_LEFT));
+                    commandCount++;
+                    SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.CUBE_PYRAMID_LEFT);
                     currentLocation = FieldLocation.CUBE_PYRAMID_LEFT;
                     break;
                 case START_LEFT:
                     auto.addSequential(new Go(currentLocation, FieldLocation.SWITCH_LEFT));
+                    commandCount++;
+                    SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.SWITCH_LEFT);
                     currentLocation = FieldLocation.SWITCH_LEFT;
                     break;
                 case START_RIGHT:
                     auto.addSequential(new Go(currentLocation, FieldLocation.SWITCH_RIGHT));
+                    commandCount++;
+                    SmartDashboard.putString(switchAssignment + "" + scaleAssignment +" Command #" + commandCount + ":", currentLocation + " to " + FieldLocation.SWITCH_RIGHT);
                     currentLocation = FieldLocation.SWITCH_RIGHT;
                     break;
                 default:
