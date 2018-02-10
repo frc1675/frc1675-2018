@@ -50,10 +50,16 @@ public class RobotMap {
 	public static class ClawConstants{
 		public static final int DIRECTION_INPUT = 1;
 		public static final int DIRECTION_OUTPUT = 2;
-		public static final double LEFT_OUTPUT_POWER = -.5;//Power values not tested
+		public static final double LEFT_OUTPUT_POWER = -.5;
 		public static final double RIGHT_OUTPUT_POWER = .5;
 		public static final double LEFT_INPUT_POWER = .5;
 		public static final double RIGHT_INPUT_POWER = -.5;
+	}
+	
+	public static class ArmConstants {
+	    public static final int ENCODER_INITIAL_POSITION = 135;//placeholder value, needs to be tested
+	    public static final double DEGREES_PER_ENCODER_TICK = 1/3;//placeholder value, needs to be tested
+	    public static final double INITIAL_ARM_HOLD_VOLTAGE = .21;//needs fine tuning
 	}
 	
 	public static final double CONTROLLER_DEADZONE = 0.1675;

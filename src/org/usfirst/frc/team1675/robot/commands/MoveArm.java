@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1675.robot.commands;
 
 import org.usfirst.frc.team1675.robot.Robot;
+import org.usfirst.frc.team1675.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveArm extends Command {
 
-	double armPower;
-	
+    double armPower;
+
     public MoveArm() {
         requires(Robot.arm);
     }
@@ -22,7 +23,13 @@ public class MoveArm extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         armPower = Robot.oi.getOperatorRightYAxis();
-    	Robot.arm.moveArm(armPower * .6);
+        
+        if (armPower == 0) {
+            Robot.arm.moveArm(RobotMap.ArmConstants.INITIAL_ARM_HOLD_VOLTAGE * Math.cos(Math.PI/180 * Robot.arm.getArmAngle()));
+        }
+        else {
+            Robot.arm.moveArm(armPower * .6);
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,12 +39,12 @@ public class MoveArm extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.arm.moveArm(0);
+        Robot.arm.moveArm(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+        end();
     }
 }
