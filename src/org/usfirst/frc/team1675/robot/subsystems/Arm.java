@@ -23,13 +23,16 @@ public class Arm extends Subsystem {
 		arm.set(ControlMode.PercentOutput, power);
 	}
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
+    public double getArmEncoderValue() {
+        return arm.getSelectedSensorPosition(0);
+    }
+    
+    public void resetArmEncoder() {
+        arm.getSensorCollection().setQuadraturePosition(0,0);
+    }
+    
     public void initDefaultCommand() {
     	setDefaultCommand(new MoveArm());
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 }
 
