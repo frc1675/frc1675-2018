@@ -50,10 +50,10 @@ public class RobotMap {
 	public static class ClawConstants{
 		public static final int DIRECTION_INPUT = 1;
 		public static final int DIRECTION_OUTPUT = 2;
-		public static final int LEFT_OUTPUT_POWER = 1;//Power values not tested
-		public static final int RIGHT_OUTPUT_POWER = 1;
-		public static final int LEFT_INPUT_POWER = -1;
-		public static final int RIGHT_INPUT_POWER = -1;
+		public static final double LEFT_OUTPUT_POWER = -.5;//Power values not tested
+		public static final double RIGHT_OUTPUT_POWER = .5;
+		public static final double LEFT_INPUT_POWER = .5;
+		public static final double RIGHT_INPUT_POWER = -.5;
 	}
 	
 	public static final double CONTROLLER_DEADZONE = 0.1675;
