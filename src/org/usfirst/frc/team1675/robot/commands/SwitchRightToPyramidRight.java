@@ -14,10 +14,10 @@ public class SwitchRightToPyramidRight extends CommandGroup {
 	private static final double SEGMENT_1_TIMEOUT = 5;
 
 	private static final double TURN_LEFT_ANGLE = 45;
-	private static final double TURN_1_TIMEOUT = 2;
+	private static final double TURN_1_TIMEOUT = 5;
 
 	private static final double SEGMENT_2 = 76.37;
-	private static final double SEGMENT_2_TIMEOUT = 3;
+	private static final double SEGMENT_2_TIMEOUT = 5;
 
 	public SwitchRightToPyramidRight() { // D to I
 		

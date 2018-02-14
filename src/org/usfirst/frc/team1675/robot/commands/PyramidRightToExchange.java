@@ -7,20 +7,20 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class PyramidRightToExchange extends CommandGroup {
 
-	private static final double SEGMENT_1 = 0;
-	private static final double SEGMENT_1_TIMEOUT = 0;
+	private static final double SEGMENT_1 = 33.94;
+	private static final double SEGMENT_1_TIMEOUT = 5; // backwards
 
-	private static final double TURN_1_ANGLE = 0;
-	private static final double TURN_1_TIMEOUT = 0;
+	private static final double TURN_1_ANGLE = 45;
+	private static final double TURN_1_TIMEOUT = 5; // turn left
 
-	private static final double SEGMENT_2 = 0;
-	private static final double SEGMENT_2_TIMEOUT = 0;
+	private static final double SEGMENT_2 = 93;
+	private static final double SEGMENT_2_TIMEOUT = 5;// forward
 
-	private static final double TURN_3_ANGLE = 0;
-	private static final double TURN_3_TIMEOUT = 0;
+	private static final double TURN_3_ANGLE = 90;
+	private static final double TURN_3_TIMEOUT = 5;
 
-	private static final double SEGMENT_3 = 0;
-	private static final double SEGMENT_3_TIMEOUT = 0;
+	private static final double SEGMENT_3 = 147;
+	private static final double SEGMENT_3_TIMEOUT = 5;
 
 	public PyramidRightToExchange() {// I to H
 		addSequential(new DriveForDistance(SEGMENT_1, SEGMENT_1_TIMEOUT));
