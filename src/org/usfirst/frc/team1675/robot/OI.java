@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1675.robot;
 
+import org.usfirst.frc.team1675.robot.commands.ActivateClaw;
+import org.usfirst.frc.team1675.Util.DoubleButton;
+import org.usfirst.frc.team1675.robot.commands.DeployRamp;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
 
@@ -31,9 +34,15 @@ public class OI {
 	JoystickButton operatorButtonX = new JoystickButton(operatorController,  XBoxControllerMap.X_BUTTON);
 	JoystickButton operatorButtonY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
 
+    // DoubleButton operatorDoubleButtonAB = new DoubleButton(operatorController,
+    // XBoxControllerMap.A_BUTTON, XBoxControllerMap.B_BUTTON);
+
 	public OI() {
 		driverRightBumper.whenPressed(new ShiftHigh());
 		driverRightBumper.whenReleased(new ShiftLow());
+		operatorButtonX.whileHeld(new ActivateClaw(RobotMap.ClawConstants.DIRECTION_INPUT));
+		operatorButtonY.whileHeld(new ActivateClaw(RobotMap.ClawConstants.DIRECTION_OUTPUT));
+        // operatorDoubleButtonAB.whenPressed(new ShiftHigh());
 	}
 	
 	public double getDriverLeftXAxis() {
@@ -96,19 +105,18 @@ public class OI {
 		}
 		return correctedValue;
 	}
-	
-	public void setDriverRumble(double driverRumblePower) {
-		driverController.setRumble(RumbleType.kLeftRumble, driverRumblePower);
-		driverController.setRumble(RumbleType.kRightRumble, driverRumblePower);
 
-	}
-	
-	public void setOperatorRumble(double operatorRumblePower) { 
-		operatorController.setRumble(RumbleType.kLeftRumble, operatorRumblePower);
-		operatorController.setRumble(RumbleType.kRightRumble, operatorRumblePower);
+    public void setDriverRumble(double driverRumblePower) {
+        driverController.setRumble(RumbleType.kLeftRumble, driverRumblePower);
+        driverController.setRumble(RumbleType.kRightRumble, driverRumblePower);
 
-	}
+    }
 
+    public void setOperatorRumble(double operatorRumblePower) {
+        operatorController.setRumble(RumbleType.kLeftRumble, operatorRumblePower);
+        operatorController.setRumble(RumbleType.kRightRumble, operatorRumblePower);
+
+    }
 
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
