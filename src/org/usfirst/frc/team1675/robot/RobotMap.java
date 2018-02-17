@@ -56,14 +56,6 @@ public class RobotMap {
 		public static final double RIGHT_INPUT_POWER = -.5;
 	}
 	
-	public static class ArmConstants {
-	    public static final int FORWARD_LIMIT_POSITION = 2183;
-	    public static final int REVERSE_LIMIT_POSITION = 778;
-	    public static final int ENCODER_INITIAL_POSITION = 0;//placeholder value, needs to be tested
-	    public static final double ENCODER_TICKS_PER_DEGREE = 14.22;
-	    public static final double INITIAL_ARM_HOLD_VOLTAGE = .21;//needs fine tuning
-	}
-	
 	public static final double CONTROLLER_DEADZONE = 0.1675;
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
