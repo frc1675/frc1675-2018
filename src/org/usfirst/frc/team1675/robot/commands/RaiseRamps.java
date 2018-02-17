@@ -8,22 +8,20 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftHigh extends Command {
+public class RaiseRamps extends Command {
 
-    public ShiftHigh() {
-        requires(Robot.driveBase);
-
-        this.setTimeout(RobotMap.DriveBaseConstants.SHIFT_TIME);
+    public RaiseRamps() {
+        requires(Robot.ramp);
+        this.setTimeout(RobotMap.RampConstants.SOLENOID_ACTIVATION_TIME);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+        Robot.ramp.rampRaise();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.driveBase.shiftHigh();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -38,6 +36,5 @@ public class ShiftHigh extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

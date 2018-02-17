@@ -28,11 +28,12 @@ public class RobotMap {
     }
 
     public static class SolenoidChannels {
-        public static final int SHIFT_HIGH = 4;
-        public static final int SHIFT_LOW = 3;
-        public static final int RAMP_RETRACT = 2;
-        public static final int RAMP_DEPLOY = 1;
-        public static final int RAMP_ENGAGE = 5;
+        public static final int SHIFT = 7;
+        public static final int RAMP_RAISE_LEFT = 2;
+        public static final int RAMP_RAISE_RIGHT = 3;
+        public static final int RAMP_LOWER_LEFT = 4;
+        public static final int RAMP_LOWER_RIGHT = 5;
+        public static final int RAMP_RELEASE = 6;
     }
 
     public static class DriveBaseConstants {
@@ -42,6 +43,10 @@ public class RobotMap {
         public static final double D = 0.0003; // all placeholders
         public static final double TOLERANCE = 69; // placeholder
         public static final double TICKS_PER_INCH = 410.86; // placeholder
+    }
+    
+    public static class RampConstants {
+        public static final double SOLENOID_ACTIVATION_TIME = .25;
     }
 
     public static final double CONTROLLER_DEADZONE = 0.1675;

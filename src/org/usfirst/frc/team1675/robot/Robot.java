@@ -34,7 +34,8 @@ import org.usfirst.frc.team1675.robot.subsystems.RampSub;
 public class Robot extends TimedRobot {
 
     public static final PIDDriveBase driveBase = new PIDDriveBase();
-
+    public static final RampSub ramp = new RampSub();
+    
     public static OI oi;
 
     Command m_autonomousCommand;

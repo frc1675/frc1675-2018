@@ -10,6 +10,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -27,7 +28,7 @@ public class PIDDriveBase extends PIDSubsystem {
     static final double I = .0;
     static final double D = .03;
     private double correction;
-    private DoubleSolenoid shifter;
+    private Solenoid shifter;
     AHRS ahrs;
 
     public PIDDriveBase() {
@@ -49,7 +50,7 @@ public class PIDDriveBase extends PIDSubsystem {
 
         ahrs = new AHRS(SerialPort.Port.kMXP);
 
-        shifter = new DoubleSolenoid(RobotMap.SolenoidChannels.SHIFT_HIGH, RobotMap.SolenoidChannels.SHIFT_LOW);
+        shifter = new Solenoid(RobotMap.SolenoidChannels.SHIFT);
 
     }
 
@@ -106,15 +107,11 @@ public class PIDDriveBase extends PIDSubsystem {
     }
 
     public void shiftHigh() {
-        shifter.set(DoubleSolenoid.Value.kForward);
+        shifter.set(true);
     }
 
     public void shiftLow() {
-        shifter.set(DoubleSolenoid.Value.kReverse);
-    }
-
-    public void stopShifter() {
-        shifter.set(DoubleSolenoid.Value.kOff);
+        shifter.set(false);
     }
 
     public void resetGyro() {
