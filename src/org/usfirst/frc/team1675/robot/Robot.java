@@ -86,7 +86,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
         m_autonomousCommand = new DriveForDistance(240, 10);
-        arm.resetArmEncoder();
 
 		/*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");

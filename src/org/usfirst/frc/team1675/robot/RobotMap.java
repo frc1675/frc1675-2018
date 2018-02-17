@@ -57,8 +57,8 @@ public class RobotMap {
 	}
 	
 	public static class ArmConstants {
-	    public static final int FORWARD_LIMIT_POSITION = 0; // placeholder value do not use
-	    public static final int REVERSE_LIMIT_POSITION = -1000;//placeholder value do not use
+	    public static final int FORWARD_LIMIT_POSITION = 2183;
+	    public static final int REVERSE_LIMIT_POSITION = 778;
 	    public static final int ENCODER_INITIAL_POSITION = 0;//placeholder value, needs to be tested
 	    public static final double ENCODER_TICKS_PER_DEGREE = 14.22;
 	    public static final double INITIAL_ARM_HOLD_VOLTAGE = .21;//needs fine tuning
