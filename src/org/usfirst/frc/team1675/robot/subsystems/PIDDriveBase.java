@@ -108,11 +108,11 @@ public class PIDDriveBase extends PIDSubsystem {
     }
 
     public void shiftHigh() {
-        shifter.set(true);
+        shifter.set(false);
     }
 
     public void shiftLow() {
-        shifter.set(false);
+        shifter.set(true);
     }
 
     public void resetGyro() {

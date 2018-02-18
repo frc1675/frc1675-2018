@@ -87,7 +87,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-        m_autonomousCommand = new DriveForDistance(240, 10);
+//        m_autonomousCommand = new DriveForDistance(240, 10);
 
 		/*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -98,7 +98,10 @@ public class Robot extends TimedRobot {
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
+		    SmartDashboard.putBoolean("Did you run Auto?", true);
 			m_autonomousCommand.start();
+		}else {
+		    SmartDashboard.putBoolean("Did you run Auto?", false);
 		}
 	}
 
