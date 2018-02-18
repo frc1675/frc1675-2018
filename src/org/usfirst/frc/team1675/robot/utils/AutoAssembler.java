@@ -264,7 +264,7 @@ public class AutoAssembler {
                 }
             }
         }
-        SmartDashboard.putNumber(switchAssignment + "" + scaleAssignment + " Number of Commands", commandCount);
+        SmartDashboard.putNumber(switchAssignment + "" + scaleAssignment + " # of Cmds", commandCount);
         return auto;
     }
 }
