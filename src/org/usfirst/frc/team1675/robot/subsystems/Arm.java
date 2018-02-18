@@ -19,8 +19,8 @@ public class Arm extends Subsystem {
     private TalonSRX arm;
     PowerDistributionPanel pdp;
     
-    public static final int FORWARD_LIMIT_POSITION = 2183;
-    public static final int REVERSE_LIMIT_POSITION = 778;
+    public static final int FORWARD_LIMIT_POSITION = 3237;
+    public static final int REVERSE_LIMIT_POSITION = -140;
     
     public static final double ENCODER_TICKS_PER_DEGREE = 14.22;
     private static final double ARM_HOLD_POWER = .1;
@@ -28,7 +28,7 @@ public class Arm extends Subsystem {
     
     
     public Arm() {
-        pdp = new PowerDistributionPanel();
+        pdp = new PowerDistributionPanel(10);
 
         arm = new TalonSRX(RobotMap.CANDeviceIDs.ARM);
         arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);

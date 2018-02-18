@@ -11,18 +11,18 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShiftLow extends Command {
 
     public ShiftLow() {
-        requires(Robot.driveBase);
 
         this.setTimeout(RobotMap.DriveBaseConstants.SHIFT_TIME);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.driveBase.shiftLow();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.driveBase.shiftLow();
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()

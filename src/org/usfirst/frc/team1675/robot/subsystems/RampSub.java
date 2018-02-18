@@ -41,6 +41,5 @@ public class RampSub extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new CheesyDrive());
     }
 }

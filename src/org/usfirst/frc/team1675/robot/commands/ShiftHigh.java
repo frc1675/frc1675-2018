@@ -11,19 +11,18 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShiftHigh extends Command {
 
     public ShiftHigh() {
-        requires(Robot.driveBase);
 
         this.setTimeout(RobotMap.DriveBaseConstants.SHIFT_TIME);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+        Robot.driveBase.shiftHigh();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.driveBase.shiftHigh();
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()

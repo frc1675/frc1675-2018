@@ -19,10 +19,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class PIDDriveBase extends PIDSubsystem {
     private TalonSRX leftFront;
-    private VictorSPX leftMid;
+    private TalonSRX leftMid;
     private VictorSPX leftBack;
     private TalonSRX rightFront;
-    private VictorSPX rightMid;
+    private TalonSRX rightMid;
     private VictorSPX rightBack;
     static final double P = .07;
     static final double I = .0;
@@ -32,12 +32,13 @@ public class PIDDriveBase extends PIDSubsystem {
     AHRS ahrs;
 
     public PIDDriveBase() {
+        
         super(P, I, D);
         leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
-        leftMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
+        leftMid = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
         leftBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_BACK);
         rightFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_FRONT);
-        rightMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
+        rightMid = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
         rightBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
         leftFront.setInverted(true);
         leftBack.setInverted(true);

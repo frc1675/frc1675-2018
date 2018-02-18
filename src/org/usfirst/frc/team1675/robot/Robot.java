@@ -13,6 +13,7 @@ import org.usfirst.frc.team1675.robot.commands.TurnWithGyro;
 
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;

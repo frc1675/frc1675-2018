@@ -10,6 +10,9 @@ package org.usfirst.frc.team1675.robot;
 import org.usfirst.frc.team1675.robot.commands.ActivateClaw;
 import org.usfirst.frc.team1675.Util.DoubleButton;
 import org.usfirst.frc.team1675.robot.commands.DeployRamps;
+import org.usfirst.frc.team1675.robot.commands.LowerRamps;
+import org.usfirst.frc.team1675.robot.commands.RaiseRamps;
+import org.usfirst.frc.team1675.robot.commands.RetractRamps;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
 
@@ -47,6 +50,7 @@ public class OI {
 		operatorButtonY.whileHeld(new ActivateClaw(RobotMap.ClawConstants.DIRECTION_OUTPUT));
         // operatorDoubleButtonAB.whenPressed(new ShiftHigh());
         operatorRightBumper.whenPressed(new DeployRamps());
+        operatorLeftBumper.whenPressed(new RaiseRamps());
 	}
 	
 	public double getDriverLeftXAxis() {
