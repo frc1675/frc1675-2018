@@ -3,42 +3,105 @@ package org.usfirst.frc.team1675.robot.commands;
 import org.usfirst.frc.team1675.robot.utils.FieldLocation;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class Go extends CommandGroup {
 
+    FieldLocation start;
+    FieldLocation end;
+
     public Go(FieldLocation startLocation, FieldLocation endLocation) {
-        switch (startLocation) {
-        case START_MIDDLE:
-            switch (endLocation) {
+        end = endLocation;
+        start = startLocation;
+        switch (start) {
+        case START_LEFT:
+            switch (end) {
             case SWITCH_LEFT:
-                break;
-            case SWITCH_RIGHT:
+                this.addSequential(new StartLeftToSwitchLeft());
                 break;
             default:
+                errorPath();
+                break;
+            }
+            break;
+        case START_MIDDLE:
+            switch (end) {
+            case SWITCH_LEFT:
+                this.addSequential(new StartMiddleToSwitchLeft());
+                break;
+            case SWITCH_RIGHT:
+                this.addSequential(new StartMiddleToSwitchRight());
+                break;
+            default:
+                errorPath();
+                break;
+            }
+            break;
+        case START_RIGHT:
+            switch (end) {
+            case SWITCH_RIGHT:
+                this.addSequential(new StartRightToSwitchRight());
+                break;
+            default:
+                errorPath();
+                break;
+            }
+            break;
+        case CUBE_PYRAMID_LEFT:
+            switch (end) {
+            case EXCHANGE:
+                this.addSequential(new PyramidLeftToExchange());
+                break;
+            default:
+                errorPath();
+                break;
+            }
+        case CUBE_PYRAMID_RIGHT:
+            switch (end) {
+            case EXCHANGE:
+                this.addSequential(new PyramidRightToExchange());
+                break;
+            default:
+                errorPath();
+                break;
+            }
+        case SWITCH_LEFT:
+            switch (end) {
+            case NULL_ZONE_LEFT:
+                this.addSequential(new SwitchLeftToNullZoneLeft());
+                break;
+            case CUBE_PYRAMID_LEFT:
+                this.addSequential(new SwitchLeftToPyramidLeft());
+                break;
+            default:
+                errorPath();
+                break;
+            }
+            break;
+        case SWITCH_RIGHT:
+            switch (end) {
+            case NULL_ZONE_RIGHT:
+                this.addSequential(new SwitchRightToNullZoneRight());
+                break;
+            case CUBE_PYRAMID_RIGHT:
+                this.addSequential(new SwitchRightToPyramidRight());
+                break;
+            default:
+                errorPath();
                 break;
             }
             break;
         default:
+            errorPath();
             break;
         }
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        // addSequential(new Command2());
-        // these will run in order.
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        // addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
+    }
 
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+    private void errorPath() {
+
     }
 }
