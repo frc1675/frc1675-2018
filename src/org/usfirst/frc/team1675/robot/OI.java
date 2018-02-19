@@ -46,8 +46,11 @@ public class OI {
 	public OI() {
 		driverRightBumper.whenPressed(new ShiftHigh());
 		driverRightBumper.whenReleased(new ShiftLow());
-		operatorButtonX.whileHeld(new ActivateClaw(RobotMap.ClawConstants.DIRECTION_INPUT));
-		operatorButtonY.whileHeld(new ActivateClaw(RobotMap.ClawConstants.DIRECTION_OUTPUT));
+		operatorButtonX.whileHeld(new ActivateClaw(true, .5));
+		operatorButtonY.whileHeld(new ActivateClaw(false, 1));
+		operatorButtonB.whileHeld(new ActivateClaw(false, .5));
+	    operatorButtonA.whileHeld(new ActivateClaw(false, .2));
+
         // operatorDoubleButtonAB.whenPressed(new ShiftHigh());
         operatorRightBumper.whenPressed(new DeployRamps());
         operatorLeftBumper.whenPressed(new RaiseRamps());
