@@ -3,7 +3,6 @@ package org.usfirst.frc.team1675.robot.commands;
 import org.usfirst.frc.team1675.robot.utils.FieldLocation;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -94,6 +93,20 @@ public class Go extends CommandGroup {
                 break;
             }
             break;
+        case EXCHANGE:
+            switch (end) {
+            case NULL_ZONE_LEFT:
+                this.addSequential(new ExchangeToNullZoneLeft());
+                break;
+            case NULL_ZONE_RIGHT:
+                this.addSequential(new ExchangeToNullZoneRight());
+                break;
+            case CUBE_PYRAMID_LEFT:
+                this.addSequential(new ExchangeToPyramidLeft());
+                break;
+            default:
+                errorPath();
+            }
         default:
             errorPath();
             break;
