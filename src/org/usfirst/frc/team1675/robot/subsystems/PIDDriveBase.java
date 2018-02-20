@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1675.robot.subsystems;
 
+import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 
@@ -43,6 +44,7 @@ public class PIDDriveBase extends PIDSubsystem {
         leftMid.setInverted(true);
         rightFront.setInverted(false);
         rightBack.setInverted(false);
+        rightMid.setInverted(false);
 
         rightFront.setSensorPhase(true);
         leftFront.setSensorPhase(true);
@@ -131,10 +133,17 @@ public class PIDDriveBase extends PIDSubsystem {
     }
 
     public double getLeftEncoderValue() {
-        return leftFront.getSelectedSensorPosition(0);
+      
+       // return leftFront.getSensorCollection().getQuadraturePosition();
+        SmartDashboard.putNumber("Left enc", leftFront.getSelectedSensorPosition(0));
+      return leftFront.getSelectedSensorPosition(0);
+      
     }
 
     public double getRightEncoderValue() {
+       
+//        return rightFront.getSensorCollection().getQuadraturePosition();
+        SmartDashboard.putNumber("Right enc", rightFront.getSelectedSensorPosition(0));
         return rightFront.getSelectedSensorPosition(0);
     }
 

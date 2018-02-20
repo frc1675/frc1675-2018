@@ -45,11 +45,13 @@ public class CheesyDrive extends Command {
             Robot.driveBase.activatePIDMode();
         }
         // SmartDashboard.putBoolean("IsPIDEnabled", isPIDEnabled);
-        // SmartDashboard.putNumber("Left enc", Robot.driveBase.getLeftEncoderValue());
-        // SmartDashboard.putNumber("Right enc",
-        // Robot.driveBase.getRightEncoderValue());
         Robot.driveBase.setLeftMotors(drive + turn);
         Robot.driveBase.setRightMotors(drive - turn);
+        Robot.driveBase.getLeftEncoderValue();
+        Robot.driveBase.getRightEncoderValue();
+       
+        //System.out.println(Robot.driveBase.getRightEncoderValue());
+        //System.out.println(Robot.driveBase.getLeftEncoderValue());
 
     }
 

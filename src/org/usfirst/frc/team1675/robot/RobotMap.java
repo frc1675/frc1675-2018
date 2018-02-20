@@ -40,11 +40,11 @@ public class RobotMap {
 
 	public static class DriveBaseConstants {
 		public static final double SHIFT_TIME = .25;
-        public static final double P = .0003;
+        public static final double P = .00006;
         public static final double I = 0.0;
-        public static final double D = 0.0003; // all placeholders
-        public static final double TOLERANCE = 69; // placeholder
-        public static final double TICKS_PER_INCH = 410.86; // placeholder
+        public static final double D = 0.0; // all placeholders
+        public static final double TOLERANCE = 10; // placeholder
+        public static final double TICKS_PER_INCH = 407.44; // placeholder
 	}
 	
 	public static class ClawConstants{
