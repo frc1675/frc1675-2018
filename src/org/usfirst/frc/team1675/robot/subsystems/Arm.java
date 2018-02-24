@@ -25,10 +25,6 @@ public class Arm extends Subsystem {
 
 	boolean hasButtonBeenPressed = false;
 
-	public static final int FORWARD_LIMIT_POSITION = 3300;
-	public static final int REVERSE_LIMIT_POSITION = 500;
-
-	public static final double ENCODER_TICKS_PER_DEGREE = 14.22;
 	private static final double ARM_HOLD_POWER = .1;
 	public static final double MAX_BATTERY_VOLTAGE = 12.0;
 
@@ -39,13 +35,17 @@ public class Arm extends Subsystem {
 	    arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		arm.setSensorPhase(true);
 
-		arm.configForwardSoftLimitThreshold(FORWARD_LIMIT_POSITION, 0);
-		arm.configReverseSoftLimitThreshold(REVERSE_LIMIT_POSITION, 0);
+		arm.configForwardSoftLimitThreshold(RobotMap.ArmConstants.FORWARD_LIMIT_POSITION, 0);
+		arm.configReverseSoftLimitThreshold(RobotMap.ArmConstants.REVERSE_LIMIT_POSITION, 0);
 		arm.configForwardSoftLimitEnable(false, 0);
 		arm.configReverseSoftLimitEnable(false, 0);
 
 		button = new DigitalInput(RobotMap.ArmConstants.ARM_BUTTON);
 
+	}
+	
+	public boolean hasButtonBeenPressed() {
+	    return this.hasButtonBeenPressed;
 	}
 
 	public void moveArm(double power, double scale) {
@@ -61,8 +61,8 @@ public class Arm extends Subsystem {
 		}
 	}
 
-	public double getArmAngle() {
-		return arm.getSensorCollection().getPulseWidthPosition() / ENCODER_TICKS_PER_DEGREE; // zero does
+	public double getArmEncoderValue() {
+		return arm.getSelectedSensorPosition(0);
 	}
 
 	public double accountForMotorDeadzone(double value) {

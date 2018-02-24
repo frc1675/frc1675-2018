@@ -57,7 +57,12 @@ public class RobotMap {
 	}
 
 	public static class ArmConstants {
+	    public static final int FORWARD_LIMIT_POSITION = 3300;
+	    public static final int REVERSE_LIMIT_POSITION = 500;
+	    public static final int ARM_ENCODER_BUFFER = 100;
 		public static final int ARM_BUTTON = 9;
+		
+		public static final double ARM_AUTONOMOUS_MOVEMENT_POWER = .25;
 }
 	public static final double CONTROLLER_DEADZONE = 0.1675;
 
