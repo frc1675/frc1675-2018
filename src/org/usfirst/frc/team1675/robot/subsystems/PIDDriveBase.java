@@ -10,6 +10,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -18,30 +19,31 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class PIDDriveBase extends PIDSubsystem {
     private TalonSRX leftFront;
-    private VictorSPX leftMid;
+    private TalonSRX leftMid;
     private VictorSPX leftBack;
     private TalonSRX rightFront;
-    private VictorSPX rightMid;
+    private TalonSRX rightMid;
     private VictorSPX rightBack;
     static final double P = .07;
     static final double I = .0;
     static final double D = .03;
     private double correction;
-    private DoubleSolenoid shifter;
+    private Solenoid shifter;
     AHRS ahrs;
 
     public PIDDriveBase() {
         super(P, I, D);
         leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
-        leftMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
+        leftMid = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
         leftBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_BACK);
         rightFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_FRONT);
-        rightMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
+        rightMid = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
         rightBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
         leftFront.setInverted(true);
         leftBack.setInverted(true);
         leftMid.setInverted(true);
         rightFront.setInverted(false);
+        rightMid.setInverted(false);
         rightBack.setInverted(false);
 
         rightFront.setSensorPhase(true);
@@ -49,7 +51,7 @@ public class PIDDriveBase extends PIDSubsystem {
 
         ahrs = new AHRS(SerialPort.Port.kMXP);
 
-        shifter = new DoubleSolenoid(RobotMap.SolenoidChannels.SHIFT_HIGH, RobotMap.SolenoidChannels.SHIFT_LOW);
+        shifter = new Solenoid(RobotMap.SolenoidChannels.SHIFT);
 
     }
 
@@ -101,20 +103,16 @@ public class PIDDriveBase extends PIDSubsystem {
         leftMid.set(ControlMode.PercentOutput, leftpower);
         leftBack.set(ControlMode.PercentOutput, leftpower);
         rightFront.set(ControlMode.PercentOutput, rightpower);
-        rightMid.set(ControlMode.PercentOutput, leftpower);
+        rightMid.set(ControlMode.PercentOutput, rightpower);
         rightBack.set(ControlMode.PercentOutput, rightpower);
     }
 
     public void shiftHigh() {
-        shifter.set(DoubleSolenoid.Value.kForward);
+        shifter.set(true);
     }
 
     public void shiftLow() {
-        shifter.set(DoubleSolenoid.Value.kReverse);
-    }
-
-    public void stopShifter() {
-        shifter.set(DoubleSolenoid.Value.kOff);
+        shifter.set(false);
     }
 
     public void resetGyro() {

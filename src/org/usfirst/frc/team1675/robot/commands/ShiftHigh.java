@@ -18,12 +18,11 @@ public class ShiftHigh extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+    Robot.driveBase.shiftHigh();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.driveBase.shiftHigh();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,7 +32,6 @@ public class ShiftHigh extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        Robot.driveBase.stopShifter();
     }
 
     // Called when another command which requires one or more of the same
