@@ -12,28 +12,32 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class RampSub extends Subsystem {
 
-    public Solenoid rampLifter;
-    public DoubleSolenoid rampDeploy;
+    public DoubleSolenoid rampLifterLeft;
+    public DoubleSolenoid rampLifterRight;
+    public Solenoid rampDeploy;
 
     public RampSub() {
-        rampLifter = new Solenoid(RobotMap.SolenoidChannels.RAMP_ENGAGE);
-        rampDeploy = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_DEPLOY, RobotMap.SolenoidChannels.RAMP_RETRACT);
+        rampLifterLeft = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_RAISE_LEFT, RobotMap.SolenoidChannels.RAMP_LOWER_LEFT);
+        rampLifterRight = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_RAISE_RIGHT, RobotMap.SolenoidChannels.RAMP_LOWER_RIGHT);
+        rampDeploy = new Solenoid(RobotMap.SolenoidChannels.RAMP_RELEASE);
     }
 
-    public void rampLift() {
-        rampLifter.set(false);
+    public void rampRaise() {
+        rampLifterLeft.set(DoubleSolenoid.Value.kForward);
+        rampLifterRight.set(DoubleSolenoid.Value.kForward);
     }
 
-    public void rampReset() {
-        rampLifter.set(true);
+    public void rampLower() {
+        rampLifterLeft.set(DoubleSolenoid.Value.kReverse);
+        rampLifterRight.set(DoubleSolenoid.Value.kReverse);
     }
 
     public void Deploy() {
-        rampDeploy.set(DoubleSolenoid.Value.kForward);
+        rampDeploy.set(true);
     }
 
     public void Retract() {
-        rampDeploy.set(DoubleSolenoid.Value.kReverse);
+        rampDeploy.set(false);
     }
 
     public void initDefaultCommand() {

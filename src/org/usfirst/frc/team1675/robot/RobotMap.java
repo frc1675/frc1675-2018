@@ -27,14 +27,16 @@ public class RobotMap {
 		public static final int INTAKE_RIGHT = 9;
 	}
 
-	public static class PWMChannels {
-	}
+    public static class PWMChannels {
+    }
 
-	public static class SolenoidChannels {
-		public static final int SHIFT = 7;
-		public static final int RAMP_RETRACT = 2;
-		public static final int RAMP_DEPLOY = 1;
-		public static final int RAMP_ENGAGE = 5;
+    public static class SolenoidChannels {
+        public static final int SHIFT = 7;
+        public static final int RAMP_RAISE_LEFT = 2;
+        public static final int RAMP_RAISE_RIGHT = 3;
+        public static final int RAMP_LOWER_LEFT = 4;
+        public static final int RAMP_LOWER_RIGHT = 5;
+        public static final int RAMP_RELEASE = 6;
 	}
 
 	public static class DriveBaseConstants {
@@ -44,15 +46,17 @@ public class RobotMap {
 		public static final double D = 0.0003; // all placeholders
 		public static final double TOLERANCE = 69; // placeholder
 		public static final double TICKS_PER_INCH = 410.86; // placeholder
-	}
+    }
+    
+    public static class RampConstants {
+        public static final double SOLENOID_ACTIVATION_TIME = .25;
+    }
 
 	public static class ClawConstants {
-		public static final int DIRECTION_INPUT = 1;
-		public static final int DIRECTION_OUTPUT = 2;
-		public static final double LEFT_OUTPUT_POWER = -.5;
-		public static final double RIGHT_OUTPUT_POWER = .5;
-		public static final double LEFT_INPUT_POWER = .5;
-		public static final double RIGHT_INPUT_POWER = -.5;
+		public static final double MAX_OUTPUT_POWER = 1;
+		public static final double MID_OUTPUT_POWER = .5;
+		public static final double MIN_OUTPUT_POWER = .2;
+		public static final double INPUT_POWER = .5;
 	}
 
 	public static class ArmConstants {

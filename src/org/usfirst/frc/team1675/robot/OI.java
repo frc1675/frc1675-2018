@@ -8,8 +8,8 @@
 package org.usfirst.frc.team1675.robot;
 
 import org.usfirst.frc.team1675.robot.commands.ActivateClaw;
-import org.usfirst.frc.team1675.Util.DoubleButton;
-import org.usfirst.frc.team1675.robot.commands.DeployRamp;
+import org.usfirst.frc.team1675.robot.commands.DeployRamps;
+import org.usfirst.frc.team1675.robot.commands.RaiseRamps;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
 
@@ -34,15 +34,23 @@ public class OI {
 	JoystickButton operatorButtonX = new JoystickButton(operatorController,  XBoxControllerMap.X_BUTTON);
 	JoystickButton operatorButtonY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
 
+    JoystickButton operatorRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
+    JoystickButton operatorLeftBumper = new JoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
+
     // DoubleButton operatorDoubleButtonAB = new DoubleButton(operatorController,
     // XBoxControllerMap.A_BUTTON, XBoxControllerMap.B_BUTTON);
 
 	public OI() {
 		driverRightBumper.whenPressed(new ShiftHigh());
 		driverRightBumper.whenReleased(new ShiftLow());
-		operatorButtonX.whileHeld(new ActivateClaw(RobotMap.ClawConstants.DIRECTION_INPUT));
-		operatorButtonY.whileHeld(new ActivateClaw(RobotMap.ClawConstants.DIRECTION_OUTPUT));
+		operatorButtonX.whileHeld(new ActivateClaw(true, RobotMap.ClawConstants.INPUT_POWER));
+		operatorButtonY.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MAX_OUTPUT_POWER));
+		operatorButtonB.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER));
+	    operatorButtonA.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MIN_OUTPUT_POWER));
+
         // operatorDoubleButtonAB.whenPressed(new ShiftHigh());
+        operatorRightBumper.whenPressed(new DeployRamps());
+        operatorLeftBumper.whenPressed(new RaiseRamps());
 	}
 	
 	public double getDriverLeftXAxis() {

@@ -14,6 +14,7 @@ import org.usfirst.frc.team1675.robot.commands.TurnWithGyro;
 
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -39,7 +40,8 @@ public class Robot extends TimedRobot {
 	public static final Claw claw = new Claw();
 
     public static final PIDDriveBase driveBase = new PIDDriveBase();
-
+    public static final RampSub ramp = new RampSub();
+    
 	public static OI oi;
 
 	Command m_autonomousCommand;

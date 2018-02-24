@@ -4,28 +4,31 @@ import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class ActivateClaw extends Command {
 
-	int cubeManipulationDirection;
+	double power;
+	boolean input;
 	
-    public ActivateClaw(int manipulationDirection) {
+    public ActivateClaw(boolean input, double power) {
        requires(Robot.claw);
-       cubeManipulationDirection = manipulationDirection;
+       this.input = input;
+       this.power = power;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(cubeManipulationDirection == RobotMap.ClawConstants.DIRECTION_INPUT) {
-    		Robot.claw.setLeftIntakePower(RobotMap.ClawConstants.LEFT_INPUT_POWER);
-    		Robot.claw.setRightIntakePower(RobotMap.ClawConstants.RIGHT_INPUT_POWER);
+    	if(input) {
+    		Robot.claw.setLeftIntakePower(-power);
+    		Robot.claw.setRightIntakePower(power);
     	}
-    	if(cubeManipulationDirection == RobotMap.ClawConstants.DIRECTION_OUTPUT) {
-    		Robot.claw.setLeftIntakePower(RobotMap.ClawConstants.LEFT_OUTPUT_POWER);
-    		Robot.claw.setRightIntakePower(RobotMap.ClawConstants.RIGHT_OUTPUT_POWER);
+    	else {
+    	    Robot.claw.setLeftIntakePower(power);
+            Robot.claw.setRightIntakePower(-power);
     	}
     }
 

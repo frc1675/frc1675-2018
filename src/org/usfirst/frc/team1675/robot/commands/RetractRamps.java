@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftHigh extends Command {
+public class RetractRamps extends Command {
 
-    public ShiftHigh() {
-
-        this.setTimeout(RobotMap.DriveBaseConstants.SHIFT_TIME);
+    public RetractRamps() {
+        requires(Robot.ramp);
+        this.setTimeout(RobotMap.RampConstants.SOLENOID_ACTIVATION_TIME);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    Robot.driveBase.shiftHigh();
+        Robot.ramp.Retract();
     }
 
     // Called repeatedly when this Command is scheduled to run

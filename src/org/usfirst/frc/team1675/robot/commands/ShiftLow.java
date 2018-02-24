@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShiftLow extends Command {
 
     public ShiftLow() {
-        requires(Robot.driveBase);
 
         this.setTimeout(RobotMap.DriveBaseConstants.SHIFT_TIME);
     }

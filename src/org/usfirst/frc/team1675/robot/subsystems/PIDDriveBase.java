@@ -32,6 +32,7 @@ public class PIDDriveBase extends PIDSubsystem {
     AHRS ahrs;
 
     public PIDDriveBase() {
+        
         super(P, I, D);
         leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
         leftMid = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
@@ -108,11 +109,11 @@ public class PIDDriveBase extends PIDSubsystem {
     }
 
     public void shiftHigh() {
-        shifter.set(true);
+        shifter.set(false);
     }
 
     public void shiftLow() {
-        shifter.set(false);
+        shifter.set(true);
     }
 
     public void resetGyro() {
