@@ -31,8 +31,7 @@ public class RobotMap {
 	}
 
 	public static class SolenoidChannels {
-		public static final int SHIFT_HIGH = 4;
-		public static final int SHIFT_LOW = 3;
+		public static final int SHIFT = 7;
 		public static final int RAMP_RETRACT = 2;
 		public static final int RAMP_DEPLOY = 1;
 		public static final int RAMP_ENGAGE = 5;

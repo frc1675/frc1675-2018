@@ -86,7 +86,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-        m_autonomousCommand = new MoveArmToEncoderPosition(700);// encoder values we want 
+        m_autonomousCommand = null; 
 
 		/*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");

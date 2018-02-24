@@ -18,8 +18,8 @@ public class MoveArmToEncoderPosition extends Command {
         if (encoderValue > RobotMap.ArmConstants.FORWARD_LIMIT_POSITION) {
             this.encoderValue = RobotMap.ArmConstants.FORWARD_LIMIT_POSITION;
         }
-        if (encoderValue < RobotMap.ArmConstants.REVERSE_LIMIT_POSITION) {
-            this.encoderValue = RobotMap.ArmConstants.REVERSE_LIMIT_POSITION;
+        if (encoderValue < 0) {
+            this.encoderValue = 0;
         }
         this.setTimeout(5);
     }
