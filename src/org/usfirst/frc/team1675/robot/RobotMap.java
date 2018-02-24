@@ -53,12 +53,10 @@ public class RobotMap {
     }
 
 	public static class ClawConstants {
-		public static final int DIRECTION_INPUT = 1;
-		public static final int DIRECTION_OUTPUT = 2;
-		public static final double LEFT_OUTPUT_POWER = 1;
-		public static final double RIGHT_OUTPUT_POWER = -1;
-		public static final double LEFT_INPUT_POWER = -.5;
-		public static final double RIGHT_INPUT_POWER = .5;
+		public static final double MAX_OUTPUT_POWER = 1;
+		public static final double MID_OUTPUT_POWER = .5;
+		public static final double MIN_OUTPUT_POWER = .2;
+		public static final double INPUT_POWER = .5;
 	}
 
 	public static class ArmConstants {

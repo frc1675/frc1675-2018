@@ -8,11 +8,8 @@
 package org.usfirst.frc.team1675.robot;
 
 import org.usfirst.frc.team1675.robot.commands.ActivateClaw;
-import org.usfirst.frc.team1675.Util.DoubleButton;
 import org.usfirst.frc.team1675.robot.commands.DeployRamps;
-import org.usfirst.frc.team1675.robot.commands.LowerRamps;
 import org.usfirst.frc.team1675.robot.commands.RaiseRamps;
-import org.usfirst.frc.team1675.robot.commands.RetractRamps;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
 
@@ -46,10 +43,10 @@ public class OI {
 	public OI() {
 		driverRightBumper.whenPressed(new ShiftHigh());
 		driverRightBumper.whenReleased(new ShiftLow());
-		operatorButtonX.whileHeld(new ActivateClaw(true, .5));
-		operatorButtonY.whileHeld(new ActivateClaw(false, 1));
-		operatorButtonB.whileHeld(new ActivateClaw(false, .5));
-	    operatorButtonA.whileHeld(new ActivateClaw(false, .2));
+		operatorButtonX.whileHeld(new ActivateClaw(true, RobotMap.ClawConstants.INPUT_POWER));
+		operatorButtonY.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MAX_OUTPUT_POWER));
+		operatorButtonB.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER));
+	    operatorButtonA.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MIN_OUTPUT_POWER));
 
         // operatorDoubleButtonAB.whenPressed(new ShiftHigh());
         operatorRightBumper.whenPressed(new DeployRamps());
