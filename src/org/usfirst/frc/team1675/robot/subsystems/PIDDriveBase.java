@@ -44,6 +44,7 @@ public class PIDDriveBase extends PIDSubsystem {
         leftBack.setInverted(true);
         leftMid.setInverted(true);
         rightFront.setInverted(false);
+        rightMid.setInverted(false);
         rightBack.setInverted(false);
 
         rightFront.setSensorPhase(true);
@@ -103,7 +104,7 @@ public class PIDDriveBase extends PIDSubsystem {
         leftMid.set(ControlMode.PercentOutput, leftpower);
         leftBack.set(ControlMode.PercentOutput, leftpower);
         rightFront.set(ControlMode.PercentOutput, rightpower);
-        rightMid.set(ControlMode.PercentOutput, leftpower);
+        rightMid.set(ControlMode.PercentOutput, rightpower);
         rightBack.set(ControlMode.PercentOutput, rightpower);
     }
 
