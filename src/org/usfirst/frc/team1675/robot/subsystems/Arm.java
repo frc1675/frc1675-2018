@@ -29,7 +29,7 @@ public class Arm extends Subsystem {
     public static final double MAX_BATTERY_VOLTAGE = 12.0;
 
     public Arm() {
-        pdp = new PowerDistributionPanel(10);
+        pdp = new PowerDistributionPanel();
 
         arm = new TalonSRX(RobotMap.CANDeviceIDs.ARM);
         arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -84,14 +84,10 @@ public class Arm extends Subsystem {
             }
         }
         SmartDashboard.putBoolean("hasButtonBeenPressed", hasButtonBeenPressed);
-        SmartDashboard.putNumber("arm encoder", arm.getSensorCollection().getQuadraturePosition());
+//        SmartDashboard.putNumber("arm encoder", arm.getSensorCollection().getQuadraturePosition());
     }
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 
     public void initDefaultCommand() {
         setDefaultCommand(new MoveArm());
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
     }
 }
