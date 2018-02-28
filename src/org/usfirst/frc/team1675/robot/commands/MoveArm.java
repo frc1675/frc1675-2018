@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class MoveArm extends Command {
 
-    double armPower;    
+    double armPower;
 
     public MoveArm() {
         requires(Robot.arm);

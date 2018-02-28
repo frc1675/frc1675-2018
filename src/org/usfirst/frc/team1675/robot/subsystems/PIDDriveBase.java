@@ -32,7 +32,7 @@ public class PIDDriveBase extends PIDSubsystem {
     AHRS ahrs;
 
     public PIDDriveBase() {
-        
+
         super(P, I, D);
         leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
         leftMid = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);

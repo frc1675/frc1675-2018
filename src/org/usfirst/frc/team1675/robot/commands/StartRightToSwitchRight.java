@@ -10,25 +10,23 @@ public class StartRightToSwitchRight extends CommandGroup {
     private static final double TIMEOUT = 10;
 
     private static final double SEGMENT_1 = 36;
-//  private static final double SEGMENT_1_TIMEOUT = 10;
+    // private static final double SEGMENT_1_TIMEOUT = 10;
     private static final double TURN_SEGMENT_1 = -23.25;
     private static final double SEGMENT_2 = 104.5;
     private static final double TURN_SEGMENT_2 = 23.25;
     private static final double SEGMENT_3 = 36;
-    
-    
 
-	public StartRightToSwitchRight() {
+    public StartRightToSwitchRight() {
 
-		// G to D move from right side: move forward
+        // G to D move from right side: move forward
 
-		addSequential(new DriveForDistance(SEGMENT_1, TIMEOUT));
-		addSequential(new TurnWithGyro(TURN_SEGMENT_1,TIMEOUT));
-        addSequential(new DriveForDistance(SEGMENT_2,TIMEOUT));
-        addSequential(new TurnWithGyro(TURN_SEGMENT_2,TIMEOUT));
-        addSequential(new DriveForDistance(SEGMENT_3,TIMEOUT));
+        addSequential(new DriveForDistance(SEGMENT_1, TIMEOUT));
+        addSequential(new TurnWithGyro(TURN_SEGMENT_1, TIMEOUT));
+        addSequential(new DriveForDistance(SEGMENT_2, TIMEOUT));
+        addSequential(new TurnWithGyro(TURN_SEGMENT_2, TIMEOUT));
+        addSequential(new DriveForDistance(SEGMENT_3, TIMEOUT));
 
-		// 10 feet from wall, subtract length of robot by 10 ft I think
+        // 10 feet from wall, subtract length of robot by 10 ft I think
 
-	}
+    }
 }

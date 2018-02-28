@@ -13,28 +13,27 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Claw extends Subsystem {
 
-	private TalonSRX intakeLeft;
-	private TalonSRX intakeRight;
-	
-	public Claw(){
-		intakeLeft = new TalonSRX(RobotMap.CANDeviceIDs.INTAKE_LEFT);
-		intakeRight = new TalonSRX(RobotMap.CANDeviceIDs.INTAKE_RIGHT);
-	}
-	
-	public void setLeftIntakePower(double power) {
-		intakeLeft.set(ControlMode.PercentOutput, power);
-	}
-	
-	public void setRightIntakePower(double power) {
-		intakeRight.set(ControlMode.PercentOutput, power);
-	}
-	
+    private TalonSRX intakeLeft;
+    private TalonSRX intakeRight;
+
+    public Claw() {
+        intakeLeft = new TalonSRX(RobotMap.CANDeviceIDs.INTAKE_LEFT);
+        intakeRight = new TalonSRX(RobotMap.CANDeviceIDs.INTAKE_RIGHT);
+    }
+
+    public void setLeftIntakePower(double power) {
+        intakeLeft.set(ControlMode.PercentOutput, power);
+    }
+
+    public void setRightIntakePower(double power) {
+        intakeRight.set(ControlMode.PercentOutput, power);
+    }
+
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        // setDefaultCommand(new MySpecialCommand());
     }
 }
-
