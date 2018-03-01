@@ -5,22 +5,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ReckoningRoutineRightSide extends CommandGroup {
+public class TimedAutoRightSide extends CommandGroup {
 
-    public ReckoningRoutineRightSide(String side) {
+    public TimedAutoRightSide(String side) {
         if (side.substring(0, 1) == "R") {
-           //add an arm thingwe that puts the arm at the sutable postioon
-        addSequential(new ReckoningAuto(2.0));
-        addSequential(new ReckoningTurn(0.7, false));
-        addSequential(new ReckoningAuto(1.0));
-        addSequential(new ReckoningTurn(0.7, true));
-        // add an arm thingee thar putds that there box in the swicth
+            // addSequential(new MoveArmWithEncoderPosition(encoderposition));   
+        addSequential(new TimedDrive(2.5));
+        // addSequential(new MoveArmWithEncoderPosition(encoderposition));
+        // addSequential(new ActivateClaw(2));
         }
         if (side.substring(0,1) == "L") {
-            //add an arm thingwe that puts the arm at the sutable postioon
-            addSequential(new ReckoningAuto(2.0));
-            addSequential(new ReckoningTurn(0.7, false));
-            addSequential(new ReckoningAuto(0.5));
+            // addSequential(new MoveArmWithEncoderPosition(encoderposition));
+            addSequential(new TimedDrive(2.5));
             // dont do the arm thing
         }
         // Add Commands here:

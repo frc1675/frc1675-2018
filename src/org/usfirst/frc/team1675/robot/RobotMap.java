@@ -45,6 +45,7 @@ public class RobotMap {
         public static final double D = 0.0; 
         public static final double TOLERANCE = 10; 
         public static final double TICKS_PER_INCH = 407.44; 
+        public static final double TIMED_AUTO_POWER_CONSTANT = .5;
 	}
 	
 	public static class ClawConstants{

@@ -47,11 +47,6 @@ public class CheesyDrive extends Command {
         // SmartDashboard.putBoolean("IsPIDEnabled", isPIDEnabled);
         Robot.driveBase.setLeftMotors(drive + turn);
         Robot.driveBase.setRightMotors(drive - turn);
-        Robot.driveBase.getLeftEncoderValue();
-        Robot.driveBase.getRightEncoderValue();
-       
-        //System.out.println(Robot.driveBase.getRightEncoderValue());
-        //System.out.println(Robot.driveBase.getLeftEncoderValue());
 
     }
 

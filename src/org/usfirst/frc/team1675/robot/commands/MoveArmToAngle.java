@@ -12,13 +12,13 @@ public class MoveArmToAngle extends Command {
     double angle;
     
     public MoveArmToAngle(double angle) {
-    //    requires(Robot.arm);
+        requires(Robot.arm);
         this.angle = angle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-      //  Robot.arm.moveArm(.5, 1);
+        Robot.arm.moveArm(.5, 1);
     }
 
     // Called repeatedly when this Command is scheduled to run

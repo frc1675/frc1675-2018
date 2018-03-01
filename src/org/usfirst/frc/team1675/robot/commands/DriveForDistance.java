@@ -30,7 +30,6 @@ public class DriveForDistance extends PIDCommand {
 		public double pidGet() {
 			// TODO Auto-generated method stub
 		    double data = (Robot.driveBase.getLeftEncoderValue()+Robot.driveBase.getRightEncoderValue())/2;
-		    SmartDashboard.putNumber("pid in", data);
 			return data;
 		}};
 		
@@ -98,9 +97,6 @@ public class DriveForDistance extends PIDCommand {
 
 	@Override
 	protected void usePIDOutput(double output) {
-//		SmartDashboard.putNumber("pid out", output);
-//		SmartDashboard.putNumber("setpoint", this.getPIDController().getSetpoint());
-//		SmartDashboard.putNumber("error", this.getPIDController().getError());
 		Robot.driveBase.setAllMotors(output);
 	}
 }

@@ -8,7 +8,8 @@
 package org.usfirst.frc.team1675.robot;
 
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
-import org.usfirst.frc.team1675.robot.commands.ReckoningRoutineLeftSide;
+import org.usfirst.frc.team1675.robot.commands.TimedAutoLeftSide;
+import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 
@@ -27,7 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-//	public static final Arm arm = new Arm();
+	public static final Arm arm = new Arm();
 	public static final Claw claw = new Claw();
 
     public static final PIDDriveBase driveBase = new PIDDriveBase();
@@ -82,7 +83,7 @@ public class Robot extends TimedRobot {
 	    while(side == null) {
 	    side = DriverStation.getInstance().getGameSpecificMessage();
 	    }
-        m_autonomousCommand = new ReckoningRoutineLeftSide(side);
+        m_autonomousCommand = new TimedAutoLeftSide(side);
 
 		/*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");

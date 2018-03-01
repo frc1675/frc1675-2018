@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1675.robot.commands;
 
 import org.usfirst.frc.team1675.robot.Robot;
+import org.usfirst.frc.team1675.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,29 +9,29 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ReckoningAuto extends Command {
-    Timer timer = new Timer();
+public class TimedDrive extends Command {
+
     double time;
 
-    public ReckoningAuto(double timeToGo) {
+    public TimedDrive(double timeToGo) {
         requires(Robot.driveBase);
         this.time = timeToGo;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        timer.start();
+        this.setTimeout(time);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double speed = .6;
+        double speed = RobotMap.DriveBaseConstants.TIMED_AUTO_POWER_CONSTANT;
         Robot.driveBase.setAllMotors(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(timer.get() >= time) {
+        if(this.isTimedOut()) {
             return true;
         }
         return false;

@@ -19,10 +19,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class PIDDriveBase extends PIDSubsystem {
     private TalonSRX leftFront;
-    private TalonSRX leftMid;
+    private VictorSPX leftMid;
     private VictorSPX leftBack;
     private TalonSRX rightFront;
-    private TalonSRX rightMid;
+    private VictorSPX rightMid;
     private VictorSPX rightBack;
     static final double P = .07;
     static final double I = .0;
@@ -34,10 +34,10 @@ public class PIDDriveBase extends PIDSubsystem {
     public PIDDriveBase() {
         super(P, I, D);
         leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
-        leftMid = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
+        leftMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
         leftBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_BACK);
         rightFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_FRONT);
-        rightMid = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
+        rightMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_MID);
         rightBack = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_RIGHT_BACK);
         leftFront.setInverted(true);
         leftBack.setInverted(true);
@@ -85,8 +85,7 @@ public class PIDDriveBase extends PIDSubsystem {
         rightFront.set(ControlMode.PercentOutput, corrValue);
         rightMid.set(ControlMode.PercentOutput, corrValue);
         rightBack.set(ControlMode.PercentOutput, corrValue);
-        // SmartDashboard.putNumber("angle", this.getAngle());
-
+        
     }
 
     public void setAllMotors(double power) {
@@ -133,17 +132,12 @@ public class PIDDriveBase extends PIDSubsystem {
     }
 
     public double getLeftEncoderValue() {
-      
-       // return leftFront.getSensorCollection().getQuadraturePosition();
-        SmartDashboard.putNumber("Left enc", leftFront.getSelectedSensorPosition(0));
-      return leftFront.getSelectedSensorPosition(0);
-      
+  
+      return leftFront.getSelectedSensorPosition(0);   
     }
 
     public double getRightEncoderValue() {
-       
-//        return rightFront.getSensorCollection().getQuadraturePosition();
-        SmartDashboard.putNumber("Right enc", rightFront.getSelectedSensorPosition(0));
+   
         return rightFront.getSelectedSensorPosition(0);
     }
 
@@ -162,13 +156,10 @@ public class PIDDriveBase extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-        // SmartDashboard.putNumber("pid in", this.getAngle());
         return this.getAngle();
     }
 
-    protected void usePIDOutput(double output) {
-        // SmartDashboard.putNumber("pid out",output);
-        // SmartDashboard.putNumber("Setpoint", this.getPIDController().getSetpoint());
+    protected void usePIDOutput(double output) {   
         correction = output;
     }
 
