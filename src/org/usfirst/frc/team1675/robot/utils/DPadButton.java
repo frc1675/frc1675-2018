@@ -27,7 +27,7 @@ public class DPadButton extends Button{
     
     public boolean get() {
         int DPadValue = joystick.getPOV();
-        return DPadValue == direction.direction || DPadValue == (direction.direction + 45)%360 || DPadValue == (direction.direction + 315)%360;
+        return (DPadValue == direction.direction) || (DPadValue == (direction.direction + 45)%360) || (DPadValue == (direction.direction + 315)%360);
     }
 
 }

@@ -82,9 +82,9 @@ public class OI {
 		operatorButtonB.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.NORMAL_SWITCH_ENCODER_POSITION));
 	    operatorButtonA.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.PICK_UP_POSITION));
 	    operatorLeftBumper.whileHeld(new ActivateClaw(true, RobotMap.ClawConstants.INPUT_POWER));
-	    operatorRightBumperNoDPad.whileActive(new ActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER));
-	    operatorRightBumperDPadUp.whileActive(new ActivateClaw(false, RobotMap.ClawConstants.MAX_OUTPUT_POWER));
-	    operatorRightBumperDPadDown.whileActive(new ActivateClaw(false, RobotMap.ClawConstants.MIN_OUTPUT_POWER));
+	    operatorRightBumperNoDPad.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER));
+	    operatorRightBumperDPadUp.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MAX_OUTPUT_POWER));
+	    operatorRightBumperDPadDown.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MIN_OUTPUT_POWER));
     }
 
     public double getDriverLeftXAxis() {
