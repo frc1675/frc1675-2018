@@ -22,22 +22,24 @@ public class RampSub extends Subsystem {
         rampDeploy = new Solenoid(RobotMap.SolenoidChannels.RAMP_RELEASE);
     }
 
-    public void rampRaise() {
-        rampLifterLeft.set(DoubleSolenoid.Value.kForward);
+    public void rampRaiseRight() {
         rampLifterRight.set(DoubleSolenoid.Value.kForward);
     }
-
-    public void rampLower() {
-        rampLifterLeft.set(DoubleSolenoid.Value.kReverse);
-        rampLifterRight.set(DoubleSolenoid.Value.kReverse);
+    
+    public void rampRaiseLeft() {
+         rampLifterLeft.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    public void rampStopRight() {
+        rampLifterRight.set(DoubleSolenoid.Value.kOff);
+    }
+    
+    public void rampStopLeft() {
+        rampLifterLeft.set(DoubleSolenoid.Value.kOff);
     }
 
     public void Deploy() {
         rampDeploy.set(true);
-    }
-
-    public void Retract() {
-        rampDeploy.set(false);
     }
 
     public void initDefaultCommand() {

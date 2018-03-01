@@ -56,11 +56,16 @@ public class RobotMap {
 		public static final double MAX_OUTPUT_POWER = 1;
 		public static final double MID_OUTPUT_POWER = .5;
 		public static final double MIN_OUTPUT_POWER = .2;
-		public static final double INPUT_POWER = .5;
+		public static final double INPUT_POWER = .75;
 	}
 
 	public static class ArmConstants {
-	    public static final int FORWARD_LIMIT_POSITION = 3300;
+	    public static final int SCALE_ENCODER_POSITION = 4300;
+	    public static final int HIGH_SWITCH_ENCODER_POSITION = 2000;//NEED TO BE TUNED
+	    public static final int NORMAL_SWITCH_ENCODER_POSITION = 1800;
+	    public static final int PICK_UP_POSITION = 0;
+	    
+	    public static final int FORWARD_LIMIT_POSITION = 4300;
 	    public static final int REVERSE_LIMIT_POSITION = 500;
 	    public static final int ARM_ENCODER_BUFFER = 100;
 		public static final int ARM_BUTTON = 9;
