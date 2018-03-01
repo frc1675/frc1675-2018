@@ -17,7 +17,7 @@ public class DeployRamps extends Command {
     }
 
     protected void initialize() {
-        if(DriverStation.getInstance().getMatchTime() <= 30) {
+        if(Robot.getTeleopTime() >= RobotMap.RampConstants.RAMP_DROP_TIME) {
             Robot.ramp.Deploy();
         }
     }

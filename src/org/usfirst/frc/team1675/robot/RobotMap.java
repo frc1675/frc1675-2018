@@ -50,6 +50,7 @@ public class RobotMap {
 
     public static class RampConstants {
         public static final double SOLENOID_ACTIVATION_TIME = .25;
+        public static final int RAMP_DROP_TIME = 105;//Should always be 105 when on the field
     }
 
 	public static class ClawConstants {
