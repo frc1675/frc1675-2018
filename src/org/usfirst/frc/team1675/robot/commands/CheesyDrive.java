@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1675.robot.commands;
 
 import org.usfirst.frc.team1675.robot.Robot;
+import org.usfirst.frc.team1675.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,8 +25,10 @@ public class CheesyDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double drive = Robot.oi.getDriverLeftYAxis();
-        double turn = Robot.oi.getDriverRightXAxis();
+        double drive = Math.signum(Robot.oi.getDriverLeftYAxis())
+                *Math.pow(Math.abs(Robot.oi.getDriverLeftYAxis()), RobotMap.DriveBaseConstants.DRIVE_EXPONENT);
+        double turn = Math.signum(Robot.oi.getDriverRightXAxis())
+                *Math.pow(Math.abs(Robot.oi.getDriverRightXAxis()), RobotMap.DriveBaseConstants.TURN_EXPONENT);
 
         if (turn == 0 && drive != 0) {
             if (!timerStarted) {
