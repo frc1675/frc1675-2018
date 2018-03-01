@@ -17,8 +17,10 @@ public class RampSub extends Subsystem {
     public Solenoid rampDeploy;
 
     public RampSub() {
-        rampLifterLeft = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_RAISE_LEFT, RobotMap.SolenoidChannels.RAMP_LOWER_LEFT);
-        rampLifterRight = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_RAISE_RIGHT, RobotMap.SolenoidChannels.RAMP_LOWER_RIGHT);
+        rampLifterLeft = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_RAISE_LEFT,
+                RobotMap.SolenoidChannels.RAMP_LOWER_LEFT);
+        rampLifterRight = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_RAISE_RIGHT,
+                RobotMap.SolenoidChannels.RAMP_LOWER_RIGHT);
         rampDeploy = new Solenoid(RobotMap.SolenoidChannels.RAMP_RELEASE);
     }
 

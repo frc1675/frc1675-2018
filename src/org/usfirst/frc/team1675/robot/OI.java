@@ -24,8 +24,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
 
-	Joystick driverController = new Joystick(XBoxControllerMap.DRIVER_CONTROLLER_PORT);
-	Joystick operatorController = new Joystick(XBoxControllerMap.OPERATOR_CONTROLLER_PORT);
+    Joystick driverController = new Joystick(XBoxControllerMap.DRIVER_CONTROLLER_PORT);
+    Joystick operatorController = new Joystick(XBoxControllerMap.OPERATOR_CONTROLLER_PORT);
 
 	JoystickButton driverButtonA = new JoystickButton(driverController, XBoxControllerMap.A_BUTTON);
 	JoystickButton driverButtonB = new JoystickButton(driverController, XBoxControllerMap.B_BUTTON);
@@ -85,68 +85,68 @@ public class OI {
 	    operatorRightBumperNoDPad.whileActive(new ActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER));
 	    operatorRightBumperDPadUp.whileActive(new ActivateClaw(false, RobotMap.ClawConstants.MAX_OUTPUT_POWER));
 	    operatorRightBumperDPadDown.whileActive(new ActivateClaw(false, RobotMap.ClawConstants.MIN_OUTPUT_POWER));
-	}
-	
-	public double getDriverLeftXAxis() {
-		double leftXAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
-		double correctedleftXAxis = correctForDeadzone (leftXAxis);
-		return correctedleftXAxis;
-	}
+    }
 
-	public double getDriverLeftYAxis() {
-		double leftYAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
-		double correctedleftYAxis = correctForDeadzone (leftYAxis);
-		return -correctedleftYAxis;
-	}
+    public double getDriverLeftXAxis() {
+        double leftXAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
+        double correctedleftXAxis = correctForDeadzone(leftXAxis);
+        return correctedleftXAxis;
+    }
 
-	public double getDriverRightXAxis() {
-		double rightXAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
-		double correctedrightXAxis = correctForDeadzone (rightXAxis);
-		return correctedrightXAxis;
-	}
+    public double getDriverLeftYAxis() {
+        double leftYAxis = driverController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
+        double correctedleftYAxis = correctForDeadzone(leftYAxis);
+        return -correctedleftYAxis;
+    }
 
-	public double getDriverRightYAxis() {
-		double rightYAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
-		double correctedRightYAxis = correctForDeadzone (rightYAxis);
-		return -correctedRightYAxis;
-	}
+    public double getDriverRightXAxis() {
+        double rightXAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
+        double correctedrightXAxis = correctForDeadzone(rightXAxis);
+        return correctedrightXAxis;
+    }
 
-	public double getOperatorLeftXAxis() {
-		double leftXAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
-		double correctedleftXAxis = correctForDeadzone (leftXAxis);
-		return correctedleftXAxis;
-	}
+    public double getDriverRightYAxis() {
+        double rightYAxis = driverController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
+        double correctedRightYAxis = correctForDeadzone(rightYAxis);
+        return -correctedRightYAxis;
+    }
 
-	public double getOperatoriLeftYAxis() {
-		double leftYAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
-		double correctedleftYAxis = correctForDeadzone (leftYAxis);
-		return -correctedleftYAxis;
-	}
+    public double getOperatorLeftXAxis() {
+        double leftXAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
+        double correctedleftXAxis = correctForDeadzone(leftXAxis);
+        return correctedleftXAxis;
+    }
 
-	public double getOperatorRightXAxis() {
-		double rightXAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
-		double correctedrightXAxis = correctForDeadzone(rightXAxis);
-		return correctedrightXAxis;
-	}
+    public double getOperatoriLeftYAxis() {
+        double leftYAxis = operatorController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
+        double correctedleftYAxis = correctForDeadzone(leftYAxis);
+        return -correctedleftYAxis;
+    }
 
-	public double getOperatorRightYAxis() {
-		double rightYAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
-		double correctedRightYAxis = correctForDeadzone(rightYAxis);
-		return -correctedRightYAxis;
-	}
-	
-	private double correctForDeadzone(double value) {
-		double correctedValue = 0;
-		if(Math.abs(value)> RobotMap.CONTROLLER_DEADZONE) {
-			if( value > 0) {
-				correctedValue = (value - RobotMap.CONTROLLER_DEADZONE) / (1 - RobotMap.CONTROLLER_DEADZONE);
-			}
-			if(value < 0){
-				correctedValue = (value + RobotMap.CONTROLLER_DEADZONE) / (1 - RobotMap.CONTROLLER_DEADZONE);
-			}
-		}
-		return correctedValue;
-	}
+    public double getOperatorRightXAxis() {
+        double rightXAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
+        double correctedrightXAxis = correctForDeadzone(rightXAxis);
+        return correctedrightXAxis;
+    }
+
+    public double getOperatorRightYAxis() {
+        double rightYAxis = operatorController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
+        double correctedRightYAxis = correctForDeadzone(rightYAxis);
+        return -correctedRightYAxis;
+    }
+
+    private double correctForDeadzone(double value) {
+        double correctedValue = 0;
+        if (Math.abs(value) > RobotMap.CONTROLLER_DEADZONE) {
+            if (value > 0) {
+                correctedValue = (value - RobotMap.CONTROLLER_DEADZONE) / (1 - RobotMap.CONTROLLER_DEADZONE);
+            }
+            if (value < 0) {
+                correctedValue = (value + RobotMap.CONTROLLER_DEADZONE) / (1 - RobotMap.CONTROLLER_DEADZONE);
+            }
+        }
+        return correctedValue;
+    }
 
     public void setDriverRumble(double driverRumblePower) {
         driverController.setRumble(RumbleType.kLeftRumble, driverRumblePower);
@@ -160,31 +160,31 @@ public class OI {
 
     }
 
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
+    //// CREATING BUTTONS
+    // One type of button is a joystick button which is any button on a
+    //// joystick.
+    // You create one by telling it which joystick it's on and which button
+    // number it is.
+    // Joystick stick = new Joystick(port);
+    // Button button = new JoystickButton(stick, buttonNumber);
 
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
+    // There are a few additional built in buttons you can use. Additionally,
+    // by subclassing Button you can create custom triggers and bind those to
+    // commands the same as any other Button.
 
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
+    //// TRIGGERING COMMANDS WITH BUTTONS
+    // Once you have a button, it's trivial to bind it to a button in one of
+    // three ways:
 
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
+    // Start the command when the button is pressed and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenPressed(new ExampleCommand());
 
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
+    // Run the command while the button is being held down and interrupt it once
+    // the button is released.
+    // button.whileHeld(new ExampleCommand());
 
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
+    // Start the command when the button is released and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenReleased(new ExampleCommand());
 }

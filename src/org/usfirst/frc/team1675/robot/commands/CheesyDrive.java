@@ -37,12 +37,12 @@ public class CheesyDrive extends Command {
             timer.stop();
             timerStarted = false;
             isPIDEnabled = false;
-//            Robot.driveBase.disablePIDMode();
+            // Robot.driveBase.disablePIDMode();
         }
         SmartDashboard.putNumber("timer", timer.get());
         if (timer.get() >= .25) {
             isPIDEnabled = true;
-  //          Robot.driveBase.activatePIDMode();
+            // Robot.driveBase.activatePIDMode();
         }
         // SmartDashboard.putBoolean("IsPIDEnabled", isPIDEnabled);
         // SmartDashboard.putNumber("Left enc", Robot.driveBase.getLeftEncoderValue());
