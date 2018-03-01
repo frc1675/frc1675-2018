@@ -8,25 +8,18 @@
 package org.usfirst.frc.team1675.robot;
 
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
-import org.usfirst.frc.team1675.robot.commands.DriveForDistance;
-import org.usfirst.frc.team1675.robot.commands.MoveArmToEncoderPosition;
-import org.usfirst.frc.team1675.robot.commands.TurnWithGyro;
-
+import org.usfirst.frc.team1675.robot.subsystems.Arm;
+import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
+import org.usfirst.frc.team1675.robot.subsystems.RampSub;
+import org.usfirst.frc.team1675.robot.utils.TimedAutoChooser;
 
-import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
-import org.usfirst.frc.team1675.robot.subsystems.Arm;
-import org.usfirst.frc.team1675.robot.subsystems.Claw;
-
-import org.usfirst.frc.team1675.robot.subsystems.RampSub;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -43,8 +36,10 @@ public class Robot extends TimedRobot {
     public static final RampSub ramp = new RampSub();
 
     public static OI oi;
+    public static TimedAutoChooser autoChooser;
 
     Command m_autonomousCommand;
+  
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -53,6 +48,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         oi = new OI();
+        autoChooser = new TimedAutoChooser();
     }
 
     /**
@@ -84,15 +80,11 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        m_autonomousCommand = null;
-
-        /*
-         * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-         * switch(autoSelected) { case "My Auto": autonomousCommand = new
-         * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-         * ExampleCommand(); break; }
-         */
-
+        String side = null;
+        while (side == null) {
+            side = DriverStation.getInstance().getGameSpecificMessage();
+        }
+        m_autonomousCommand = autoChooser.generateAuto(side);
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.start();
