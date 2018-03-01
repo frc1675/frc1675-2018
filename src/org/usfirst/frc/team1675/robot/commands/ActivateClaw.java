@@ -22,11 +22,11 @@ public class ActivateClaw extends Command {
 
     protected void initialize() {
         if (input) {
-            Robot.claw.setLeftIntakePower(-power);
-            Robot.claw.setRightIntakePower(power);
-        } else {
             Robot.claw.setLeftIntakePower(power);
             Robot.claw.setRightIntakePower(-power);
+        } else {
+            Robot.claw.setLeftIntakePower(-power);
+            Robot.claw.setRightIntakePower(power);
         }
     }
 
