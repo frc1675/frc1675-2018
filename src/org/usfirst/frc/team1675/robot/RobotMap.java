@@ -32,10 +32,10 @@ public class RobotMap {
 	
     public static class SolenoidChannels {
         public static final int SHIFT = 7;
-        public static final int RAMP_RAISE_LEFT = 2;
-        public static final int RAMP_RAISE_RIGHT = 3;
-        public static final int RAMP_LOWER_LEFT = 4;
-        public static final int RAMP_LOWER_RIGHT = 5;
+        public static final int RAMP_RAISE_LEFT = 5;
+        public static final int RAMP_RAISE_RIGHT = 4;
+        public static final int RAMP_LOWER_LEFT = 3;
+        public static final int RAMP_LOWER_RIGHT = 2;
         public static final int RAMP_RELEASE = 6;
     }
     
@@ -47,10 +47,13 @@ public class RobotMap {
         public static final double TOLERANCE = 10; 
         public static final double TICKS_PER_INCH = 407.44; 
         public static final double TIMED_AUTO_POWER_CONSTANT = .4;
+        public static final double DRIVE_EXPONENT = 1;
+        public static final double TURN_EXPONENT = 1;
     }
     
     public static class RampConstants {
         public static final double SOLENOID_ACTIVATION_TIME = .25;
+        public static final int RAMP_DROP_TIME = 105;//Should always be 105 when on the field
     }
 
 	public static class ClawConstants {

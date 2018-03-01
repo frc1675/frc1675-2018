@@ -3,6 +3,7 @@ package org.usfirst.frc.team1675.robot.commands;
 import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -16,7 +17,9 @@ public class DeployRamps extends Command {
     }
 
     protected void initialize() {
-        Robot.ramp.Deploy();
+        if(Robot.getTeleopTime() >= RobotMap.RampConstants.RAMP_DROP_TIME) {
+            Robot.ramp.Deploy();
+        }
     }
 
     protected void execute() {
