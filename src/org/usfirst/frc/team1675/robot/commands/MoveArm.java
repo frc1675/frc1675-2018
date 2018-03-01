@@ -25,7 +25,7 @@ public class MoveArm extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         armPower = Robot.oi.getOperatorRightYAxis();
-        Robot.arm.moveArm(armPower, .4);
+        Robot.arm.moveArm(armPower, RobotMap.ArmConstants.ARM_MANUAL_MAX_POWER);
     }
 
     // Make this return true when this Command no longer needs to run execute()

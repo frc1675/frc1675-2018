@@ -66,6 +66,7 @@ public class RobotMap {
         public static final int ARM_BUTTON = 9;
 
         public static final double ARM_AUTONOMOUS_MOVEMENT_POWER = .25;
+        public static final double ARM_MANUAL_MAX_POWER = .4;
     }
 
     public static final double CONTROLLER_DEADZONE = 0.1675;
