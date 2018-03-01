@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1675.robot.subsystems;
 
+import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 
@@ -27,11 +28,15 @@ public class RampSub extends Subsystem {
     }
 
     public void rampRaiseRight() {
-        rampLifterRight.set(DoubleSolenoid.Value.kForward);
+        if(Robot.ramp.haveRampsBeenDeployed) {
+            rampLifterRight.set(DoubleSolenoid.Value.kForward);
+        }
     }
     
     public void rampRaiseLeft() {
-         rampLifterLeft.set(DoubleSolenoid.Value.kForward);
+        if(Robot.ramp.haveRampsBeenDeployed) {
+            rampLifterLeft.set(DoubleSolenoid.Value.kForward);
+        }
     }
     
     public void rampStopRight() {
