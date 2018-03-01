@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveArmToEncoderPosition extends Command {
 
-    double encoderValue;   
-    
+    double encoderValue;
+
     public MoveArmToEncoderPosition(double encoderValue) {
         requires(Robot.arm);
         this.encoderValue = encoderValue;
@@ -36,7 +36,8 @@ public class MoveArmToEncoderPosition extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        boolean onTarget = Math.abs(encoderValue - Math.abs(Robot.arm.getArmEncoderValue())) <= RobotMap.ArmConstants.ARM_ENCODER_BUFFER;
+        boolean onTarget = Math.abs(
+                encoderValue - Math.abs(Robot.arm.getArmEncoderValue())) <= RobotMap.ArmConstants.ARM_ENCODER_BUFFER;
         boolean hasBeenZeroed = Robot.arm.hasButtonBeenPressed();
         return this.isTimedOut() || !hasBeenZeroed || onTarget;
     }

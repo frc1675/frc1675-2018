@@ -18,80 +18,76 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Arm extends Subsystem {
 
-	private TalonSRX arm;
-	PowerDistributionPanel pdp;
+    private TalonSRX arm;
+    PowerDistributionPanel pdp;
 
-	private DigitalInput button;
+    private DigitalInput button;
 
-	boolean hasButtonBeenPressed = false;
+    boolean hasButtonBeenPressed = false;
 
-	private static final double ARM_HOLD_POWER = .1;
-	public static final double MAX_BATTERY_VOLTAGE = 12.0;
+    private static final double ARM_HOLD_POWER = .1;
+    public static final double MAX_BATTERY_VOLTAGE = 12.0;
 
-	public Arm() {
-		pdp = new PowerDistributionPanel(10);
+    public Arm() {
+        pdp = new PowerDistributionPanel();
 
-		arm = new TalonSRX(RobotMap.CANDeviceIDs.ARM);
-	    arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		arm.setSensorPhase(true);
+        arm = new TalonSRX(RobotMap.CANDeviceIDs.ARM);
+        arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+        arm.setSensorPhase(true);
 
-		arm.configForwardSoftLimitThreshold(RobotMap.ArmConstants.FORWARD_LIMIT_POSITION, 0);
-		arm.configReverseSoftLimitThreshold(RobotMap.ArmConstants.REVERSE_LIMIT_POSITION, 0);
-		arm.configForwardSoftLimitEnable(false, 0);
-		arm.configReverseSoftLimitEnable(false, 0);
+        arm.configForwardSoftLimitThreshold(RobotMap.ArmConstants.FORWARD_LIMIT_POSITION, 0);
+        arm.configReverseSoftLimitThreshold(RobotMap.ArmConstants.REVERSE_LIMIT_POSITION, 0);
+        arm.configForwardSoftLimitEnable(false, 0);
+        arm.configReverseSoftLimitEnable(false, 0);
 
-		button = new DigitalInput(RobotMap.ArmConstants.ARM_BUTTON);
+        button = new DigitalInput(RobotMap.ArmConstants.ARM_BUTTON);
 
-	}
-	
-	public boolean hasButtonBeenPressed() {
-	    return this.hasButtonBeenPressed;
-	}
+    }
 
-	public void moveArm(double power, double scale) {
-		if (hasButtonBeenPressed == false && power > 0) {
-			power = 0;
-		}
+    public boolean hasButtonBeenPressed() {
+        return this.hasButtonBeenPressed;
+    }
 
-		if (power == 0) {
-			arm.set(ControlMode.PercentOutput, ARM_HOLD_POWER * (MAX_BATTERY_VOLTAGE / pdp.getVoltage()));
-		} else {
-			double adjustedPower = this.accountForMotorDeadzone(power * scale);
-			arm.set(ControlMode.PercentOutput, adjustedPower);
-		}
-	}
+    public void moveArm(double power, double scale) {
+        if (hasButtonBeenPressed == false && power > 0) {
+            power = 0;
+        }
 
-	public double getArmEncoderValue() {
-		return arm.getSelectedSensorPosition(0);
-	}
+        if (power == 0) {
+            arm.set(ControlMode.PercentOutput, ARM_HOLD_POWER * (MAX_BATTERY_VOLTAGE / pdp.getVoltage()));
+        } else {
+            double adjustedPower = this.accountForMotorDeadzone(power * scale);
+            arm.set(ControlMode.PercentOutput, adjustedPower);
+        }
+    }
 
-	public double accountForMotorDeadzone(double value) {
-		if (value >= 0) {
-			return value + ARM_HOLD_POWER;
-		} else
-			return value;
+    public double getArmEncoderValue() {
+        return arm.getSelectedSensorPosition(0);
+    }
 
-	}
+    public double accountForMotorDeadzone(double value) {
+        if (value >= 0) {
+            return value + ARM_HOLD_POWER;
+        } else
+            return value;
 
-	public void periodic() {
-		if (hasButtonBeenPressed == false) {
-			if (button.get() == false) {
-				arm.getSensorCollection().setQuadraturePosition(0, 0);
-				arm.configForwardSoftLimitEnable(true, 0);
-				arm.configReverseSoftLimitEnable(true, 0);
+    }
 
-				hasButtonBeenPressed = true;
-			}
-		}
-		SmartDashboard.putBoolean("hasButtonBeenPressed", hasButtonBeenPressed);
-		SmartDashboard.putNumber("arm encoder", arm.getSensorCollection().getQuadraturePosition() );
-	}
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
+    public void periodic() {
+        if (hasButtonBeenPressed == false) {
+            if (button.get() == false) {
+                arm.getSensorCollection().setQuadraturePosition(0, 0);
+                arm.configForwardSoftLimitEnable(true, 0);
+                arm.configReverseSoftLimitEnable(true, 0);
 
-	public void initDefaultCommand() {
-		setDefaultCommand(new MoveArm());
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
-	}
+                hasButtonBeenPressed = true;
+            }
+        }
+        SmartDashboard.putBoolean("hasButtonBeenPressed", hasButtonBeenPressed);
+//        SmartDashboard.putNumber("arm encoder", arm.getSensorCollection().getQuadraturePosition());
+    }
+
+    public void initDefaultCommand() {
+        setDefaultCommand(new MoveArm());
+    }
 }
