@@ -7,12 +7,12 @@
 
 package org.usfirst.frc.team1675.robot;
 
-import org.usfirst.frc.team1675.Util.TimedAutoChooser;
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 import org.usfirst.frc.team1675.robot.subsystems.RampSub;
+import org.usfirst.frc.team1675.robot.utils.TimedAutoChooser;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
