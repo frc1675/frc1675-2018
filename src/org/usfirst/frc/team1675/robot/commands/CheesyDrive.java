@@ -25,10 +25,13 @@ public class CheesyDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double drive = Math.signum(Robot.oi.getDriverLeftYAxis())
-                *Math.pow(Math.abs(Robot.oi.getDriverLeftYAxis()), RobotMap.DriveBaseConstants.DRIVE_EXPONENT);
-        double turn = Math.signum(Robot.oi.getDriverRightXAxis())
-                *Math.pow(Math.abs(Robot.oi.getDriverRightXAxis()), RobotMap.DriveBaseConstants.TURN_EXPONENT);
+        double leftYValue = Robot.oi.getDriverLeftYAxis();
+        double rightXValue = Robot.oi.getDriverRightXAxis();
+
+        double drive = Math.signum(leftYValue)
+                *Math.pow(Math.abs(leftYValue), RobotMap.DriveBaseConstants.DRIVE_EXPONENT);
+        double turn = Math.signum(rightXValue)
+                *Math.pow(Math.abs(rightXValue), RobotMap.DriveBaseConstants.TURN_EXPONENT);
 
         if (turn == 0 && drive != 0) {
             if (!timerStarted) {
