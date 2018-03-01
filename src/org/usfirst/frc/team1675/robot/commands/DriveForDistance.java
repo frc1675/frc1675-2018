@@ -14,38 +14,40 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class DriveForDistance extends PIDCommand {
-	PIDSource pst = new PIDSource() {
-		PIDSourceType pidType;
-		public void setPIDSourceType(PIDSourceType pidSource) {
-			pidType=pidSource;
-		}
+    PIDSource pst = new PIDSource() {
+        PIDSourceType pidType;
 
-		@Override
-		public PIDSourceType getPIDSourceType() {
-			// TODO Auto-generated method stub
-			return pidType;
-		}
+        public void setPIDSourceType(PIDSourceType pidSource) {
+            pidType = pidSource;
+        }
 
-		@Override
-		public double pidGet() {
-			// TODO Auto-generated method stub
-		    double data = (Robot.driveBase.getLeftEncoderValue()+Robot.driveBase.getRightEncoderValue())/2;
-			return data;
-		}};
-		
-	double setpoint;
-	double timeout;
-	LinearDigitalFilter ldf = LinearDigitalFilter.movingAverage(pst, 10); ;
+        @Override
+        public PIDSourceType getPIDSourceType() {
+            // TODO Auto-generated method stub
+            return pidType;
+        }
 
-    public DriveForDistance(double setpoint,double timeout) {
-    	super(RobotMap.DriveBaseConstants.P, RobotMap.DriveBaseConstants.I, RobotMap.DriveBaseConstants.D);
-		requires(Robot.driveBase);
-		this.setpoint = setpoint * RobotMap.DriveBaseConstants.TICKS_PER_INCH;
-		this.timeout = timeout;
+        @Override
+        public double pidGet() {
+            // TODO Auto-generated method stub
+            return (Robot.driveBase.getLeftEncoderValue() + Robot.driveBase.getRightEncoderValue()) / 2;
+        }
+    };
+
+    double setpoint;
+    double timeout;
+    LinearDigitalFilter ldf = LinearDigitalFilter.movingAverage(pst, 10);;
+
+    public DriveForDistance(double setpoint, double timeout) {
+        super(RobotMap.DriveBaseConstants.P, RobotMap.DriveBaseConstants.I, RobotMap.DriveBaseConstants.D);
+        requires(Robot.driveBase);
+        this.setpoint = setpoint * RobotMap.DriveBaseConstants.TICKS_PER_INCH;
+        this.timeout = timeout;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+
     	Robot.driveBase.resetEncoder();
     	this.getPIDController().reset();
     	this.getPIDController().enable();
@@ -54,27 +56,27 @@ public class DriveForDistance extends PIDCommand {
     	this.setTimeout(timeout);
     	this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.TOLERANCE);
 //    	Robot.driveBase.activatePIDMode();
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     }
+
     public boolean averageOnTarget() {
-    	if(ldf.pidGet() >= setpoint-RobotMap.DriveBaseConstants.TOLERANCE) {
-    		if(ldf.pidGet() <= setpoint+RobotMap.DriveBaseConstants.TOLERANCE) {
-    			return true;
-    		}
-    	}
-    	return false;
+        if (ldf.pidGet() >= setpoint - RobotMap.DriveBaseConstants.TOLERANCE) {
+            if (ldf.pidGet() <= setpoint + RobotMap.DriveBaseConstants.TOLERANCE) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(averageOnTarget() || this.isTimedOut()) {
-    		return true;
-        }
-    	else return false;
+        if (averageOnTarget() || this.isTimedOut()) {
+            return true;
+        } else
+            return false;
     }
 
     // Called once after isFinished returns true
@@ -88,7 +90,7 @@ public class DriveForDistance extends PIDCommand {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
+    
 	@Override
 	protected double returnPIDInput() {
 		return (ldf.pidGet());
@@ -99,4 +101,5 @@ public class DriveForDistance extends PIDCommand {
 	protected void usePIDOutput(double output) {
 		Robot.driveBase.setAllMotors(output);
 	}
+
 }

@@ -29,5 +29,5 @@ public class StartMiddleToSwitchRight extends CommandGroup {
         addSequential(new TurnWithGyro(Turn_1_ANGLE, TIMEOUT));
         addSequential(new DriveForDistance(SEGMENT_2, TIMEOUT));
         addSequential(new TurnWithGyro(Turn_2_ANGLE, TIMEOUT));
-}
+    }
 }

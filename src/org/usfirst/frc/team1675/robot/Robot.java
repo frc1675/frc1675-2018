@@ -12,6 +12,7 @@ import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
+import org.usfirst.frc.team1675.robot.subsystems.RampSub;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -32,12 +33,13 @@ public class Robot extends TimedRobot {
     public static final Claw claw = new Claw();
 
     public static final PIDDriveBase driveBase = new PIDDriveBase();
+    public static final RampSub ramp = new RampSub();
 
     public static OI oi;
     public static TimedAutoChooser autoChooser;
 
     Command m_autonomousCommand;
-    SendableChooser<Command> m_chooser = new SendableChooser<>();
+  
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -47,9 +49,6 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         oi = new OI();
         autoChooser = new TimedAutoChooser();
-        m_chooser.addDefault("Default Auto", new CheesyDrive());
-        // chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", m_chooser);
     }
 
     /**
@@ -86,7 +85,6 @@ public class Robot extends TimedRobot {
             side = DriverStation.getInstance().getGameSpecificMessage();
         }
         m_autonomousCommand = autoChooser.generateAuto(side);
-
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.start();

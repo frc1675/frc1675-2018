@@ -11,6 +11,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -28,10 +29,11 @@ public class PIDDriveBase extends PIDSubsystem {
     static final double I = .0;
     static final double D = .03;
     private double correction;
-    private DoubleSolenoid shifter;
+    private Solenoid shifter;
     AHRS ahrs;
 
     public PIDDriveBase() {
+
         super(P, I, D);
         leftFront = new TalonSRX(RobotMap.CANDeviceIDs.DRIVE_LEFT_FRONT);
         leftMid = new VictorSPX(RobotMap.CANDeviceIDs.DRIVE_LEFT_MID);
@@ -43,6 +45,7 @@ public class PIDDriveBase extends PIDSubsystem {
         leftBack.setInverted(true);
         leftMid.setInverted(true);
         rightFront.setInverted(false);
+        rightMid.setInverted(false);
         rightBack.setInverted(false);
         rightMid.setInverted(false);
 
@@ -51,7 +54,7 @@ public class PIDDriveBase extends PIDSubsystem {
 
         ahrs = new AHRS(SerialPort.Port.kMXP);
 
-        shifter = new DoubleSolenoid(RobotMap.SolenoidChannels.SHIFT_HIGH, RobotMap.SolenoidChannels.SHIFT_LOW);
+        shifter = new Solenoid(RobotMap.SolenoidChannels.SHIFT);
 
     }
 
@@ -102,20 +105,16 @@ public class PIDDriveBase extends PIDSubsystem {
         leftMid.set(ControlMode.PercentOutput, leftpower);
         leftBack.set(ControlMode.PercentOutput, leftpower);
         rightFront.set(ControlMode.PercentOutput, rightpower);
-        rightMid.set(ControlMode.PercentOutput, leftpower);
+        rightMid.set(ControlMode.PercentOutput, rightpower);
         rightBack.set(ControlMode.PercentOutput, rightpower);
     }
 
     public void shiftHigh() {
-        shifter.set(DoubleSolenoid.Value.kForward);
+        shifter.set(false);
     }
 
     public void shiftLow() {
-        shifter.set(DoubleSolenoid.Value.kReverse);
-    }
-
-    public void stopShifter() {
-        shifter.set(DoubleSolenoid.Value.kOff);
+        shifter.set(true);
     }
 
     public void resetGyro() {
