@@ -17,7 +17,9 @@ public class RaiseRightRamp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.ramp.rampRaiseRight();
+        if(Robot.ramp.haveRampsBeenDeployed) {
+            Robot.ramp.rampRaiseRight();
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
