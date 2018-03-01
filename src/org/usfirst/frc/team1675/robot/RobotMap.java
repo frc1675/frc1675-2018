@@ -32,10 +32,10 @@ public class RobotMap {
 
     public static class SolenoidChannels {
         public static final int SHIFT = 7;
-        public static final int RAMP_RAISE_LEFT = 2;
-        public static final int RAMP_RAISE_RIGHT = 3;
-        public static final int RAMP_LOWER_LEFT = 4;
-        public static final int RAMP_LOWER_RIGHT = 5;
+        public static final int RAMP_RAISE_LEFT = 5;
+        public static final int RAMP_RAISE_RIGHT = 4;
+        public static final int RAMP_LOWER_LEFT = 3;
+        public static final int RAMP_LOWER_RIGHT = 2;
         public static final int RAMP_RELEASE = 6;
     }
 
