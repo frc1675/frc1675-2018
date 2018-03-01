@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RaiseRamps extends Command {
+public class RaiseRightRamp extends Command {
 
-    public RaiseRamps() {
+    public RaiseRightRamp() {
         requires(Robot.ramp);
         this.setTimeout(RobotMap.RampConstants.SOLENOID_ACTIVATION_TIME);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.ramp.rampRaise();
+        Robot.ramp.rampRaiseRight();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,10 +31,12 @@ public class RaiseRamps extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+        Robot.ramp.rampStopRight();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
     }
 }
