@@ -8,19 +8,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TimedAutoChooser {
-    private String side;
     private SendableChooser startChoice;
     public enum startPosition {
         LEFT, RIGHT
     }
-    public TimedAutoChooser(String side) {
-        this.side = side;
+    public TimedAutoChooser() {
         startChoice = new SendableChooser();
         startChoice.addObject("Left Side Start", startPosition.LEFT);
         startChoice.addObject("Right Side Start", startPosition.RIGHT);
         SmartDashboard.putData("Starting Position", startChoice);
     }
-    public CommandGroup generateAuto() {
+    public CommandGroup generateAuto(String side) {
         CommandGroup auto = new CommandGroup();
         startPosition selectedStart = (startPosition) startChoice.getSelected();
         switch(selectedStart) {

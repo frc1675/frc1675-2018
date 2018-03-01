@@ -45,12 +45,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        String side = null;
-        while (side == null) {
-            side = DriverStation.getInstance().getGameSpecificMessage();
-        }
         oi = new OI();
-        autoChooser = new TimedAutoChooser(side);
+        autoChooser = new TimedAutoChooser();
         m_chooser.addDefault("Default Auto", new CheesyDrive());
         // chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", m_chooser);
@@ -85,7 +81,11 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        m_autonomousCommand = TimedAutoChooser.generateAuto();
+        String side = null;
+        while (side == null) {
+            side = DriverStation.getInstance().getGameSpecificMessage();
+        }
+        m_autonomousCommand = autoChooser.generateAuto(side);
 
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
