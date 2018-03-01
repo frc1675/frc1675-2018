@@ -58,7 +58,7 @@ public class OI {
 	NegaButton operatorDPadNotUp = new NegaButton(operatorDPadUp);
 	NegaButton operatorDPadNotDown = new NegaButton(operatorDPadDown);
 	
-	DoubleButton operatorDPadNotUpOrDown = new DoubleButton(operatorDPadNotUp, operatorDPadDown);
+	DoubleButton operatorDPadNotUpOrDown = new DoubleButton(operatorDPadNotUp, operatorDPadNotDown);
 
     JoystickButton operatorRightBumper = new JoystickButton(operatorController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
     JoystickButton operatorLeftBumper = new JoystickButton(operatorController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
