@@ -14,25 +14,25 @@ public class TimedTurn extends Command {
     boolean turn;
 
     public TimedTurn(double timeToTurn, boolean isTurningRight) {
-       requires(Robot.driveBase);
-       this.time = timeToTurn;
-       this.turn = isTurningRight;
+        requires(Robot.driveBase);
+        this.time = timeToTurn;
+        this.turn = isTurningRight;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-       this.setTimeout(time);
+        this.setTimeout(time);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         double speed = RobotMap.DriveBaseConstants.TIMED_AUTO_POWER_CONSTANT;
-        //is turning left if true, right if false
-        if(this.turn = false) {
-        Robot.driveBase.setLeftMotors(speed);
-        Robot.driveBase.setRightMotors(-speed);
+        // is turning left if true, right if false
+        if (this.turn = false) {
+            Robot.driveBase.setLeftMotors(speed);
+            Robot.driveBase.setRightMotors(-speed);
         }
-        if(this.turn = true) {
+        if (this.turn = true) {
             Robot.driveBase.setLeftMotors(-speed);
             Robot.driveBase.setRightMotors(speed);
         }
@@ -40,7 +40,7 @@ public class TimedTurn extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(this.isTimedOut()) {
+        if (this.isTimedOut()) {
             return true;
         }
         return false;

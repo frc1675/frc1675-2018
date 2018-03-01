@@ -31,7 +31,7 @@ public class TimedDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(this.isTimedOut()) {
+        if (this.isTimedOut()) {
             return true;
         }
         return false;
