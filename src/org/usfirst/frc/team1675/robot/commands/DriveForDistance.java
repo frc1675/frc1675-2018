@@ -47,15 +47,15 @@ public class DriveForDistance extends PIDCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.driveBase.resetEncoder();
-        this.getPIDController().reset();
-        this.getPIDController().enable();
-        this.getPIDController().setSetpoint(setpoint);
-        this.getPIDController().setOutputRange(-1, 1);
-        this.setTimeout(timeout);
-        this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.TOLERANCE);
-        Robot.driveBase.activatePIDMode();
 
+    	Robot.driveBase.resetEncoder();
+    	this.getPIDController().reset();
+    	this.getPIDController().enable();
+    	this.getPIDController().setSetpoint(setpoint);
+    	this.getPIDController().setOutputRange(-.7,.7);
+    	this.setTimeout(timeout);
+    	this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.TOLERANCE);
+//    	Robot.driveBase.activatePIDMode();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -81,28 +81,25 @@ public class DriveForDistance extends PIDCommand {
 
     // Called once after isFinished returns true
     protected void end() {
-        this.getPIDController().disable();
-        Robot.driveBase.setAllMotors(0);
-        Robot.driveBase.disablePIDMode();
+    	this.getPIDController().disable();
+    	Robot.driveBase.setAllMotors(0);
+//    	Robot.driveBase.disablePIDMode();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+    
+	@Override
+	protected double returnPIDInput() {
+		return (ldf.pidGet());
+		
+	}
 
-    @Override
-    protected double returnPIDInput() {
-        // SmartDashboard.putNumber("pid in", ldf.pidGet());
-        return (ldf.pidGet());
+	@Override
+	protected void usePIDOutput(double output) {
+		Robot.driveBase.setAllMotors(output);
+	}
 
-    }
-
-    @Override
-    protected void usePIDOutput(double output) {
-        // SmartDashboard.putNumber("pid out", output);
-        // SmartDashboard.putNumber("setpoint", this.getPIDController().getSetpoint());
-        // SmartDashboard.putNumber("error", this.getPIDController().getError());
-        Robot.driveBase.setAllMotors(output);
-    }
 }
