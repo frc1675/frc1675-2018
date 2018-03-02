@@ -29,12 +29,11 @@ public class StopDriveWhileDeploying extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.getTeleopTime() <= RobotMap.RampConstants.RAMP_DROP_TIME;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        SmartDashboard.putString("ERROR IN STOP_DRIVE_WHILE_DEPLOYING", "ERROR");
     }
 
     // Called when another command which requires one or more of the same
