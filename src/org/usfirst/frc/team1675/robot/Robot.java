@@ -14,6 +14,7 @@ import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 import org.usfirst.frc.team1675.robot.subsystems.RampSub;
 import org.usfirst.frc.team1675.robot.utils.TimedAutoChooser;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -52,6 +53,7 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         oi = new OI();
         autoChooser = new TimedAutoChooser();
+        CameraServer.getInstance().startAutomaticCapture();
     }
 
     /**
