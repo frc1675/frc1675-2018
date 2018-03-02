@@ -14,6 +14,7 @@ import org.usfirst.frc.team1675.robot.commands.RaiseLeftRamp;
 import org.usfirst.frc.team1675.robot.commands.RaiseRightRamp;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
+import org.usfirst.frc.team1675.robot.commands.StopDriveWhileDeploying;
 import org.usfirst.frc.team1675.robot.utils.DPadButton;
 import org.usfirst.frc.team1675.robot.utils.DoubleButton;
 import org.usfirst.frc.team1675.robot.utils.NegaButton;
@@ -75,6 +76,7 @@ public class OI {
 		driverRightBumper.whenPressed(new ShiftHigh());
 		driverRightBumper.whenReleased(new ShiftLow());
 		driverBumpersAndStart.whenPressed(new DeployRamps());
+	    driverBumpersAndStart.whenPressed(new StopDriveWhileDeploying());
 		driverBumpersAndLeftStickButton.whenPressed(new RaiseRightRamp());
 		driverBumpersAndRightStickButton.whenPressed(new RaiseLeftRamp());
 		operatorButtonX.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
