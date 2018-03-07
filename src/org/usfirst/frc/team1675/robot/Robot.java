@@ -7,20 +7,18 @@
 
 package org.usfirst.frc.team1675.robot;
 
-import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 import org.usfirst.frc.team1675.robot.subsystems.RampSub;
 import org.usfirst.frc.team1675.robot.utils.TimedAutoChooser;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -52,6 +50,7 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         oi = new OI();
         autoChooser = new TimedAutoChooser();
+        CameraServer.getInstance().startAutomaticCapture();
     }
 
     /**

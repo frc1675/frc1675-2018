@@ -84,7 +84,7 @@ public class Arm extends Subsystem {
             }
         }
         SmartDashboard.putBoolean("hasButtonBeenPressed", hasButtonBeenPressed);
-//        SmartDashboard.putNumber("arm encoder", arm.getSensorCollection().getQuadraturePosition());
+        SmartDashboard.putNumber("arm encoder", arm.getSensorCollection().getQuadraturePosition());
     }
 
     public void initDefaultCommand() {

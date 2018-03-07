@@ -14,6 +14,7 @@ import org.usfirst.frc.team1675.robot.commands.RaiseLeftRamp;
 import org.usfirst.frc.team1675.robot.commands.RaiseRightRamp;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
 import org.usfirst.frc.team1675.robot.commands.ShiftLow;
+import org.usfirst.frc.team1675.robot.commands.StopDriveWhileDeploying;
 import org.usfirst.frc.team1675.robot.utils.DPadButton;
 import org.usfirst.frc.team1675.robot.utils.DoubleButton;
 import org.usfirst.frc.team1675.robot.utils.NegaButton;
@@ -55,19 +56,19 @@ public class OI {
 	DPadButton operatorDPadUp = new DPadButton(operatorController, DPadButton.Direction.UP);
 	DPadButton operatorDPadDown = new DPadButton(operatorController, DPadButton.Direction.DOWN);
 	
-	NegaButton operatorDPadNotUp = new NegaButton(operatorDPadUp);
-	NegaButton operatorDPadNotDown = new NegaButton(operatorDPadDown);
+	NegaButton negaOperatorDPadUp = new NegaButton(operatorDPadUp);
+	NegaButton negaOperatorDPadDown = new NegaButton(operatorDPadDown);
 	
-	DoubleButton operatorDPadNotUpOrDown = new DoubleButton(operatorDPadNotUp, operatorDPadDown);
+	DoubleButton operatorDPadNegaUpAndNegaDown = new DoubleButton(negaOperatorDPadUp, negaOperatorDPadDown);
 
     JoystickButton operatorRightBumper = new JoystickButton(operatorController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
     JoystickButton operatorLeftBumper = new JoystickButton(operatorController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
 
-    DoubleButton operatorRightBumperNoDPad = new DoubleButton(operatorRightBumper, operatorDPadNotUpOrDown);
+    DoubleButton operatorRightBumperNegaDPad = new DoubleButton(operatorRightBumper, operatorDPadNegaUpAndNegaDown);
     DoubleButton operatorRightBumperDPadUp = new DoubleButton(operatorRightBumper, operatorDPadUp);
     DoubleButton operatorRightBumperDPadDown = new DoubleButton(operatorRightBumper, operatorDPadDown);
     
-    DoubleButton operatorLeftBumperNoDPad = new DoubleButton(operatorLeftBumper, operatorDPadNotUpOrDown);
+    DoubleButton operatorLeftBumperNoDPad = new DoubleButton(operatorLeftBumper, operatorDPadNegaUpAndNegaDown);
     DoubleButton operatorLeftBumperDPadUp = new DoubleButton(operatorLeftBumper, operatorDPadUp);
     DoubleButton operatorLeftBumperDPadDown = new DoubleButton(operatorLeftBumper, operatorDPadDown);
 
@@ -75,6 +76,7 @@ public class OI {
 		driverRightBumper.whenPressed(new ShiftHigh());
 		driverRightBumper.whenReleased(new ShiftLow());
 		driverBumpersAndStart.whenPressed(new DeployRamps());
+	    driverBumpersAndStart.whenPressed(new StopDriveWhileDeploying());
 		driverBumpersAndLeftStickButton.whenPressed(new RaiseRightRamp());
 		driverBumpersAndRightStickButton.whenPressed(new RaiseLeftRamp());
 		operatorButtonX.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
@@ -82,7 +84,7 @@ public class OI {
 		operatorButtonB.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.NORMAL_SWITCH_ENCODER_POSITION));
 	    operatorButtonA.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.PICK_UP_POSITION));
 	    operatorLeftBumper.whileHeld(new ActivateClaw(true, RobotMap.ClawConstants.INPUT_POWER));
-	    operatorRightBumperNoDPad.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER));
+	    operatorRightBumperNegaDPad.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER));
 	    operatorRightBumperDPadUp.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MAX_OUTPUT_POWER));
 	    operatorRightBumperDPadDown.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MIN_OUTPUT_POWER));
     }

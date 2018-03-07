@@ -33,8 +33,8 @@ public class RobotMap {
     public static class SolenoidChannels {
         public static final int SHIFT = 7;
         public static final int RAMP_RAISE_LEFT = 5;
-        public static final int RAMP_RAISE_RIGHT = 4;
-        public static final int RAMP_LOWER_LEFT = 3;
+        public static final int RAMP_RAISE_RIGHT = 3;
+        public static final int RAMP_LOWER_LEFT = 4;
         public static final int RAMP_LOWER_RIGHT = 2;
         public static final int RAMP_RELEASE = 6;
     }
@@ -64,18 +64,20 @@ public class RobotMap {
 	}
 
 	public static class ArmConstants {
-	    public static final int SCALE_ENCODER_POSITION = 4300;
-	    public static final int HIGH_SWITCH_ENCODER_POSITION = 2000;//NEED TO BE TUNED
-	    public static final int NORMAL_SWITCH_ENCODER_POSITION = 1800;
+	    public static final int SCALE_ENCODER_POSITION = 4400;
+	    public static final int HIGH_SWITCH_ENCODER_POSITION = 3248;
+	    public static final int NORMAL_SWITCH_ENCODER_POSITION = 2240;
 	    public static final int PICK_UP_POSITION = 0;
 	    
-	    public static final int FORWARD_LIMIT_POSITION = 4300;
+	    public static final int FORWARD_LIMIT_POSITION = 4400;
 	    public static final int REVERSE_LIMIT_POSITION = 500;
 	    public static final int ARM_ENCODER_BUFFER = 100;
 		public static final int ARM_BUTTON = 9;
 		
-		public static final double ARM_AUTONOMOUS_MOVEMENT_POWER = .25;
+		public static final double ARM_AUTONOMOUS_MOVEMENT_POWER = .4;
         public static final double ARM_MANUAL_MAX_POWER = .4;
+        
+        public static final double DROP_KICKSTAND_TIME = .25;
 }
 
     public static final double CONTROLLER_DEADZONE = 0.1675;
