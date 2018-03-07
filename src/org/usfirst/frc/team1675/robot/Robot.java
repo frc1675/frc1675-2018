@@ -9,6 +9,7 @@ package org.usfirst.frc.team1675.robot;
 
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 import org.usfirst.frc.team1675.robot.commands.DropKickstand;
+import org.usfirst.frc.team1675.robot.commands.KickstandDriveForward;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
@@ -86,8 +87,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        Command dropKick = new DropKickstand();
-        dropKick.start();
+//        Command driveKickstand = new KickstandDriveForward();
+//        driveKickstand.start();
         String side = null;
         while (side == null) {
             side = DriverStation.getInstance().getGameSpecificMessage();
