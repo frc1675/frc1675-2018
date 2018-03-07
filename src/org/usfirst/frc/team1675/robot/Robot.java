@@ -7,9 +7,6 @@
 
 package org.usfirst.frc.team1675.robot;
 
-import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
-import org.usfirst.frc.team1675.robot.commands.DropKickstand;
-import org.usfirst.frc.team1675.robot.commands.KickstandDriveForward;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
@@ -22,8 +19,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -87,8 +82,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-//        Command driveKickstand = new KickstandDriveForward();
-//        driveKickstand.start();
         String side = null;
         while (side == null) {
             side = DriverStation.getInstance().getGameSpecificMessage();

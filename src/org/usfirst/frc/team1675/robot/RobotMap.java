@@ -65,7 +65,7 @@ public class RobotMap {
 
 	public static class ArmConstants {
 	    public static final int SCALE_ENCODER_POSITION = 4400;
-	    public static final int HIGH_SWITCH_ENCODER_POSITION = 3248;//NEED TO BE TUNED
+	    public static final int HIGH_SWITCH_ENCODER_POSITION = 3248;
 	    public static final int NORMAL_SWITCH_ENCODER_POSITION = 2240;
 	    public static final int PICK_UP_POSITION = 0;
 	    
