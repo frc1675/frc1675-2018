@@ -1,9 +1,7 @@
 package org.usfirst.frc.team1675.robot.commands;
 
 import org.usfirst.frc.team1675.robot.Robot;
-import org.usfirst.frc.team1675.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -25,7 +23,6 @@ public class TurnWithGyro extends PIDCommand {
         this.setpoint = setpoint;
         this.timeout = timeout;
     }
-    
 
     // Called just before this Command runs the first time
     protected void initialize() {

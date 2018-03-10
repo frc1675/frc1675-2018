@@ -28,38 +28,40 @@ public class OI {
     Joystick driverController = new Joystick(XBoxControllerMap.DRIVER_CONTROLLER_PORT);
     Joystick operatorController = new Joystick(XBoxControllerMap.OPERATOR_CONTROLLER_PORT);
 
-	JoystickButton driverButtonA = new JoystickButton(driverController, XBoxControllerMap.A_BUTTON);
-	JoystickButton driverButtonB = new JoystickButton(driverController, XBoxControllerMap.B_BUTTON);
-	JoystickButton driverButtonX = new JoystickButton(driverController, XBoxControllerMap.X_BUTTON);
-	JoystickButton driverButtonY = new JoystickButton(driverController, XBoxControllerMap.Y_BUTTON);
-	
-	JoystickButton driverStartButton = new JoystickButton(driverController, XBoxControllerMap.START_BUTTON);
-	
-	JoystickButton driverLeftJoystickButton = new JoystickButton(driverController, XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
-	JoystickButton driverRightJoystickButton = new JoystickButton(driverController, XBoxControllerMap.RIGHT_JOYSTICK_BUTTON);
-	
-	JoystickButton driverRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
-	JoystickButton driverLeftBumper = new JoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
-	
-	DoubleButton driverBumpers = new DoubleButton(driverRightBumper, driverLeftBumper);
-	
-	DoubleButton driverBumpersAndStart = new DoubleButton(driverBumpers, driverStartButton);
-	
-	DoubleButton driverBumpersAndLeftStickButton = new DoubleButton(driverBumpers, driverLeftJoystickButton);
-	DoubleButton driverBumpersAndRightStickButton = new DoubleButton(driverBumpers, driverRightJoystickButton);
+    JoystickButton driverButtonA = new JoystickButton(driverController, XBoxControllerMap.A_BUTTON);
+    JoystickButton driverButtonB = new JoystickButton(driverController, XBoxControllerMap.B_BUTTON);
+    JoystickButton driverButtonX = new JoystickButton(driverController, XBoxControllerMap.X_BUTTON);
+    JoystickButton driverButtonY = new JoystickButton(driverController, XBoxControllerMap.Y_BUTTON);
 
-	JoystickButton operatorButtonA = new JoystickButton(operatorController, XBoxControllerMap.A_BUTTON);
-	JoystickButton operatorButtonB = new JoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
-	JoystickButton operatorButtonX = new JoystickButton(operatorController,  XBoxControllerMap.X_BUTTON);
-	JoystickButton operatorButtonY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
-	
-	DPadButton operatorDPadUp = new DPadButton(operatorController, DPadButton.Direction.UP);
-	DPadButton operatorDPadDown = new DPadButton(operatorController, DPadButton.Direction.DOWN);
-	
-	NegaButton negaOperatorDPadUp = new NegaButton(operatorDPadUp);
-	NegaButton negaOperatorDPadDown = new NegaButton(operatorDPadDown);
-	
-	DoubleButton operatorDPadNegaUpAndNegaDown = new DoubleButton(negaOperatorDPadUp, negaOperatorDPadDown);
+    JoystickButton driverStartButton = new JoystickButton(driverController, XBoxControllerMap.START_BUTTON);
+
+    JoystickButton driverLeftJoystickButton = new JoystickButton(driverController,
+            XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
+    JoystickButton driverRightJoystickButton = new JoystickButton(driverController,
+            XBoxControllerMap.RIGHT_JOYSTICK_BUTTON);
+
+    JoystickButton driverRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
+    JoystickButton driverLeftBumper = new JoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
+
+    DoubleButton driverBumpers = new DoubleButton(driverRightBumper, driverLeftBumper);
+
+    DoubleButton driverBumpersAndStart = new DoubleButton(driverBumpers, driverStartButton);
+
+    DoubleButton driverBumpersAndLeftStickButton = new DoubleButton(driverBumpers, driverLeftJoystickButton);
+    DoubleButton driverBumpersAndRightStickButton = new DoubleButton(driverBumpers, driverRightJoystickButton);
+
+    JoystickButton operatorButtonA = new JoystickButton(operatorController, XBoxControllerMap.A_BUTTON);
+    JoystickButton operatorButtonB = new JoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
+    JoystickButton operatorButtonX = new JoystickButton(operatorController, XBoxControllerMap.X_BUTTON);
+    JoystickButton operatorButtonY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
+
+    DPadButton operatorDPadUp = new DPadButton(operatorController, DPadButton.Direction.UP);
+    DPadButton operatorDPadDown = new DPadButton(operatorController, DPadButton.Direction.DOWN);
+
+    NegaButton negaOperatorDPadUp = new NegaButton(operatorDPadUp);
+    NegaButton negaOperatorDPadDown = new NegaButton(operatorDPadDown);
+
+    DoubleButton operatorDPadNegaUpAndNegaDown = new DoubleButton(negaOperatorDPadUp, negaOperatorDPadDown);
 
     JoystickButton operatorRightBumper = new JoystickButton(operatorController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
     JoystickButton operatorLeftBumper = new JoystickButton(operatorController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
@@ -67,26 +69,26 @@ public class OI {
     DoubleButton operatorRightBumperNegaDPad = new DoubleButton(operatorRightBumper, operatorDPadNegaUpAndNegaDown);
     DoubleButton operatorRightBumperDPadUp = new DoubleButton(operatorRightBumper, operatorDPadUp);
     DoubleButton operatorRightBumperDPadDown = new DoubleButton(operatorRightBumper, operatorDPadDown);
-    
+
     DoubleButton operatorLeftBumperNoDPad = new DoubleButton(operatorLeftBumper, operatorDPadNegaUpAndNegaDown);
     DoubleButton operatorLeftBumperDPadUp = new DoubleButton(operatorLeftBumper, operatorDPadUp);
     DoubleButton operatorLeftBumperDPadDown = new DoubleButton(operatorLeftBumper, operatorDPadDown);
 
-	public OI() {
-		driverRightBumper.whenPressed(new ShiftHigh());
-		driverRightBumper.whenReleased(new ShiftLow());
-		driverBumpersAndStart.whenPressed(new DeployRamps());
-	    driverBumpersAndStart.whenPressed(new StopDriveWhileDeploying());
-		driverBumpersAndLeftStickButton.whenPressed(new RaiseRightRamp());
-		driverBumpersAndRightStickButton.whenPressed(new RaiseLeftRamp());
-		operatorButtonX.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
-		operatorButtonY.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.SCALE_ENCODER_POSITION));
-		operatorButtonB.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.NORMAL_SWITCH_ENCODER_POSITION));
-	    operatorButtonA.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.PICK_UP_POSITION));
-	    operatorLeftBumper.whileHeld(new ActivateClaw(true, RobotMap.ClawConstants.INPUT_POWER));
-	    operatorRightBumperNegaDPad.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER));
-	    operatorRightBumperDPadUp.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MAX_OUTPUT_POWER));
-	    operatorRightBumperDPadDown.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MIN_OUTPUT_POWER));
+    public OI() {
+        driverRightBumper.whenPressed(new ShiftHigh());
+        driverRightBumper.whenReleased(new ShiftLow());
+        driverBumpersAndStart.whenPressed(new DeployRamps());
+        driverBumpersAndStart.whenPressed(new StopDriveWhileDeploying());
+        driverBumpersAndLeftStickButton.whenPressed(new RaiseRightRamp());
+        driverBumpersAndRightStickButton.whenPressed(new RaiseLeftRamp());
+        operatorButtonX.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
+        operatorButtonY.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.SCALE_ENCODER_POSITION));
+        operatorButtonB.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.NORMAL_SWITCH_ENCODER_POSITION));
+        operatorButtonA.whenPressed(new MoveArmToEncoderPosition(RobotMap.ArmConstants.PICK_UP_POSITION));
+        operatorLeftBumper.whileHeld(new ActivateClaw(true, RobotMap.ClawConstants.INPUT_POWER));
+        operatorRightBumperNegaDPad.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER));
+        operatorRightBumperDPadUp.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MAX_OUTPUT_POWER));
+        operatorRightBumperDPadDown.whileHeld(new ActivateClaw(false, RobotMap.ClawConstants.MIN_OUTPUT_POWER));
     }
 
     public double getDriverLeftXAxis() {

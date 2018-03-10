@@ -4,7 +4,6 @@ import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -18,7 +17,7 @@ public class StopDriveWhileDeploying extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if(Robot.getTeleopTime() >= RobotMap.RampConstants.RAMP_DROP_TIME) {
+        if (Robot.getTeleopTime() >= RobotMap.RampConstants.RAMP_DROP_TIME) {
             Robot.driveBase.setAllMotors(0);
         }
     }

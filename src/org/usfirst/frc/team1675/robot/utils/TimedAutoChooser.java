@@ -43,7 +43,7 @@ public class TimedAutoChooser {
 
         StartPosition selectedStart = (StartPosition) startChoice.getSelected();
         ScoreChoice selectedScore = ScoreChoice.DO;
-//        ScoreChoice selectedScore = (ScoreChoice) scoreChoice.getSelected();
+        // ScoreChoice selectedScore = (ScoreChoice) scoreChoice.getSelected();
         switch (selectedStart) {
         case LEFT:
             auto.addSequential(new DropKickstand());

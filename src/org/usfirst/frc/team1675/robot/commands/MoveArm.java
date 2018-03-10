@@ -3,9 +3,7 @@ package org.usfirst.frc.team1675.robot.commands;
 import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -35,7 +33,7 @@ public class MoveArm extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-       Robot.arm.moveArm(0, 0);
+        Robot.arm.moveArm(0, 0);
     }
 
     // Called when another command which requires one or more of the same
