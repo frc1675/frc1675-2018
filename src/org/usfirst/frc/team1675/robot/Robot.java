@@ -35,12 +35,11 @@ public class Robot extends TimedRobot {
     public static final RampSub ramp = new RampSub();
 
     public static OI oi;
-    
+
     private static Timer teleopTime = new Timer();
     public static TimedAutoChooser autoChooser;
 
     Command m_autonomousCommand;
-  
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -122,7 +121,7 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
 
     }
-    
+
     /**
      * This function is called periodically during test mode.
      */
@@ -130,7 +129,7 @@ public class Robot extends TimedRobot {
     public void testPeriodic() {
 
     }
-    
+
     public static double getTeleopTime() {
         return teleopTime.get();
     }

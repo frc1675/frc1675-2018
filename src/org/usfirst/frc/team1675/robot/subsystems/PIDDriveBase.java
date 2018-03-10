@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1675.robot.subsystems;
 
-import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
 import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 
@@ -9,11 +8,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -87,7 +84,7 @@ public class PIDDriveBase extends PIDSubsystem {
         rightFront.set(ControlMode.PercentOutput, corrValue);
         rightMid.set(ControlMode.PercentOutput, corrValue);
         rightBack.set(ControlMode.PercentOutput, corrValue);
-        
+
     }
 
     public void setAllMotors(double power) {
@@ -130,12 +127,12 @@ public class PIDDriveBase extends PIDSubsystem {
     }
 
     public double getLeftEncoderValue() {
-  
-      return leftFront.getSelectedSensorPosition(0);   
+
+        return leftFront.getSelectedSensorPosition(0);
     }
 
     public double getRightEncoderValue() {
-   
+
         return rightFront.getSelectedSensorPosition(0);
     }
 
@@ -157,7 +154,7 @@ public class PIDDriveBase extends PIDSubsystem {
         return this.getAngle();
     }
 
-    protected void usePIDOutput(double output) {   
+    protected void usePIDOutput(double output) {
         correction = output;
     }
 

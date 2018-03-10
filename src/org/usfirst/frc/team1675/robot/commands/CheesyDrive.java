@@ -29,9 +29,9 @@ public class CheesyDrive extends Command {
         double rightXValue = Robot.oi.getDriverRightXAxis();
 
         double drive = Math.signum(leftYValue)
-                *Math.pow(Math.abs(leftYValue), RobotMap.DriveBaseConstants.DRIVE_EXPONENT);
+                * Math.pow(Math.abs(leftYValue), RobotMap.DriveBaseConstants.DRIVE_EXPONENT);
         double turn = Math.signum(rightXValue)
-                *Math.pow(Math.abs(rightXValue), RobotMap.DriveBaseConstants.TURN_EXPONENT);
+                * Math.pow(Math.abs(rightXValue), RobotMap.DriveBaseConstants.TURN_EXPONENT);
 
         if (turn == 0 && drive != 0) {
             if (!timerStarted) {

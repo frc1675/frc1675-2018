@@ -13,10 +13,10 @@ public class TimedAutoRightSide extends CommandGroup {
     public TimedAutoRightSide(String side, ScoreChoice scoring) {
         if (side.charAt(0) == 'R' && scoring == ScoreChoice.DO) {
             addSequential(new TimedDrive(4.5));
-            addSequential(new TimedActivateClaw(false,RobotMap.ClawConstants.MID_OUTPUT_POWER, 1.0));
-        }else {
+            addSequential(new TimedActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER, 1.0));
+        } else {
             addSequential(new TimedDrive(4.5));
-            // dont do the arm thing
+            // don't do the arm thing
         }
     }
 }

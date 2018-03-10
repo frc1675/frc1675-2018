@@ -2,7 +2,6 @@ package org.usfirst.frc.team1675.robot.subsystems;
 
 import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
-import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -16,7 +15,7 @@ public class RampSub extends Subsystem {
     public DoubleSolenoid rampLifterLeft;
     public DoubleSolenoid rampLifterRight;
     public Solenoid rampDeploy;
-    
+
     public boolean haveRampsBeenDeployed = false;
 
     public RampSub() {
@@ -28,21 +27,21 @@ public class RampSub extends Subsystem {
     }
 
     public void rampRaiseRight() {
-        if(Robot.ramp.haveRampsBeenDeployed) {
+        if (Robot.ramp.haveRampsBeenDeployed) {
             rampLifterRight.set(DoubleSolenoid.Value.kForward);
         }
     }
-    
+
     public void rampRaiseLeft() {
-        if(Robot.ramp.haveRampsBeenDeployed) {
+        if (Robot.ramp.haveRampsBeenDeployed) {
             rampLifterLeft.set(DoubleSolenoid.Value.kForward);
         }
     }
-    
+
     public void rampStopRight() {
         rampLifterRight.set(DoubleSolenoid.Value.kOff);
     }
-    
+
     public void rampStopLeft() {
         rampLifterLeft.set(DoubleSolenoid.Value.kOff);
     }

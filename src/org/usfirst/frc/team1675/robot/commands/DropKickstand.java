@@ -13,7 +13,7 @@ public class DropKickstand extends Command {
     public DropKickstand() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.arm);
-}
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
