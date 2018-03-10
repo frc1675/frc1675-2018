@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1675.robot;
 
+import org.usfirst.frc.team1675.robot.commands.DriveForDistance;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
@@ -85,7 +86,8 @@ public class Robot extends TimedRobot {
         while (side == null) {
             side = DriverStation.getInstance().getGameSpecificMessage();
         }
-        m_autonomousCommand = autoChooser.generateAuto(side);
+       // m_autonomousCommand = autoChooser.generateAuto(side);
+        m_autonomousCommand = new DriveForDistance(120,10);
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.start();
@@ -97,7 +99,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+        Scheduler.getInstance().run();      
     }
 
     @Override
