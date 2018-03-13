@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team1675.robot;
 
-import org.usfirst.frc.team1675.robot.commands.DriveForDistance;
+import org.usfirst.frc.team1675.robot.commands.TurnWithGyro;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
@@ -87,7 +87,8 @@ public class Robot extends TimedRobot {
             side = DriverStation.getInstance().getGameSpecificMessage();
         }
        // m_autonomousCommand = autoChooser.generateAuto(side);
-        m_autonomousCommand = new DriveForDistance(120,10);
+       //S m_autonomousCommand = new DriveForDistance(120,10);
+        m_autonomousCommand = new TurnWithGyro(90,10);
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.start();
