@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
         }
        // m_autonomousCommand = autoChooser.generateAuto(side);
        //S m_autonomousCommand = new DriveForDistance(120,10);
-        m_autonomousCommand = new TurnWithGyro(90,10);
+        m_autonomousCommand = new TurnWithGyro(180,10);
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.start();

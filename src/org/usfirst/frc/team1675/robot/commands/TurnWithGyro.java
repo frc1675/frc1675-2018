@@ -58,7 +58,7 @@ public class TurnWithGyro extends PIDCommand {
         this.getPIDController().setOutputRange(-.5, .5);
         initialDegrees = Robot.driveBase.getAngle();
         double actualSetpoint = initialDegrees + setpoint;
-        actualSetpoint = this.actualSetpoint;
+        this.actualSetpoint = actualSetpoint;
         this.getPIDController().setSetpoint(actualSetpoint);
         SmartDashboard.putNumber("Setpoint", actualSetpoint);
         this.setTimeout(timeout);
@@ -70,7 +70,8 @@ public class TurnWithGyro extends PIDCommand {
     }
     
     public boolean averageOnTarget() {
-        if (Math.abs(ldf.pidGet()-actualSetpoint) <= RobotMap.DriveBaseConstants.GYRO_TOLERANCE) {
+        if ((Math.abs(ldf.pidGet() - actualSetpoint)) <= RobotMap.DriveBaseConstants.GYRO_TOLERANCE) {
+            
                 count++;
             }else {
                 count = 0;

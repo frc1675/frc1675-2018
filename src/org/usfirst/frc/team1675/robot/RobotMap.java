@@ -45,10 +45,10 @@ public class RobotMap {
         public static final double DRIVE_I = 0.0;
         public static final double DRIVE_D = 0.0006;
         public static final double DRIVE_TOLERANCE = 464;
-        public static final double GYRO_P = 0.035;
+        public static final double GYRO_P = 0.0375;
         public static final double GYRO_I = 0.0;
-        public static final double GYRO_D = 0.0;
-        public static final double GYRO_TOLERANCE = 50;
+        public static final double GYRO_D = 0.145;
+        public static final double GYRO_TOLERANCE = 5;
         public static final double TICKS_PER_INCH = 407.44;
         public static final double TIMED_AUTO_POWER_CONSTANT = .4;
         public static final double DRIVE_EXPONENT = 1;
