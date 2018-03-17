@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1675.robot.commands;
 
 import org.usfirst.frc.team1675.robot.Robot;
+import org.usfirst.frc.team1675.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,8 +25,13 @@ public class CheesyDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double drive = Robot.oi.getDriverLeftYAxis();
-        double turn = Robot.oi.getDriverRightXAxis();
+        double leftYValue = Robot.oi.getDriverLeftYAxis();
+        double rightXValue = Robot.oi.getDriverRightXAxis();
+
+        double drive = Math.signum(leftYValue)
+                * Math.pow(Math.abs(leftYValue), RobotMap.DriveBaseConstants.DRIVE_EXPONENT);
+        double turn = Math.signum(rightXValue)
+                * Math.pow(Math.abs(rightXValue), RobotMap.DriveBaseConstants.TURN_EXPONENT);
 
         if (turn == 0 && drive != 0) {
             if (!timerStarted) {
@@ -37,17 +43,14 @@ public class CheesyDrive extends Command {
             timer.stop();
             timerStarted = false;
             isPIDEnabled = false;
-            Robot.driveBase.disablePIDMode();
+            // Robot.driveBase.disablePIDMode();
         }
         SmartDashboard.putNumber("timer", timer.get());
         if (timer.get() >= .25) {
             isPIDEnabled = true;
-            Robot.driveBase.activatePIDMode();
+            // Robot.driveBase.activatePIDMode();
         }
         // SmartDashboard.putBoolean("IsPIDEnabled", isPIDEnabled);
-        // SmartDashboard.putNumber("Left enc", Robot.driveBase.getLeftEncoderValue());
-        // SmartDashboard.putNumber("Right enc",
-        // Robot.driveBase.getRightEncoderValue());
         Robot.driveBase.setLeftMotors(drive + turn);
         Robot.driveBase.setRightMotors(drive - turn);
 

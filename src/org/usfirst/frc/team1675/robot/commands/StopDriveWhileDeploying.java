@@ -8,16 +8,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftLow extends Command {
+public class StopDriveWhileDeploying extends Command {
 
-    public ShiftLow() {
-
-        this.setTimeout(RobotMap.DriveBaseConstants.SHIFT_TIME);
+    public StopDriveWhileDeploying() {
+        // Use requires() here to declare subsystem dependencies
+        requires(Robot.driveBase);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.driveBase.shiftLow();
+        if (Robot.getTeleopTime() >= RobotMap.RampConstants.RAMP_DROP_TIME) {
+            Robot.driveBase.setAllMotors(0);
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,7 +28,7 @@ public class ShiftLow extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isTimedOut();
+        return Robot.getTeleopTime() <= RobotMap.RampConstants.RAMP_DROP_TIME;
     }
 
     // Called once after isFinished returns true

@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1675.robot.subsystems;
 
+import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
-import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -12,31 +12,45 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class RampSub extends Subsystem {
 
-    public Solenoid rampLifter;
-    public DoubleSolenoid rampDeploy;
+    public DoubleSolenoid rampLifterLeft;
+    public DoubleSolenoid rampLifterRight;
+    public Solenoid rampDeploy;
+
+    public boolean haveRampsBeenDeployed = false;
 
     public RampSub() {
-        rampLifter = new Solenoid(RobotMap.SolenoidChannels.RAMP_ENGAGE);
-        rampDeploy = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_DEPLOY, RobotMap.SolenoidChannels.RAMP_RETRACT);
+        rampLifterLeft = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_RAISE_LEFT,
+                RobotMap.SolenoidChannels.RAMP_LOWER_LEFT);
+        rampLifterRight = new DoubleSolenoid(RobotMap.SolenoidChannels.RAMP_RAISE_RIGHT,
+                RobotMap.SolenoidChannels.RAMP_LOWER_RIGHT);
+        rampDeploy = new Solenoid(RobotMap.SolenoidChannels.RAMP_RELEASE);
     }
 
-    public void rampLift() {
-        rampLifter.set(false);
+    public void rampRaiseRight() {
+        if (Robot.ramp.haveRampsBeenDeployed) {
+            rampLifterRight.set(DoubleSolenoid.Value.kForward);
+        }
     }
 
-    public void rampReset() {
-        rampLifter.set(true);
+    public void rampRaiseLeft() {
+        if (Robot.ramp.haveRampsBeenDeployed) {
+            rampLifterLeft.set(DoubleSolenoid.Value.kForward);
+        }
+    }
+
+    public void rampStopRight() {
+        rampLifterRight.set(DoubleSolenoid.Value.kOff);
+    }
+
+    public void rampStopLeft() {
+        rampLifterLeft.set(DoubleSolenoid.Value.kOff);
     }
 
     public void Deploy() {
-        rampDeploy.set(DoubleSolenoid.Value.kForward);
-    }
-
-    public void Retract() {
-        rampDeploy.set(DoubleSolenoid.Value.kReverse);
+        rampDeploy.set(true);
+        haveRampsBeenDeployed = true;
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new CheesyDrive());
     }
 }
