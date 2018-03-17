@@ -27,18 +27,18 @@ public class AutoChooser {
 
         startChooser.addObject(FieldLocation.START_LEFT.toString(), FieldLocation.START_LEFT);
         startChooser.addObject(FieldLocation.START_RIGHT.toString(), FieldLocation.START_RIGHT);
-        startChooser.addObject(FieldLocation.START_MIDDLE.toString(), FieldLocation.START_MIDDLE);
+        startChooser.addDefault(FieldLocation.START_MIDDLE.toString(), FieldLocation.START_MIDDLE);
 
         scoreChooser.addObject("Score", ScoreOption.ALWAYS_SCORE);
-        scoreChooser.addObject("Skip", ScoreOption.ALWAYS_SKIP);
+        scoreChooser.addDefault("Skip", ScoreOption.ALWAYS_SKIP);
         scoreChooser.addObject("Score Same Side", ScoreOption.SCORE_AGREE);
         scoreChooser.addObject("Just Cross The Line", ScoreOption.DRIVE_ONLY_AUTO);
 
         postChooser.addObject("Score Switch", AutoPostScoreDirective.SCORE_SWITCH);
         postChooser.addObject("Score Exchange", AutoPostScoreDirective.EXCHANGE);
-        postChooser.addObject("Skip", AutoPostScoreDirective.SKIP);
+        postChooser.addDefault("Skip", AutoPostScoreDirective.SKIP);
 
-        nullChooser.addObject("No", NullZoneOption.NO);
+        nullChooser.addDefault("No", NullZoneOption.NO);
         nullChooser.addObject("Go", NullZoneOption.YES);
         nullChooser.addObject("Go if Convenient", NullZoneOption.ONLY_MATCHING);
         nullChooser.addObject("Go With Cube", NullZoneOption.YES_CUBE);
@@ -55,19 +55,23 @@ public class AutoChooser {
         ScoreOption score = (ScoreOption) scoreChooser.getSelected();
         AutoPostScoreDirective postScore = (AutoPostScoreDirective) postChooser.getSelected();
         NullZoneOption nullOption = (NullZoneOption) nullChooser.getSelected();
+        
+        if( start == null || score == null || postScore == null || nullOption == null) {
+            score = ScoreOption.DRIVE_ONLY_AUTO;
+        }
 
         AutoAssembler autoAssembler = new AutoAssembler();
-        AutoScoreDirective scoreDirective = null;
-        AutoPostScoreDirective[] postScoreDirective = new AutoPostScoreDirective[2];
+        AutoScoreDirective scoreDirective = AutoScoreDirective.SKIP;
+        AutoPostScoreDirective[] postScoreDirectives = new AutoPostScoreDirective[2];
 
         switch (score) {
         case DRIVE_ONLY_AUTO:
             scoreDirective = AutoScoreDirective.SKIP;
-            postScoreDirective[0] = AutoPostScoreDirective.SKIP;
-            postScoreDirective[1] = AutoPostScoreDirective.CROSS_LINE;
+            postScoreDirectives[0] = AutoPostScoreDirective.SKIP;
+            postScoreDirectives[1] = AutoPostScoreDirective.CROSS_LINE;
 
             return autoAssembler.generateAuto(start, scoreDirective, switchAssignment, scaleAssignment,
-                    postScoreDirective);// just
+                    postScoreDirectives);// just
         // goes
         // straight,
         // so
@@ -90,61 +94,79 @@ public class AutoChooser {
             break;
         }
         
-        postScoreDirective[0] = postScore;
+        postScoreDirectives[0] = postScore;
         switch (nullOption) {
         case NO:
-            postScoreDirective[1] = AutoPostScoreDirective.SKIP;
+            postScoreDirectives[1] = AutoPostScoreDirective.SKIP;
             break;
         case YES:
-            postScoreDirective[1] = AutoPostScoreDirective.NULL_ZONE;
+            postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE;
             break;
         case ONLY_MATCHING:
             switch (postScore) {
             case EXCHANGE:
-                postScoreDirective[1] = AutoPostScoreDirective.NULL_ZONE;
+                postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE;
                 break;
             case SCORE_SWITCH:
                 if (switchAssignment.toString().equals(scaleAssignment.toString())) {
-                    postScoreDirective[1] = AutoPostScoreDirective.NULL_ZONE;
+                    postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE;
                 } else {
-                    postScoreDirective[1] = AutoPostScoreDirective.SKIP;
+                    postScoreDirectives[1] = AutoPostScoreDirective.SKIP;
                 }
                 break;
             case SKIP:
-                if (scaleAssignment.toString().equals(start.getSide())) {
-                    postScoreDirective[1] = AutoPostScoreDirective.NULL_ZONE;
-                } else {
-                    postScoreDirective[1] = AutoPostScoreDirective.SKIP;
+                if(scoreDirective == AutoScoreDirective.SKIP) {
+                    if (scaleAssignment.toString().equals(start.getSide()) || start == FieldLocation.START_MIDDLE) {
+                        postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE;
+                    } else {
+                        postScoreDirectives[1] = AutoPostScoreDirective.SKIP;
+                    }
+                }else {
+                    if (scaleAssignment.toString().equals(switchAssignment.toString())) {
+                        postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE;
+                    } else {
+                        postScoreDirectives[1] = AutoPostScoreDirective.SKIP;
+                    }
                 }
+                
                 break;
             }
 
             break;
         case YES_CUBE:
-            postScoreDirective[1] = AutoPostScoreDirective.NULL_ZONE_CUBE;
+            postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE_CUBE;
             break;
         case ONLY_MATCHING_CUBE:
             switch (postScore) {
             case EXCHANGE:
-                postScoreDirective[1] = AutoPostScoreDirective.NULL_ZONE_CUBE;
+                postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE_CUBE;
                 break;
             case SCORE_SWITCH:
                 if (switchAssignment.toString().equals(scaleAssignment.toString())) {
-                    postScoreDirective[1] = AutoPostScoreDirective.NULL_ZONE_CUBE;
+                    postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE_CUBE;
                 } else {
-                    postScoreDirective[1] = AutoPostScoreDirective.SKIP;
+                    postScoreDirectives[1] = AutoPostScoreDirective.SKIP;
                 }
                 break;
             case SKIP:
-                if (scaleAssignment.equals(start.getSide())) {
-                    postScoreDirective[1] = AutoPostScoreDirective.NULL_ZONE_CUBE;
-                } else {
-                    postScoreDirective[1] = AutoPostScoreDirective.SKIP;
+                if(scoreDirective == AutoScoreDirective.SKIP) {
+                    if (scaleAssignment.toString().equals(start.getSide()) || start == FieldLocation.START_MIDDLE) {
+                        postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE_CUBE;
+                    } else {
+                        postScoreDirectives[1] = AutoPostScoreDirective.SKIP;
+                    }
+                }else {
+                    if (scaleAssignment.toString().equals(switchAssignment.toString())) {
+                        postScoreDirectives[1] = AutoPostScoreDirective.NULL_ZONE_CUBE;
+                    } else {
+                        postScoreDirectives[1] = AutoPostScoreDirective.SKIP;
+                    }
                 }
+                
                 break;
             }
             break;
         }
-        return autoAssembler.generateAuto(start, scoreDirective, switchAssignment, scaleAssignment, postScoreDirective);
+        return autoAssembler.generateAuto(start, scoreDirective, switchAssignment, scaleAssignment, postScoreDirectives);
     }
 }

@@ -1,6 +1,9 @@
 package org.usfirst.frc.team1675.robot.utils;
 
+import org.usfirst.frc.team1675.robot.RobotMap;
 import org.usfirst.frc.team1675.robot.commands.Go;
+import org.usfirst.frc.team1675.robot.commands.MoveArmToEncoderPosition;
+import org.usfirst.frc.team1675.robot.commands.TimedActivateClaw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,6 +19,7 @@ public class AutoAssembler {
             AutoPostScoreDirective[] postscoreDirectives) {
         CommandGroup auto = new CommandGroup();
         FieldLocation currentLocation = startLocation;
+        FieldLocation nextLocation = null;
         boolean hasBox = true;
         int commandCount = 0;
 
@@ -23,21 +27,22 @@ public class AutoAssembler {
         case SCORE:
             switch (switchAssignment) {
             case RIGHT:
-                auto.addSequential(new Go(currentLocation, FieldLocation.SWITCH_RIGHT));
-                commandCount++;
-                SmartDashboard.putString(switchAssignment + "" + scaleAssignment + " Command #" + commandCount,
-                        currentLocation + " to " + FieldLocation.SWITCH_RIGHT);
-                currentLocation = FieldLocation.SWITCH_RIGHT;
+                nextLocation = FieldLocation.SWITCH_RIGHT;
                 break;
             case LEFT:
-                auto.addSequential(new Go(startLocation, FieldLocation.SWITCH_LEFT));
-                commandCount++;
-                SmartDashboard.putString(switchAssignment + "" + scaleAssignment + " Command #" + commandCount,
-                        currentLocation + " to " + FieldLocation.SWITCH_LEFT);
-                currentLocation = FieldLocation.SWITCH_LEFT;
+                nextLocation = FieldLocation.SWITCH_LEFT;
                 break;
             }
-            // TODO: Add score command
+            auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
+            SmartDashboard.putString(switchAssignment + "" + scaleAssignment + " Command #" + commandCount,
+                    "Move Arm to High Position");
+            commandCount++;
+            auto.addSequential(new Go(currentLocation, nextLocation));
+            SmartDashboard.putString(switchAssignment + "" + scaleAssignment + " Command #" + commandCount,
+                    currentLocation + " to " + nextLocation);
+            currentLocation = nextLocation;
+            commandCount++;
+            auto.addSequential(new TimedActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER, 1.0));
             commandCount++;
             SmartDashboard.putString(switchAssignment + "" + scaleAssignment + " Command #" + commandCount, "Score");
             hasBox = false;
@@ -83,6 +88,7 @@ public class AutoAssembler {
                         default:
                             // Robot.break();
                             // TODO: PUT SOMETHING HERE THAT TELLS THEM AUTO IS BROKEN
+                            System.err.println("Error 51");
                             break;
                         }
                     }

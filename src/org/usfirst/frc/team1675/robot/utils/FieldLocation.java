@@ -4,7 +4,7 @@ public enum FieldLocation {
     SWITCH_LEFT("Left Switch", "L"),
     SWITCH_RIGHT("Right Switch", "R"),
     START_LEFT("Left Start", "L"),
-    START_MIDDLE("Middle Start", "R"),
+    START_MIDDLE("Middle Start", "M"),
     START_RIGHT("Right Start", "R"),
     CUBE_PYRAMID_LEFT("Left Pyramid", "L"),
     CUBE_PYRAMID_RIGHT("Right Pyramid", "R"),

@@ -7,29 +7,19 @@
 
 package org.usfirst.frc.team1675.robot;
 
-import org.usfirst.frc.team1675.robot.subsystems.Arm;
-import org.usfirst.frc.team1675.robot.subsystems.Claw;
-import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
-import org.usfirst.frc.team1675.robot.utils.AutoChooser;
-import org.usfirst.frc.team1675.robot.utils.FieldColorAssignment;
-import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
-
-import org.usfirst.frc.team1675.robot.utils.AutoChooser;
-
-import org.usfirst.frc.team1675.robot.commands.DriveForDistance;
-import org.usfirst.frc.team1675.robot.commands.TurnWithGyro;
-import org.usfirst.frc.team1675.robot.commands.TurnWithGyro;
+import org.usfirst.frc.team1675.robot.commands.DropKickstand;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 import org.usfirst.frc.team1675.robot.subsystems.RampSub;
-import org.usfirst.frc.team1675.robot.utils.TimedAutoChooser;
+import org.usfirst.frc.team1675.robot.utils.AutoChooser;
+import org.usfirst.frc.team1675.robot.utils.FieldColorAssignment;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -51,7 +41,7 @@ public class Robot extends TimedRobot {
     public static AutoChooser autoChooser;
     private static Timer teleopTime = new Timer();
 
-    Command m_autonomousCommand;
+    CommandGroup m_autonomousCommand;
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -102,9 +92,12 @@ public class Robot extends TimedRobot {
         FieldColorAssignment switchSide = FieldColorAssignment.getSideFromChar(sideInfo.charAt(0));
         FieldColorAssignment scaleSide = FieldColorAssignment.getSideFromChar(sideInfo.charAt(1));
         
-
-        
-        m_autonomousCommand = autoChooser.chooseAuto(switchSide, scaleSide);
+        if(switchSide == null || scaleSide == null) {
+            System.err.println("Invalid Field Data String");
+        }
+        m_autonomousCommand = new CommandGroup();
+        m_autonomousCommand.addSequential(new DropKickstand());
+        m_autonomousCommand.addSequential(autoChooser.chooseAuto(switchSide, scaleSide));
 
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
