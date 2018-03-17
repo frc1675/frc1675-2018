@@ -3,16 +3,14 @@ package org.usfirst.frc.team1675.robot.commands;
 import org.usfirst.frc.team1675.robot.Robot;
 import org.usfirst.frc.team1675.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class MoveArm extends Command {
 
-    double armPower;    
+    double armPower;
 
     public MoveArm() {
         requires(Robot.arm);
@@ -25,7 +23,7 @@ public class MoveArm extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         armPower = Robot.oi.getOperatorRightYAxis();
-        Robot.arm.moveArm(armPower, .4);
+        Robot.arm.moveArm(armPower, RobotMap.ArmConstants.ARM_MANUAL_MAX_POWER);
     }
 
     // Make this return true when this Command no longer needs to run execute()

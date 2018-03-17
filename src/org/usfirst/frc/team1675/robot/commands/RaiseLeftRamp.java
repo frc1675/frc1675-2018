@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftLow extends Command {
+public class RaiseLeftRamp extends Command {
 
-    public ShiftLow() {
-
-        this.setTimeout(RobotMap.DriveBaseConstants.SHIFT_TIME);
+    public RaiseLeftRamp() {
+        requires(Robot.ramp);
+        this.setTimeout(RobotMap.RampConstants.SOLENOID_ACTIVATION_TIME);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.driveBase.shiftLow();
+        Robot.ramp.rampRaiseLeft();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,6 +31,7 @@ public class ShiftLow extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+        Robot.ramp.rampStopLeft();
     }
 
     // Called when another command which requires one or more of the same

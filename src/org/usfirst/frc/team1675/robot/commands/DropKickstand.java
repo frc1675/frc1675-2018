@@ -8,16 +8,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftLow extends Command {
+public class DropKickstand extends Command {
 
-    public ShiftLow() {
-
-        this.setTimeout(RobotMap.DriveBaseConstants.SHIFT_TIME);
+    public DropKickstand() {
+        // Use requires() here to declare subsystem dependencies
+        requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.driveBase.shiftLow();
+        this.setTimeout(RobotMap.ArmConstants.DROP_KICKSTAND_TIME);
+        Robot.arm.moveArm(RobotMap.ArmConstants.ARM_AUTONOMOUS_MOVEMENT_POWER, 1);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,6 +32,7 @@ public class ShiftLow extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+        Robot.arm.moveArm(0, 1);
     }
 
     // Called when another command which requires one or more of the same
