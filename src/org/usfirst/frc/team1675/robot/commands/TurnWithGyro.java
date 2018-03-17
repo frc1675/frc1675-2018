@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TurnWithGyro extends PIDCommand {
     PIDSource pst = new PIDSource() {
         PIDSourceType pidType;
-//        int samples = 0;
+        int samples = 0;
 
         public void setPIDSourceType(PIDSourceType pidSource) {
             pidType = pidSource;
@@ -29,8 +29,8 @@ public class TurnWithGyro extends PIDCommand {
 
         @Override
         public double pidGet() {
-//            samples++;
-//            SmartDashboard.putNumber("samples", samples);
+            samples++;
+            SmartDashboard.putNumber("samples", samples);
             // TODO Auto-generated method stub
             double angle = Robot.driveBase.getAngle();
             SmartDashboard.putNumber("angle", angle);
@@ -55,7 +55,7 @@ public class TurnWithGyro extends PIDCommand {
     // Called just before this Command runs the first time
     protected void initialize() {
         this.getPIDController().reset();
-        this.getPIDController().setOutputRange(-.5, .5);
+        this.getPIDController().setOutputRange(-.6, .6);
         initialDegrees = Robot.driveBase.getAngle();
         double actualSetpoint = initialDegrees + setpoint;
         this.actualSetpoint = actualSetpoint;
@@ -76,7 +76,7 @@ public class TurnWithGyro extends PIDCommand {
             }else {
                 count = 0;
             }
-        if(count == 20) {
+        if(count == 10) {
             return true;
         }
         return false;

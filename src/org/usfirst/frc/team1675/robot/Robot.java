@@ -8,6 +8,7 @@
 package org.usfirst.frc.team1675.robot;
 
 import org.usfirst.frc.team1675.robot.commands.DropKickstand;
+import org.usfirst.frc.team1675.robot.commands.TestAutoGroup;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
@@ -105,6 +106,7 @@ public class Robot extends TimedRobot {
          * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
          * ExampleCommand(); break; }
          */
+
 
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
