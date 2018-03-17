@@ -11,25 +11,6 @@ public class AutoAssembler {
         // TODO Auto-generated constructor stub
     }
 
-    public CommandGroup[] generateAutos(FieldLocation startLocation, AutoScoreDirective[] scoreDirectives,
-            AutoPostScoreDirective[][] postscoreDirectives) {
-        CommandGroup[] autos = new CommandGroup[4];
-        SmartDashboard.putString("Furthest Progress", "start Auto Generation");
-        autos[0] = generateAuto(startLocation, scoreDirectives[0], FieldColorAssignment.LEFT, FieldColorAssignment.LEFT,
-                postscoreDirectives[0]);
-        SmartDashboard.putString("Furthest Progress", "generated LL auto");
-        autos[1] = generateAuto(startLocation, scoreDirectives[1], FieldColorAssignment.LEFT,
-                FieldColorAssignment.RIGHT, postscoreDirectives[1]);
-        SmartDashboard.putString("Furthest Progress", "generated LR auto");
-        autos[2] = generateAuto(startLocation, scoreDirectives[2], FieldColorAssignment.RIGHT,
-                FieldColorAssignment.LEFT, postscoreDirectives[2]);
-        SmartDashboard.putString("Furthest Progress", "generated RL auto");
-        autos[3] = generateAuto(startLocation, scoreDirectives[3], FieldColorAssignment.RIGHT,
-                FieldColorAssignment.RIGHT, postscoreDirectives[3]);
-        SmartDashboard.putString("Furthest Progress", "generated RR auto");
-        return autos;
-    }
-
     public CommandGroup generateAuto(FieldLocation startLocation, AutoScoreDirective scoreDirective,
             FieldColorAssignment switchAssignment, FieldColorAssignment scaleAssignment,
             AutoPostScoreDirective[] postscoreDirectives) {
@@ -257,6 +238,7 @@ public class AutoAssembler {
                     default:
                         // Robot.break
                         // TODO: YOU BROKE THE AUTO. ALERT THEM
+                        break;
                     }
                     break;
                 case SKIP:

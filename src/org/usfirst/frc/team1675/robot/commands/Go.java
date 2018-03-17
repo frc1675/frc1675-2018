@@ -111,10 +111,9 @@ public class Go extends CommandGroup {
             errorPath();
             break;
         }
-
     }
-
     private void errorPath() {
-
+        System.err.println("Start: " + start.toString());
+        System.err.println("End: " + end.toString());
     }
 }

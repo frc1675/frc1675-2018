@@ -1,16 +1,16 @@
 package org.usfirst.frc.team1675.robot.utils;
 
 public enum FieldLocation {
-    SWITCH_LEFT("Left Switch", "Left"),
-    SWITCH_RIGHT("Right Switch", "Right"),
-    START_LEFT("Left Start", "Left"),
-    START_MIDDLE("Middle Start", "Right"),
-    START_RIGHT("Right Start", "Right"),
-    CUBE_PYRAMID_LEFT("Left Pyramid", "Left"),
-    CUBE_PYRAMID_RIGHT("Right Pyramid", "Right"),
-    NULL_ZONE_LEFT("Left Null Zone", "Left"),
-    NULL_ZONE_RIGHT("Right Null Zone", "Right"),
-    EXCHANGE("Exchange", "Left");
+    SWITCH_LEFT("Left Switch", "L"),
+    SWITCH_RIGHT("Right Switch", "R"),
+    START_LEFT("Left Start", "L"),
+    START_MIDDLE("Middle Start", "R"),
+    START_RIGHT("Right Start", "R"),
+    CUBE_PYRAMID_LEFT("Left Pyramid", "L"),
+    CUBE_PYRAMID_RIGHT("Right Pyramid", "R"),
+    NULL_ZONE_LEFT("Left Null Zone", "L"),
+    NULL_ZONE_RIGHT("Right Null Zone", "R"),
+    EXCHANGE("Exchange", "L");
     
 private final String NAME;
 private final String SIDE;
