@@ -86,7 +86,7 @@ public class AutoChooser {
             scoreDirective = AutoScoreDirective.SKIP;
             break;
         case SCORE_AGREE:
-            if (start.getSide().equals(switchAssignment.toString())) {
+            if (start.getSide().equals(switchAssignment.toString()) || start == FieldLocation.START_MIDDLE) {
                 scoreDirective = AutoScoreDirective.SCORE;
             } else {
                 scoreDirective = AutoScoreDirective.SKIP;

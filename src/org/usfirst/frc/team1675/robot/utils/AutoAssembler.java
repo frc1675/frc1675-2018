@@ -34,14 +34,15 @@ public class AutoAssembler {
                 break;
             }
             auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
-            SmartDashboard.putString(switchAssignment + "" + scaleAssignment + " Command #" + commandCount,
-                    "Move Arm to High Position");
             commandCount++;
+            SmartDashboard.putString(switchAssignment + "" + scaleAssignment + " Command #" + commandCount,
+                    "Arm to High Switch");
+            
             auto.addSequential(new Go(currentLocation, nextLocation));
+            commandCount++;
             SmartDashboard.putString(switchAssignment + "" + scaleAssignment + " Command #" + commandCount,
                     currentLocation + " to " + nextLocation);
             currentLocation = nextLocation;
-            commandCount++;
             auto.addSequential(new TimedActivateClaw(false, RobotMap.ClawConstants.MID_OUTPUT_POWER, 1.0));
             commandCount++;
             SmartDashboard.putString(switchAssignment + "" + scaleAssignment + " Command #" + commandCount, "Score");

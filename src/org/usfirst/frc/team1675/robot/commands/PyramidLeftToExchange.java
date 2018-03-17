@@ -10,7 +10,7 @@ public class PyramidLeftToExchange extends CommandGroup {
     private static final double SEGMENT_1 = -33.94;
     private static final double SEGMENT_1_TIMEOUT = 5;
 
-    private static final double TURN_RIGHT_ANGLE = -135;
+    private static final double TURN_RIGHT_ANGLE = 135;
     private static final double TURN_1_TIMEOUT = 5;
 
     private static final double SEGMENT_2 = 147;
