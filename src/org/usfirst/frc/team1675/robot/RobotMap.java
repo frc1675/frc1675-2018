@@ -41,10 +41,14 @@ public class RobotMap {
 
     public static class DriveBaseConstants {
         public static final double SHIFT_TIME = .25;
-        public static final double P = .00006;
-        public static final double I = 0.0;
-        public static final double D = 0.0;
-        public static final double TOLERANCE = 10;
+        public static final double DRIVE_P = 0.000092;
+        public static final double DRIVE_I = 0.0;
+        public static final double DRIVE_D = 0.0006;
+        public static final double DRIVE_TOLERANCE = 611.16; //464
+        public static final double GYRO_P = 0.0375;
+        public static final double GYRO_I = 0.0;
+        public static final double GYRO_D = 0.145;
+        public static final double GYRO_TOLERANCE = 5;
         public static final double TICKS_PER_INCH = 407.44;
         public static final double TIMED_AUTO_POWER_CONSTANT = .4;
         public static final double DRIVE_EXPONENT = 1;
@@ -75,9 +79,9 @@ public class RobotMap {
         public static final int ARM_BUTTON = 9;
 
         public static final double ARM_AUTONOMOUS_MOVEMENT_POWER = .4;
-        public static final double ARM_MANUAL_MAX_POWER = .4;
+        public static final double ARM_MANUAL_MAX_POWER = .6;
 
-        public static final double DROP_KICKSTAND_TIME = .25;
+        public static final double DROP_KICKSTAND_TIME = .5; //.25
     }
 
     public static final double CONTROLLER_DEADZONE = 0.1675;

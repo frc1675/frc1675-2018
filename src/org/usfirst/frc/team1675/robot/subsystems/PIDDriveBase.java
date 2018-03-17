@@ -63,7 +63,7 @@ public class PIDDriveBase extends PIDSubsystem {
                     power = power + correction;
                 }
             }
-        }
+         }
         double corrValue = (power + correction);
         leftFront.set(ControlMode.PercentOutput, corrValue);
         leftMid.set(ControlMode.PercentOutput, corrValue);
@@ -141,7 +141,7 @@ public class PIDDriveBase extends PIDSubsystem {
             this.getPIDController().reset();
             this.setSetpoint(this.getAngle());
             this.getPIDController().setOutputRange(-1, 1);
-            this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.TOLERANCE);
+            this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.DRIVE_TOLERANCE);
             this.getPIDController().enable();
         }
     }

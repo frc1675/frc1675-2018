@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.filters.LinearDigitalFilter;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -28,16 +29,19 @@ public class DriveForDistance extends PIDCommand {
         @Override
         public double pidGet() {
             // TODO Auto-generated method stub
-            return (Robot.driveBase.getLeftEncoderValue() + Robot.driveBase.getRightEncoderValue()) / 2;
+            double encoderval = (Robot.driveBase.getLeftEncoderValue() + Robot.driveBase.getRightEncoderValue()) / 2;
+            SmartDashboard.putNumber("encoder value", encoderval);
+            return encoderval;
         }
     };
 
     double setpoint;
     double timeout;
+    int count = 0;
     LinearDigitalFilter ldf = LinearDigitalFilter.movingAverage(pst, 10);;
 
     public DriveForDistance(double setpoint, double timeout) {
-        super(RobotMap.DriveBaseConstants.P, RobotMap.DriveBaseConstants.I, RobotMap.DriveBaseConstants.D);
+        super(RobotMap.DriveBaseConstants.DRIVE_P, RobotMap.DriveBaseConstants.DRIVE_I, RobotMap.DriveBaseConstants.DRIVE_D);
         requires(Robot.driveBase);
         this.setpoint = setpoint * RobotMap.DriveBaseConstants.TICKS_PER_INCH;
         this.timeout = timeout;
@@ -48,11 +52,11 @@ public class DriveForDistance extends PIDCommand {
 
         Robot.driveBase.resetEncoder();
         this.getPIDController().reset();
-        this.getPIDController().enable();
         this.getPIDController().setSetpoint(setpoint);
-        this.getPIDController().setOutputRange(-.7, .7);
+        this.getPIDController().setOutputRange(-.6, .6);
         this.setTimeout(timeout);
-        this.getPIDController().setAbsoluteTolerance(RobotMap.DriveBaseConstants.TOLERANCE);
+        SmartDashboard.putNumber("setpoint",setpoint );
+        this.getPIDController().enable();
         // Robot.driveBase.activatePIDMode();
     }
 
@@ -61,17 +65,22 @@ public class DriveForDistance extends PIDCommand {
     }
 
     public boolean averageOnTarget() {
-        if (ldf.pidGet() >= setpoint - RobotMap.DriveBaseConstants.TOLERANCE) {
-            if (ldf.pidGet() <= setpoint + RobotMap.DriveBaseConstants.TOLERANCE) {
-                return true;
+        if (Math.abs(ldf.pidGet()-setpoint) <= RobotMap.DriveBaseConstants.DRIVE_TOLERANCE) {
+                count++;
+            }else {
+                count = 0;
             }
+        if(count == 10) {
+            return true;
         }
         return false;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (averageOnTarget() || this.isTimedOut()) {
+        boolean onTarget = averageOnTarget();
+        SmartDashboard.putBoolean("on target", onTarget);
+        if (onTarget || this.isTimedOut()) {
             return true;
         } else
             return false;
@@ -87,6 +96,7 @@ public class DriveForDistance extends PIDCommand {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
     }
 
     @Override
@@ -97,6 +107,7 @@ public class DriveForDistance extends PIDCommand {
 
     @Override
     protected void usePIDOutput(double output) {
+        SmartDashboard.putNumber("output", output);
         Robot.driveBase.setAllMotors(output);
     }
 
