@@ -7,21 +7,21 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class StartLeftToSwitchLeft extends CommandGroup {
     // e to c
-    private static final double TIMEOUT = 10;
+    private static final double TIMEOUT = 5;
 
-    private static final double SEGMENT_1 = 72;
+    private static final double SEGMENT_1 = 22;
     // private static final double SEGMENT_1_TIMEOUT = 10;
-    private static final double TURN_SEGMENT_1 = 30;
-    private static final double SEGMENT_2 = 50;
-    private static final double TURN_SEGMENT_2 = -30;
+    private static final double TURN_SEGMENT_1 = 15;
+    private static final double SEGMENT_2 = 70;
+    private static final double TURN_SEGMENT_2 = -15;
 
     public StartLeftToSwitchLeft() {
 
         // E to C from left side: move forward
 
-        addSequential(new DriveForDistance(SEGMENT_1, TIMEOUT));
+        addSequential(new DriveForDistance(SEGMENT_1, 1.5));
         addSequential(new TurnWithGyro(TURN_SEGMENT_1, TIMEOUT));
-        addSequential(new DriveForDistance(SEGMENT_2, TIMEOUT));
+        addSequential(new DriveForDistance(SEGMENT_2, 2));
         addSequential(new TurnWithGyro(TURN_SEGMENT_2, TIMEOUT));
 
         // 10 feet from wall, subtract length of robot by 10 ft I think

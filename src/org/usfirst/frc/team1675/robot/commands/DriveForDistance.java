@@ -53,7 +53,7 @@ public class DriveForDistance extends PIDCommand {
         Robot.driveBase.resetEncoder();
         this.getPIDController().reset();
         this.getPIDController().setSetpoint(setpoint);
-        this.getPIDController().setOutputRange(-.6, .6);
+        this.getPIDController().setOutputRange(-.65, .65);
         this.setTimeout(timeout);
         SmartDashboard.putNumber("setpoint",setpoint );
         this.getPIDController().enable();

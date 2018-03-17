@@ -96,9 +96,10 @@ public class Robot extends TimedRobot {
         if(switchSide == null || scaleSide == null) {
             System.err.println("Invalid Field Data String");
         }
-        m_autonomousCommand = new CommandGroup();
-        m_autonomousCommand.addSequential(new DropKickstand());
-        m_autonomousCommand.addSequential(autoChooser.chooseAuto(switchSide, scaleSide));
+//        m_autonomousCommand = new CommandGroup();
+//        m_autonomousCommand.addSequential(new DropKickstand());
+//        m_autonomousCommand.addSequential(autoChooser.chooseAuto(switchSide, scaleSide));
+        m_autonomousCommand = new TestAutoGroup();
 
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
