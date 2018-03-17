@@ -50,11 +50,13 @@ public class AutoChooser {
         SmartDashboard.putData("Null Zone Directive", nullChooser);
     }
 
-    public CommandGroup[] chooseAuto() {
+    public CommandGroup chooseAuto(FieldColorAssignment switchAssignment, FieldColorAssignment scaleAssignment) {
         FieldLocation start = (FieldLocation) startChooser.getSelected();
         ScoreOption score = (ScoreOption) scoreChooser.getSelected();
         AutoPostScoreDirective postScore = (AutoPostScoreDirective) postChooser.getSelected();
         NullZoneOption nullOption = (NullZoneOption) nullChooser.getSelected();
+
+        int id = 2 * scaleAssignment.getID() + 1 * switchAssignment.getID();
 
         AutoAssembler autoAssembler = new AutoAssembler();
 
@@ -68,14 +70,15 @@ public class AutoChooser {
                 postScoreDirectives[i][0] = AutoPostScoreDirective.SKIP;
                 postScoreDirectives[i][1] = AutoPostScoreDirective.CROSS_LINE;
             }
-            return autoAssembler.generateAutos(FieldLocation.START_LEFT, scoreDirectives, postScoreDirectives);// just
-                                                                                                               // goes
-                                                                                                               // straight,
-                                                                                                               // so
-                                                                                                               // actual
-                                                                                                               // start
-                                                                                                               // position
-                                                                                                               // irrelevant
+            return autoAssembler.generateAuto(start, scoreDirectives[id], switchAssignment, scaleAssignment,
+                    postScoreDirectives[id]);// just
+        // goes
+        // straight,
+        // so
+        // actual
+        // start
+        // position
+        // irrelevant
         case ALWAYS_SCORE:
             for (int i = 0; i < scoreDirectives.length; i++) {
                 scoreDirectives[i] = AutoScoreDirective.SCORE;
@@ -197,7 +200,9 @@ public class AutoChooser {
             }
             break;
         }
-        return autoAssembler.generateAutos(start, scoreDirectives, postScoreDirectives);
+        return autoAssembler.generateAuto(start,
+                scoreDirectives[id], switchAssignment,
+                scaleAssignment, postScoreDirectives[id]);
     }
 
 }

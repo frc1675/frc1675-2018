@@ -7,25 +7,16 @@
 
 package org.usfirst.frc.team1675.robot;
 
-import org.usfirst.frc.team1675.robot.commands.CheesyDrive;
-
-import org.usfirst.frc.team1675.robot.utils.AutoChooser;
-
-import org.usfirst.frc.team1675.robot.commands.DriveForDistance;
-import org.usfirst.frc.team1675.robot.commands.TurnWithGyro;
+import org.usfirst.frc.team1675.robot.subsystems.Arm;
+import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
+import org.usfirst.frc.team1675.robot.utils.AutoChooser;
+import org.usfirst.frc.team1675.robot.utils.FieldColorAssignment;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team1675.robot.subsystems.Arm;
-import org.usfirst.frc.team1675.robot.subsystems.Claw;
-
-import org.usfirst.frc.team1675.robot.subsystems.RampSub;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -85,7 +76,16 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        autoChooser.chooseAuto();
+        String sideInfo = null;
+        while(sideInfo == null) {
+            sideInfo = DriverStation.getInstance().getGameSpecificMessage();
+        }
+        FieldColorAssignment switchSide = FieldColorAssignment.getSideFromChar(sideInfo.charAt(0));
+        FieldColorAssignment scaleSide = FieldColorAssignment.getSideFromChar(sideInfo.charAt(1));
+        
+
+        
+        m_autonomousCommand = autoChooser.chooseAuto(switchSide, scaleSide);
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
          * switch(autoSelected) { case "My Auto": autonomousCommand = new

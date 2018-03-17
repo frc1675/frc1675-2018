@@ -30,7 +30,7 @@ public class AutoAssembler {
         return autos;
     }
 
-    private CommandGroup generateAuto(FieldLocation startLocation, AutoScoreDirective scoreDirective,
+    public CommandGroup generateAuto(FieldLocation startLocation, AutoScoreDirective scoreDirective,
             FieldColorAssignment switchAssignment, FieldColorAssignment scaleAssignment,
             AutoPostScoreDirective[] postscoreDirectives) {
         CommandGroup auto = new CommandGroup();
