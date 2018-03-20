@@ -10,6 +10,7 @@ package org.usfirst.frc.team1675.robot;
 import org.usfirst.frc.team1675.robot.commands.ActivateClaw;
 import org.usfirst.frc.team1675.robot.commands.DeployRamps;
 import org.usfirst.frc.team1675.robot.commands.MoveArmToEncoderPosition;
+import org.usfirst.frc.team1675.robot.commands.PickUpCube;
 import org.usfirst.frc.team1675.robot.commands.RaiseLeftRamp;
 import org.usfirst.frc.team1675.robot.commands.RaiseRightRamp;
 import org.usfirst.frc.team1675.robot.commands.ShiftHigh;
@@ -77,6 +78,7 @@ public class OI {
     public OI() {
         driverRightBumper.whenPressed(new ShiftHigh());
         driverRightBumper.whenReleased(new ShiftLow());
+        driverButtonA.whenPressed(new PickUpCube());
         driverBumpersAndStart.whenPressed(new DeployRamps());
         driverBumpersAndStart.whenPressed(new StopDriveWhileDeploying());
         driverBumpersAndLeftStickButton.whenPressed(new RaiseRightRamp());

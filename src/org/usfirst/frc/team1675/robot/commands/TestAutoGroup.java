@@ -14,10 +14,11 @@ public class TestAutoGroup extends CommandGroup {
         addSequential( new DropKickstand());
         addParallel( new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
         //addSequential(new Wait(5.0));
-        addSequential( new StartRightToSwitchRight());
+        addSequential( new StartMiddleToSwitchLeft());
         addParallel(new TimedDrive(.5));
         addSequential( new TimedActivateClaw(false,RobotMap.ClawConstants.MID_OUTPUT_POWER,1.0));
-        addSequential (new SwitchRightToPyramidRight());
+        addSequential (new SwitchLeftToPyramidLeft());
+        addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.PICK_UP_POSITION));
         addSequential (new PickUpCube());
        
     }

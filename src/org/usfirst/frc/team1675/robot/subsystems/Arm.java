@@ -26,6 +26,8 @@ public class Arm extends Subsystem {
 
     private static final double ARM_HOLD_POWER = .1;
     public static final double MAX_BATTERY_VOLTAGE = 12.0;
+    private double armPower = 0;
+    private double armScale = 0;
 
     public Arm() {
         pdp = new PowerDistributionPanel();
@@ -48,16 +50,8 @@ public class Arm extends Subsystem {
     }
 
     public void moveArm(double power, double scale) {
-        if (hasButtonBeenPressed == false && power > 0) {
-            power = 0;
-        }
-
-        if (power == 0) {
-            arm.set(ControlMode.PercentOutput, ARM_HOLD_POWER * (MAX_BATTERY_VOLTAGE / pdp.getVoltage()));
-        } else {
-            double adjustedPower = this.accountForMotorDeadzone(power * scale);
-            arm.set(ControlMode.PercentOutput, adjustedPower);
-        }
+      armPower = power;
+      armScale = scale;
     }
 
     public double getArmEncoderValue() {
@@ -72,6 +66,7 @@ public class Arm extends Subsystem {
 
     }
 
+    @Override
     public void periodic() {
         if (hasButtonBeenPressed == false) {
             if (button.get() == false) {
@@ -84,6 +79,17 @@ public class Arm extends Subsystem {
         }
         SmartDashboard.putBoolean("hasButtonBeenPressed", hasButtonBeenPressed);
         SmartDashboard.putNumber("arm encoder", arm.getSensorCollection().getQuadraturePosition());
+     
+        if (hasButtonBeenPressed == false && armPower > 0) {
+            armPower = 0;
+        }
+
+        if (armPower == 0) {
+            arm.set(ControlMode.PercentOutput, ARM_HOLD_POWER * (MAX_BATTERY_VOLTAGE / pdp.getVoltage()));
+        } else {
+            double adjustedPower = this.accountForMotorDeadzone(armPower * armScale);
+            arm.set(ControlMode.PercentOutput, adjustedPower);
+        }
     }
 
     public void initDefaultCommand() {
