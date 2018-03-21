@@ -63,8 +63,9 @@ public class RobotMap {
     public static class ClawConstants {
         public static final double MAX_OUTPUT_POWER = 1;
         public static final double MID_OUTPUT_POWER = .5;
-        public static final double MIN_OUTPUT_POWER = .2;
+        public static final double MIN_OUTPUT_POWER = .3;
         public static final double INPUT_POWER = .75;
+        public static final double CLAW_RATIO_DIFFERENCE = .75;
     }
 
     public static class ArmConstants {
