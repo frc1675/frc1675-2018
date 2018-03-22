@@ -7,14 +7,13 @@
 
 package org.usfirst.frc.team1675.robot;
 
-import org.usfirst.frc.team1675.robot.commands.DropKickstand;
 import org.usfirst.frc.team1675.robot.commands.TestAutoGroup;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 import org.usfirst.frc.team1675.robot.subsystems.RampSub;
-import org.usfirst.frc.team1675.robot.utils.AutoChooser;
 import org.usfirst.frc.team1675.robot.utils.FieldColorAssignment;
+import org.usfirst.frc.team1675.robot.utils.SimpleAutoChooser;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -39,7 +38,8 @@ public class Robot extends TimedRobot {
 
     public static OI oi;
 
-    public static AutoChooser autoChooser;
+//    public static AutoChooser autoChooser;
+    public static SimpleAutoChooser autoChooser;
     private static Timer teleopTime = new Timer();
 
     CommandGroup m_autonomousCommand;
@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         oi = new OI();
-        autoChooser = new AutoChooser();
+        autoChooser = new SimpleAutoChooser();
         // chooser.addObject("My Auto", new MyAutoCommand());
 
         CameraServer.getInstance().startAutomaticCapture();
@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
 //        m_autonomousCommand = new CommandGroup();
 //        m_autonomousCommand.addSequential(new DropKickstand());
 //        m_autonomousCommand.addSequential(autoChooser.chooseAuto(switchSide, scaleSide));
-        m_autonomousCommand = new TestAutoGroup();
+        m_autonomousCommand = autoChooser.chooseAuto(switchSide);
 
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");

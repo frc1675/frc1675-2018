@@ -77,6 +77,7 @@ public class SimpleAutoChooser {
         if (!hasCube) {
             nextLocation = getCubePickUpLocation(currentLocation);
             if(nextLocation == null) {return auto;}
+            auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.PICK_UP_POSITION));
             auto.addSequential(new Go(currentLocation, nextLocation));
             currentLocation = nextLocation;
             auto.addSequential(new PickUpCube());
@@ -98,6 +99,7 @@ public class SimpleAutoChooser {
             }
             
             nextLocation = getSwitchDestination(currentLocation, switchAssignment);
+            auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
             auto.addSequential(new Go(currentLocation, nextLocation));
             currentLocation = nextLocation;
             if(switchAssignment.toString().equals(currentLocation.getSide())) {

@@ -77,6 +77,9 @@ public class Go extends CommandGroup {
             case EXCHANGE:
                 this.addSequential(new PyramidLeftToExchange());
                 break;
+            case SWITCH_LEFT_FRONT:
+                this.addSequential(new PyramidLeftToSwitchLeft());
+                break;
             default:
                 errorPath();
                 break;
@@ -85,6 +88,9 @@ public class Go extends CommandGroup {
             switch (end) {
             case EXCHANGE:
                 this.addSequential(new PyramidRightToExchange());
+                break;
+            case SWITCH_RIGHT_FRONT:
+                this.addSequential(new PyramidRightToSwitchRight());
                 break;
             default:
                 errorPath();
