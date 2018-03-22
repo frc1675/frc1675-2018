@@ -13,12 +13,25 @@ public class Go extends CommandGroup {
     FieldLocation end;
 
     public Go(FieldLocation startLocation, FieldLocation endLocation) {
+        if(startLocation == endLocation) {
+            return;
+        }
         end = endLocation;
         start = startLocation;
         switch (start) {
+        case START_FAR_LEFT:
+            switch(end) {
+            case SWITCH_LEFT_SIDE:
+                this.addSequential(new StartFarLeftToSwitchSideLeft());
+                break;
+            default:
+                errorPath();
+                break;
+            }
+            break;
         case START_LEFT:
             switch (end) {
-            case SWITCH_LEFT:
+            case SWITCH_LEFT_FRONT:
                 this.addSequential(new StartLeftToSwitchLeft());
                 break;
             default:
@@ -28,10 +41,10 @@ public class Go extends CommandGroup {
             break;
         case START_MIDDLE:
             switch (end) {
-            case SWITCH_LEFT:
+            case SWITCH_LEFT_FRONT:
                 this.addSequential(new StartMiddleToSwitchLeft());
                 break;
-            case SWITCH_RIGHT:
+            case SWITCH_RIGHT_FRONT:
                 this.addSequential(new StartMiddleToSwitchRight());
                 break;
             default:
@@ -41,8 +54,18 @@ public class Go extends CommandGroup {
             break;
         case START_RIGHT:
             switch (end) {
-            case SWITCH_RIGHT:
+            case SWITCH_RIGHT_FRONT:
                 this.addSequential(new StartRightToSwitchRight());
+                break;
+            default:
+                errorPath();
+                break;
+            }
+            break;
+        case START_FAR_RIGHT:
+            switch(end) {
+            case SWITCH_RIGHT_SIDE:
+                this.addSequential(new StartFarRightToSwitchSideRight());
                 break;
             default:
                 errorPath();
@@ -67,7 +90,7 @@ public class Go extends CommandGroup {
                 errorPath();
                 break;
             }
-        case SWITCH_LEFT:
+        case SWITCH_LEFT_FRONT:
             switch (end) {
             case NULL_ZONE_LEFT:
                 this.addSequential(new SwitchLeftToNullZoneLeft());
@@ -80,7 +103,7 @@ public class Go extends CommandGroup {
                 break;
             }
             break;
-        case SWITCH_RIGHT:
+        case SWITCH_RIGHT_FRONT:
             switch (end) {
             case NULL_ZONE_RIGHT:
                 this.addSequential(new SwitchRightToNullZoneRight());
