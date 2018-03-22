@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1675.robot.commands;
 
 import org.usfirst.frc.team1675.robot.Robot;
+import org.usfirst.frc.team1675.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -20,7 +21,7 @@ public class ActivateClaw extends Command {
 
     protected void initialize() {
         if (input) {
-            Robot.claw.setLeftIntakePower(power);
+            Robot.claw.setLeftIntakePower(RobotMap.ClawConstants.CLAW_RATIO_DIFFERENCE * power);
             Robot.claw.setRightIntakePower(-power);
         } else {
             Robot.claw.setLeftIntakePower(-power);

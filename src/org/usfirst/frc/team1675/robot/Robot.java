@@ -7,17 +7,19 @@
 
 package org.usfirst.frc.team1675.robot;
 
+import org.usfirst.frc.team1675.robot.commands.TestAutoGroup;
 import org.usfirst.frc.team1675.robot.subsystems.Arm;
 import org.usfirst.frc.team1675.robot.subsystems.Claw;
 import org.usfirst.frc.team1675.robot.subsystems.PIDDriveBase;
 import org.usfirst.frc.team1675.robot.subsystems.RampSub;
-import org.usfirst.frc.team1675.robot.utils.TimedAutoChooser;
+import org.usfirst.frc.team1675.robot.utils.FieldColorAssignment;
+import org.usfirst.frc.team1675.robot.utils.SimpleAutoChooser;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -36,10 +38,11 @@ public class Robot extends TimedRobot {
 
     public static OI oi;
 
+//    public static AutoChooser autoChooser;
+    public static SimpleAutoChooser autoChooser;
     private static Timer teleopTime = new Timer();
-    public static TimedAutoChooser autoChooser;
 
-    Command m_autonomousCommand;
+    CommandGroup m_autonomousCommand;
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -48,7 +51,9 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         oi = new OI();
-        autoChooser = new TimedAutoChooser();
+        autoChooser = new SimpleAutoChooser();
+        // chooser.addObject("My Auto", new MyAutoCommand());
+
         CameraServer.getInstance().startAutomaticCapture();
     }
 
@@ -81,11 +86,29 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
-        String side = null;
-        while (side == null) {
-            side = DriverStation.getInstance().getGameSpecificMessage();
+        String sideInfo = null;
+        while(sideInfo == null) {
+            sideInfo = DriverStation.getInstance().getGameSpecificMessage();
         }
-        m_autonomousCommand = autoChooser.generateAuto(side);
+        FieldColorAssignment switchSide = FieldColorAssignment.getSideFromChar(sideInfo.charAt(0));
+        FieldColorAssignment scaleSide = FieldColorAssignment.getSideFromChar(sideInfo.charAt(1));
+        
+        if(switchSide == null || scaleSide == null) {
+            System.err.println("Invalid Field Data String");
+        }
+//        m_autonomousCommand = new CommandGroup();
+//        m_autonomousCommand.addSequential(new DropKickstand());
+//        m_autonomousCommand.addSequential(autoChooser.chooseAuto(switchSide, scaleSide));
+        m_autonomousCommand = autoChooser.chooseAuto(switchSide);
+
+        /*
+         * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+         * switch(autoSelected) { case "My Auto": autonomousCommand = new
+         * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
+         * ExampleCommand(); break; }
+         */
+
+
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.start();
