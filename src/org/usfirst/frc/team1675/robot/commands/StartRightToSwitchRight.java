@@ -19,7 +19,7 @@ public class StartRightToSwitchRight extends CommandGroup {
 
         // G to D move from right side: move forward
 
-        addSequential(new DriveForDistance(SEGMENT_1, 7));
+        addSequential(new DriveForDistance(SEGMENT_1, 4));
 //        addSequential(new TurnWithGyro(TURN_SEGMENT_1, TIMEOUT));
 //        addSequential(new DriveForDistance(SEGMENT_2, TIMEOUT));
 //        addSequential(new TurnWithGyro(TURN_SEGMENT_2, TIMEOUT));
