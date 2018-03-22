@@ -10,23 +10,25 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveArmToEncoderPosition extends Command {
 
-    double encoderValue;
+    double setpoint;
+    double initialPos;
 
     public MoveArmToEncoderPosition(double encoderValue) {
         requires(Robot.arm);
-        this.encoderValue = encoderValue;
+        this.setpoint = encoderValue;
         if (encoderValue > RobotMap.ArmConstants.FORWARD_LIMIT_POSITION) {
-            this.encoderValue = RobotMap.ArmConstants.FORWARD_LIMIT_POSITION;
+            this.setpoint = RobotMap.ArmConstants.FORWARD_LIMIT_POSITION;
         }
         if (encoderValue < 0) {
-            this.encoderValue = 0;
+            this.setpoint = 0;
         }
         this.setTimeout(5);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        double direction = Math.signum(encoderValue - Math.abs(Robot.arm.getArmEncoderValue()));
+        initialPos = Math.abs(Robot.arm.getArmEncoderValue());
+        double direction = Math.signum(setpoint - Math.abs(Robot.arm.getArmEncoderValue()));
         Robot.arm.moveArm(direction * RobotMap.ArmConstants.ARM_AUTONOMOUS_MOVEMENT_POWER, 1);
     }
 
@@ -36,9 +38,15 @@ public class MoveArmToEncoderPosition extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        boolean onTarget = Math.abs(
-                encoderValue - Math.abs(Robot.arm.getArmEncoderValue())) <= RobotMap.ArmConstants.ARM_ENCODER_BUFFER;
+        //boolean onTarget = Math.abs(
+                //encoderValue - Math.abs(Robot.arm.getArmEncoderValue())) <= RobotMap.ArmConstants.ARM_ENCODER_BUFFER;
         boolean hasBeenZeroed = Robot.arm.hasButtonBeenPressed();
+        boolean onTarget = false;
+        if(initialPos < setpoint) {
+            onTarget = Math.abs(Robot.arm.getArmEncoderValue()) >= setpoint;
+        }else if(initialPos >= setpoint) {
+            onTarget = Math.abs(Robot.arm.getArmEncoderValue()) <= setpoint;
+        }
         return this.isTimedOut() || !hasBeenZeroed || onTarget;
     }
 
