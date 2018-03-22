@@ -7,19 +7,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class PyramidRightToExchange extends CommandGroup {
 
-    private static final double SEGMENT_1 = 33.94;
-    private static final double SEGMENT_1_TIMEOUT = 5; // backwards
+    private static final double SEGMENT_1 = -30;
+    private static final double SEGMENT_1_TIMEOUT = 1.5; // backwards
 
-    private static final double TURN_1_ANGLE = 45;
-    private static final double TURN_1_TIMEOUT = 5; // turn left
+    private static final double TURN_1_ANGLE = -50;
+    private static final double TURN_1_TIMEOUT = 3; // turn left
 
-    private static final double SEGMENT_2 = 93;
-    private static final double SEGMENT_2_TIMEOUT = 5;// forward
+    private static final double SEGMENT_2 = 100;
+    private static final double SEGMENT_2_TIMEOUT = 2;// forward
 
-    private static final double TURN_3_ANGLE = 90;
-    private static final double TURN_3_TIMEOUT = 5;
+    private static final double TURN_3_ANGLE = -62;
+    private static final double TURN_3_TIMEOUT = 3;
 
-    private static final double SEGMENT_3 = 147;
+    private static final double SEGMENT_3 = 50;
     private static final double SEGMENT_3_TIMEOUT = 5;
 
     public PyramidRightToExchange() {// I to H
