@@ -86,6 +86,7 @@ public class SimpleAutoChooser {
         
         switch(postScore) {
         case EXCHANGE:
+            auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HOLD_CUBE_ENCODER_POSITION));
             for(FieldLocation l: getExchangePath(currentLocation)) {
                 nextLocation = l;
                 auto.addSequential(new Go(currentLocation, nextLocation));

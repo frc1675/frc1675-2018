@@ -72,6 +72,7 @@ public class RobotMap {
         public static final int SCALE_ENCODER_POSITION = 4400;
         public static final int HIGH_SWITCH_ENCODER_POSITION = 3248;
         public static final int NORMAL_SWITCH_ENCODER_POSITION = 2240;
+        public static final int HOLD_CUBE_ENCODER_POSITION = 340;
         public static final int PICK_UP_POSITION = 0;
 
         public static final int FORWARD_LIMIT_POSITION = 4400;
