@@ -70,7 +70,7 @@ public class DriveForDistance extends PIDCommand {
             }else {
                 count = 0;
             }
-        if(count == 10) {
+        if(count == 5) {
             return true;
         }
         return false;

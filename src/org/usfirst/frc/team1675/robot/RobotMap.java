@@ -82,7 +82,7 @@ public class RobotMap {
         public static final double ARM_AUTONOMOUS_MOVEMENT_POWER = .4;
         public static final double ARM_MANUAL_MAX_POWER = .6;
 
-        public static final double DROP_KICKSTAND_TIME = .5; //.25
+        public static final double DROP_KICKSTAND_TIME = .25; 
     }
 
     public static final double CONTROLLER_DEADZONE = 0.1675;

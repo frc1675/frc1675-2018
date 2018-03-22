@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class StartRightToSwitchRight extends CommandGroup {
     // g to d
-    private static final double TIMEOUT = 10;
 
     private static final double SEGMENT_1 = 96;
     // private static final double SEGMENT_1_TIMEOUT = 10;
@@ -20,7 +19,7 @@ public class StartRightToSwitchRight extends CommandGroup {
 
         // G to D move from right side: move forward
 
-        addSequential(new DriveForDistance(SEGMENT_1, TIMEOUT));
+        addSequential(new DriveForDistance(SEGMENT_1, 7));
 //        addSequential(new TurnWithGyro(TURN_SEGMENT_1, TIMEOUT));
 //        addSequential(new DriveForDistance(SEGMENT_2, TIMEOUT));
 //        addSequential(new TurnWithGyro(TURN_SEGMENT_2, TIMEOUT));

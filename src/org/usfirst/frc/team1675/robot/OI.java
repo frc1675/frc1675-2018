@@ -78,7 +78,7 @@ public class OI {
     public OI() {
         driverRightBumper.whenPressed(new ShiftHigh());
         driverRightBumper.whenReleased(new ShiftLow());
-        driverButtonA.whenPressed(new PickUpCube());
+        //driverButtonA.whenPressed(new PickUpCube());
         driverBumpersAndStart.whenPressed(new DeployRamps());
         driverBumpersAndStart.whenPressed(new StopDriveWhileDeploying());
         driverBumpersAndLeftStickButton.whenPressed(new RaiseRightRamp());
