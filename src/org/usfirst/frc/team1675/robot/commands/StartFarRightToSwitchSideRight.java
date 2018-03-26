@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class StartFarRightToSwitchSideRight extends CommandGroup {
   
-    private static final double SEGMENT_1 = 124;
+    private static final double SEGMENT_1 = 136;
     private static final double TURN_SEGMENT_1 = -90;
     private static final double SEGMENT_2 = 36;
         

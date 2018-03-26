@@ -18,7 +18,7 @@ public class DropKickstand extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         this.setTimeout(RobotMap.ArmConstants.DROP_KICKSTAND_TIME);
-        Robot.arm.moveArm(RobotMap.ArmConstants.ARM_AUTONOMOUS_MOVEMENT_POWER, 1);
+        Robot.arm.moveArm(RobotMap.ArmConstants.ARM_KICKSTAND_AUTO_POWER, 1);
     }
 
     // Called repeatedly when this Command is scheduled to run

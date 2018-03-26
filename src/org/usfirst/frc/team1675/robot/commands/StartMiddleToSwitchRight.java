@@ -13,9 +13,9 @@ public class StartMiddleToSwitchRight extends CommandGroup {
 
     private static final double SEGMENT_1 = 22; //42
 
-    private static final double SEGMENT_2 = 94; //84
+    private static final double SEGMENT_2 = 88; //84
     
-    private static final double SEGMENT_3 = 12;
+//    private static final double SEGMENT_3 = 18;
     
 
     public StartMiddleToSwitchRight() {
