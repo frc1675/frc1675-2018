@@ -5,7 +5,7 @@ public enum FieldLocation {
     SWITCH_LEFT_FRONT("Left Switch Front", "L"),
     SWITCH_LEFT_SIDE("Left Switch Side", "L"),
     SWITCH_RIGHT_FRONT("Right Switch Front", "R"),
-    SWITCH_RIGHT_SIDE("Left Switch Side", "L"),
+    SWITCH_RIGHT_SIDE("Right Switch Side", "R"),
     START_FAR_LEFT("Far Left Start", "L"),
     START_LEFT("Left Start", "L"),
     START_MIDDLE("Middle Start", "M"),
