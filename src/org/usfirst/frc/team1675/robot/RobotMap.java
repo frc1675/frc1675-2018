@@ -41,7 +41,7 @@ public class RobotMap {
 
     public static class DriveBaseConstants {
         public static final double SHIFT_TIME = .25;
-        public static final double DRIVE_P = 0.000092;
+        public static final double DRIVE_P = 0.000094;
         public static final double DRIVE_I = 0.0;
         public static final double DRIVE_D = 0.0006;
         public static final double DRIVE_TOLERANCE = 814.88; //464
@@ -64,6 +64,7 @@ public class RobotMap {
         public static final double MAX_OUTPUT_POWER = 1;
         public static final double MID_OUTPUT_POWER = .5;
         public static final double MIN_OUTPUT_POWER = .3;
+        public static final double AUTO_OUTPUT_POWER = .4;
         public static final double INPUT_POWER = .75;
         public static final double CLAW_RATIO_DIFFERENCE = .75;
     }
@@ -71,6 +72,7 @@ public class RobotMap {
     public static class ArmConstants {
         public static final int SCALE_ENCODER_POSITION = 4400;
         public static final int HIGH_SWITCH_ENCODER_POSITION = 3248;
+        public static final int AUTO_SWITCH_ENCODER_POSITION = 2744;
         public static final int NORMAL_SWITCH_ENCODER_POSITION = 2240;
         public static final int HOLD_CUBE_ENCODER_POSITION = 340;
         public static final int PICK_UP_POSITION = 0;
@@ -81,6 +83,7 @@ public class RobotMap {
         public static final int ARM_BUTTON = 9;
 
         public static final double ARM_AUTONOMOUS_MOVEMENT_POWER = .4;
+        public static final double ARM_KICKSTAND_AUTO_POWER = .6;
         public static final double ARM_MANUAL_MAX_POWER = .6;
 
         public static final double DROP_KICKSTAND_TIME = .25; 

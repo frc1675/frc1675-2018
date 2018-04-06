@@ -53,63 +53,94 @@ public class SimpleAutoChooser {
         CommandGroup auto = new CommandGroup();
         FieldLocation currentLocation = start;
         FieldLocation nextLocation;
+        int commandCount = 0;
         boolean hasCube = true;
 
         if (start == null || score == null || postScore == null) {
             return null;
         }
         auto.addSequential(new DropKickstand());
-        auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
+        commandCount++;
+        SmartDashboard.putString("Auto Command #" + commandCount, "Drop Kickstand");
+        auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.AUTO_SWITCH_ENCODER_POSITION));
+        commandCount++;
+        SmartDashboard.putString("Auto Command #" + commandCount, "Arm to Auto-Switch Parallel");
         nextLocation = getSwitchDestination(start, switchAssignment);
-        if(nextLocation == null) {return auto;}
-        
-        auto.addSequential(new Go(currentLocation, nextLocation));
-        currentLocation = nextLocation;
-        if(score == ScoreOption.SCORE_AGREE && (currentLocation.getSide().equals(switchAssignment.toString()))) {
-            auto.addSequential(new ScoreCube());
-            hasCube = false;
-        }
-        
-        if(postScore == AutoPostScoreDirective.SKIP || start == FieldLocation.START_FAR_LEFT || start == FieldLocation.START_FAR_RIGHT) {
+        if (nextLocation == null) {
             return auto;
         }
-        
+
+        auto.addSequential(new Go(currentLocation, nextLocation));
+        commandCount++;
+        SmartDashboard.putString("Auto Command #" + commandCount, currentLocation + " to " + nextLocation);
+        currentLocation = nextLocation;
+        if (score == ScoreOption.SCORE_AGREE && (currentLocation.getSide().equals(switchAssignment.toString()))) {
+            auto.addSequential(new ScoreCube());
+            commandCount++;
+            SmartDashboard.putString("Auto Command #" + commandCount, "Score Cube");
+            hasCube = false;
+        }
+
+        if (postScore == AutoPostScoreDirective.SKIP || start == FieldLocation.START_FAR_LEFT
+                || start == FieldLocation.START_FAR_RIGHT) {
+            return auto;
+        }
+
         if (!hasCube) {
             nextLocation = getCubePickUpLocation(currentLocation);
-            if(nextLocation == null) {return auto;}
-            auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.PICK_UP_POSITION));
-            auto.addSequential(new Go(currentLocation, nextLocation));
-            currentLocation = nextLocation;
-            auto.addSequential(new PickUpCube());
-            hasCube = true;
-        }
-        
-        switch(postScore) {
-        case EXCHANGE:
-            auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HOLD_CUBE_ENCODER_POSITION));
-            for(FieldLocation l: getExchangePath(currentLocation)) {
-                nextLocation = l;
-                auto.addSequential(new Go(currentLocation, nextLocation));
-                currentLocation = nextLocation;
-            }
-//            auto.addSequential(new ScoreCube());
-            break;
-        case SCORE_SWITCH:
-            if(!currentLocation.getSide().equals(switchAssignment.toString())) {
+            if (nextLocation == null) {
                 return auto;
             }
-            
+            auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.PICK_UP_POSITION));
+            commandCount++;
+            SmartDashboard.putString("Auto Command #" + commandCount, "Arm to Pick-up Parallel");
+            auto.addSequential(new Go(currentLocation, nextLocation));
+            commandCount++;
+            SmartDashboard.putString("Auto Command #" + commandCount, currentLocation + " to " + nextLocation);
+            currentLocation = nextLocation;
+            auto.addSequential(new PickUpCube());
+            commandCount++;
+            SmartDashboard.putString("Auto Command #" + commandCount, "Pick up Cube");
+            hasCube = true;
+        }
+
+        switch (postScore) {
+        case EXCHANGE:
+            auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HOLD_CUBE_ENCODER_POSITION));
+            commandCount++;
+            SmartDashboard.putString("Auto Command #" + commandCount, "Arm to Hold Cube Parallel");
+            for (FieldLocation l : getExchangePath(currentLocation)) {
+                nextLocation = l;
+                auto.addSequential(new Go(currentLocation, nextLocation));
+                commandCount++;
+                SmartDashboard.putString("Auto Command #" + commandCount, currentLocation + " to " + nextLocation);
+                currentLocation = nextLocation;
+            }
+            // auto.addSequential(new ScoreCube());
+            break;
+        case SCORE_SWITCH:
+            if (!currentLocation.getSide().equals(switchAssignment.toString())) {
+                return auto;
+            }
+
             nextLocation = getSwitchDestination(currentLocation, switchAssignment);
             auto.addParallel(new MoveArmToEncoderPosition(RobotMap.ArmConstants.HIGH_SWITCH_ENCODER_POSITION));
+            commandCount++;
+            SmartDashboard.putString("Auto Command #" + commandCount, "Arm to H-Switch Parallel");
+            
             auto.addSequential(new Go(currentLocation, nextLocation));
+            commandCount++;
+            SmartDashboard.putString("Auto Command #" + commandCount, currentLocation + " to " + nextLocation);
             currentLocation = nextLocation;
-            if(switchAssignment.toString().equals(currentLocation.getSide())) {
+            if (switchAssignment.toString().equals(currentLocation.getSide())) {
                 auto.addSequential(new ScoreCube());
+                commandCount++;
+                SmartDashboard.putString("Auto Command #" + commandCount, "Score Cube");
                 hasCube = false;
             }
             break;
         }
-        
+
         return auto;
     }
 
@@ -117,7 +148,8 @@ public class SimpleAutoChooser {
         if (current == FieldLocation.START_FAR_LEFT) {
             return FieldLocation.SWITCH_LEFT_SIDE;
         }
-        if (current == FieldLocation.START_LEFT || current == FieldLocation.CUBE_PYRAMID_LEFT || current == FieldLocation.SWITCH_LEFT_FRONT) {
+        if (current == FieldLocation.START_LEFT || current == FieldLocation.CUBE_PYRAMID_LEFT
+                || current == FieldLocation.SWITCH_LEFT_FRONT) {
             return FieldLocation.SWITCH_LEFT_FRONT;
         }
         if (current == FieldLocation.START_MIDDLE) {
@@ -127,22 +159,22 @@ public class SimpleAutoChooser {
                 return FieldLocation.SWITCH_RIGHT_FRONT;
             }
         }
-        if (current == FieldLocation.START_RIGHT || current == FieldLocation.CUBE_PYRAMID_RIGHT || current == FieldLocation.SWITCH_RIGHT_FRONT) {
+        if (current == FieldLocation.START_RIGHT || current == FieldLocation.CUBE_PYRAMID_RIGHT
+                || current == FieldLocation.SWITCH_RIGHT_FRONT) {
             return FieldLocation.SWITCH_RIGHT_FRONT;
         }
         if (current == FieldLocation.START_FAR_RIGHT) {
             return FieldLocation.SWITCH_RIGHT_SIDE;
         }
-        
 
         return null;
     }
-    
+
     private FieldLocation getCubePickUpLocation(FieldLocation current) {
-        if(current == FieldLocation.SWITCH_LEFT_FRONT) {
+        if (current == FieldLocation.SWITCH_LEFT_FRONT) {
             return FieldLocation.CUBE_PYRAMID_LEFT;
         }
-        if(current == FieldLocation.SWITCH_RIGHT_FRONT) {
+        if (current == FieldLocation.SWITCH_RIGHT_FRONT) {
             return FieldLocation.CUBE_PYRAMID_RIGHT;
         }
         return null;
@@ -150,10 +182,10 @@ public class SimpleAutoChooser {
 
     private FieldLocation[] getExchangePath(FieldLocation current) {
         FieldLocation[] path;
-        if(current == FieldLocation.CUBE_PYRAMID_LEFT || current == FieldLocation.CUBE_PYRAMID_RIGHT) {
+        if (current == FieldLocation.CUBE_PYRAMID_LEFT || current == FieldLocation.CUBE_PYRAMID_RIGHT) {
             path = new FieldLocation[1];
             path[0] = FieldLocation.EXCHANGE;
-        }else {
+        } else {
             path = new FieldLocation[2];
             path[0] = getCubePickUpLocation(current);
             path[1] = FieldLocation.EXCHANGE;

@@ -12,7 +12,7 @@ public class SwitchLeftToPyramidLeft extends CommandGroup {
 
     private static final double TURN_RIGHT_ANGLE = 68;
     
-    private static final double SEGMENT_2 = 44;
+    private static final double SEGMENT_2 = 20;
  
     public SwitchLeftToPyramidLeft() { // D to I
 
